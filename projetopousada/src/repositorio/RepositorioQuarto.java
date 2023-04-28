@@ -1,4 +1,4 @@
-package respositorio;
+package repositorio;
 
 public class RepositorioQuarto {
 	public void criarQuarto() {

@@ -1,5 +1,7 @@
+package dados;
+
 public class Menu {
-    public void linha(int quantidade){
+	public void linha(int quantidade){
         int i;
         for(i = 0; i < quantidade; i++){
             System.out.print("-");

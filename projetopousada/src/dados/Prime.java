@@ -1,6 +1,6 @@
 package dados;
 
-public class prime extends Quarto {
+public class Prime extends Quarto {
 	private float preco;
 	private void Vinho() {
 		
