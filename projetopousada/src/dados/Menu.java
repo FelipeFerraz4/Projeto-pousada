@@ -46,11 +46,17 @@ public class Menu {
         
         if(escolha == 1){
             System.out.println("Login feito");
-            this.menuCliente();
+            int option = 1;
+            if (option==1){
+                this.menuGerente();
+            }
+            else{
+                this.menuCliente();
+            }
             this.menuInicial();
         }
         else if(escolha == 2){
-            System.out.println("Cadastrar usuario feito");
+            System.out.println("Cadastro do usuario feito");
             this.menuInicial();
         }
         else{
@@ -59,7 +65,67 @@ public class Menu {
     }
     
     public void menuGerente(){
+        String nome = "Sol Nascente";
+    	this.cabecarioPousada(nome);
+    	
+    	int escolha;
+    	
+    	Scanner scan = new Scanner(System.in);
+        System.out.println("1 - Adicionar um pessoa");
+        System.out.println("2 - Adicionar um quarto");
+        System.out.println("3 - Consultar estado do pessoa");
+        System.out.println("4 - Consultar estado do quarto");
+        System.out.println("5 - Atualizar dados do pessoa");
+        System.out.println("6 - Atualizar dados do quarto");
+        System.out.println("7 - remover um pessoa");
+        System.out.println("8 - remover um quarto");
+        System.out.println("9 - Fechar guia gerente");
         
+        do{
+        	System.out.println("Digite a sua alternativa: ");
+        	escolha = scan.nextInt();
+        	if(escolha>9 || escolha<1) {
+        		System.out.println("Alternativa invalida");
+        	}
+        }while(escolha>9 || escolha<1);
+        
+        switch(escolha){
+            case 1:
+                System.out.println("Pessoa adicionada");
+                this.menuGerente();
+                break;
+            case 2:
+                System.out.println("Quarto adicionado");
+                this.menuGerente();
+                break;
+            case 3:
+                System.out.println("Pessoa consultada");
+                this.menuGerente();
+                break;
+            case 4:
+                System.out.println("Quarto consultado");
+                this.menuGerente();
+                break;
+            case 5:
+                System.out.println("Pessoa atualizada");
+                this.menuGerente();
+                break;
+            case 6:
+                System.out.println("Quarto atualizado");
+                this.menuGerente();
+                break;
+            case 7:
+                System.out.println("Pessoa removida");
+                this.menuGerente();
+                break;
+            case 8:
+                System.out.println("Quarto removido");
+                this.menuGerente();
+                break;
+            default:
+                System.out.println("Fechado guia gerente");
+                break;
+        }
     }
     public void menuCliente(){
         String nome = "Sol Nascente";
