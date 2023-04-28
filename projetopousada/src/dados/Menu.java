@@ -1,5 +1,7 @@
 package dados;
 
+import java.util.Scanner;
+
 public class Menu {
 	public void linha(int quantidade){
         int i;
@@ -23,6 +25,24 @@ public class Menu {
         this.linha(40);
     }
     public void login(){
+    	String nome = "Sol Nascente";
+    	this.cabecarioPousada(nome);
+    	
+    	int escolha;
+    	//boolean escolhaCorreta = false;
+    	
+    	Scanner scan = new Scanner(System.in);
+        System.out.println("1 - Fazer login");
+        System.out.println("2 - Cadastrar usuário");
+        System.out.println("3 - Sair do programa");
+        
+        do{
+        	System.out.println("Digite a sua alternativa: ");
+        	escolha = scan.nextInt();
+        	if(escolha>3 || escolha<1) {
+        		System.out.println("Alternativa invalida");
+        	}
+        }while(escolha>3 || escolha<1);
         
     }
 }
