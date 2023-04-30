@@ -46,7 +46,7 @@ public class Menu {
         
         if(escolha == 1){
             System.out.println("Login feito");
-            int option = 1;
+            int option = 0;
             if (option==1){
                 this.menuGerente();
             }

@@ -6,8 +6,6 @@ public abstract class Pessoa {
 	private String Nome;
 	
 	
-	
-	
 	public String getCPF() {
 		return CPF;
 	}

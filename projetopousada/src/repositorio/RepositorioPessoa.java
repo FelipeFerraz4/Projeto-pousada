@@ -1,6 +1,11 @@
 package repositorio;
 
+import java.util.ArrayList;
+
 public class RepositorioPessoa {
+	
+	ArrayList pessoas = new ArrayList();
+	
 	public void criarPessoa() {
 		
 	}
