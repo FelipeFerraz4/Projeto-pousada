@@ -44,5 +44,6 @@ public class TesteQuarto {
 		prime1.diaria(4);
 		System.out.println(prime1.getConta());
 		
+		
 	}
 }

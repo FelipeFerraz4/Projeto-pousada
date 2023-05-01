@@ -18,11 +18,16 @@ public class RepositorioQuarto {
 		quartos.add(quarto);
 		
 	}
-	public void buscarQuarto() {
-		
+	public int buscarQuarto(Quarto quarto) {
+		for (int i = 0; i < quartos.size(); i++) {
+			if (quartos.get(i).equals(quarto)) {
+				return i;
+			}
+		}
+		return -1;
 	}
-	public void deletarQuarto() {
-		
+	public void deletarQuarto(int indexQuarto) {
+		quartos.remove(indexQuarto);
 	}
 	public void atualizarQuarto() {
 		
