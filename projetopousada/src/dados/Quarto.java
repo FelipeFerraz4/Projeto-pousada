@@ -65,6 +65,7 @@ public abstract class Quarto {
 		return false;
 	}
 	
+	@Override
 	public String toString() {
 		String tipo;
 		if (this.tipoQuarto==1) {

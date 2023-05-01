@@ -33,7 +33,7 @@ public class Menu {
     	
     	Scanner scan = new Scanner(System.in);
         System.out.println("1 - Fazer login");
-        System.out.println("2 - Cadastrar usuário");
+        System.out.println("2 - Cadastrar usuario");
         System.out.println("3 - Sair do programa");
         
         do{
