@@ -7,6 +7,8 @@ import repositorio.RepositorioQuarto;
 public class TesteQuarto {
 	public static void main(String[] args) {
 		
+		// teste da classe Normal
+		
 		Normal normal1 = new Normal(1);
 		
 		System.out.println(normal1.getNumeroQuato());
@@ -28,6 +30,8 @@ public class TesteQuarto {
 		System.out.println(normal1.toString());
 		
 		System.out.println("\n");
+		
+		// teste da classe Prime
 		
 		Prime prime1 = new Prime(1);
 		
@@ -51,6 +55,8 @@ public class TesteQuarto {
 		
 		System.out.println("\n");
 		
+		// teste da classe RepositorioQuarto
+		
 		RepositorioQuarto quartos = new RepositorioQuarto();
 		
 		quartos.criarQuarto(100, 1);
@@ -68,8 +74,39 @@ public class TesteQuarto {
 			System.out.println("Quarto informadao nao existe");
 		}
 		
-		quartos.deletarQuarto(1);
+		int res = quartos.deletarQuarto(1);
+		if (res==1) {
+			System.out.println("Quarto deletado");
+		}
+		else {
+			System.out.println("Problema na delecao do Quarto");
+		}
+			
 		indexQuarto = quartos.buscarQuarto(prime1);
+		if(indexQuarto > -1 ) {
+			System.out.println(quartos.getQuartos().get(indexQuarto));
+		}
+		else {
+			System.out.println("Quarto informadao nao existe");
+		}
+		
+		indexQuarto = quartos.buscarQuarto(100, 1);
+		if(indexQuarto > -1 ) {
+			System.out.println(quartos.getQuartos().get(indexQuarto));
+		}
+		else {
+			System.out.println("Quarto informadao nao existe");
+		}
+		
+		res = quartos.deletarQuarto(100, 1);
+		if (res==1) {
+			System.out.println("Quarto deletado");
+		}
+		else {
+			System.out.println("Problema na delecao do Quarto");
+		}
+			
+		indexQuarto = quartos.buscarQuarto(100, 1);
 		if(indexQuarto > -1 ) {
 			System.out.println(quartos.getQuartos().get(indexQuarto));
 		}
