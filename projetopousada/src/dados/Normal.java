@@ -1,30 +1,28 @@
 package dados;
 
 public class Normal extends Quarto {
-	private float preco;
-	private float conta;
-	private void Agua(int quantAgua) {
-		conta = conta + quantAgua*2;
-		
+	
+	private float preco = 200;
+	
+	public Normal(int numero) {
+		super(numero);
+		setCapacidade(2);
+		setTipoQuarto(1);
 	}
-	private void refrigerante(int quantRefri) {
-		conta= conta + quantRefri*4;
-	}
-	private void diaria(int dias) {
-		conta =conta +  dias*200;
-		
-	}
+	
 	public float getPreco() {
 		return preco;
 	}
-	public void setPreco(float preco) {
-		this.preco = preco;
+	
+	public void agua(int quantAgua) {
+		setConta(getConta() + quantAgua*2);
 	}
-	public float getConta() {
-		return conta;
+	public void refrigerante(int quantRefri) {
+		setConta(getConta() + quantRefri*4);
 	}
-	public void setConta(float conta) {
-		this.conta = conta;
+	public void diaria(int dias) {
+		setConta(getConta() + dias*getPreco());
 	}
-
+	
+	
 }
