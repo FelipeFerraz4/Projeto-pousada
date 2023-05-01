@@ -7,6 +7,10 @@ public class RepositorioQuarto {
 	
 	ArrayList<Quarto> quartos = new ArrayList();
 	
+	public ArrayList getQuartos() {
+		return this.quartos;
+	}
+	
 	public void criarQuarto(int numeroQuarto, int tipoQuarto) {
 		Quarto quarto;
 		if (tipoQuarto==1) {
@@ -17,6 +21,9 @@ public class RepositorioQuarto {
 		}
 		quartos.add(quarto);
 		
+	}
+	public void adicionarQuarto(Quarto quarto) {
+		quartos.add(quarto);
 	}
 	public int buscarQuarto(Quarto quarto) {
 		for (int i = 0; i < quartos.size(); i++) {

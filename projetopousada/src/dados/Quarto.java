@@ -50,13 +50,33 @@ public abstract class Quarto {
 		this.conta = valor;
 	}
 	
-	public boolean equals(Quarto quarto) {
-		if(this.tipoQuarto==quarto.getTipoQuarto()) {
-			if(this.numeroQuato==quarto.getNumeroQuato()) {
-				return true;
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Quarto) {
+			Quarto quarto = (Quarto) obj;
+			if(this.tipoQuarto==quarto.getTipoQuarto()) {
+				if(this.numeroQuato==quarto.getNumeroQuato()) {
+					return true;
+				}
+				return false;
 			}
 			return false;
 		}
 		return false;
 	}
+	
+	public String toString() {
+		String tipo;
+		if (this.tipoQuarto==1) {
+			tipo = "N";
+		}
+		else {
+			tipo = "P";
+		}
+		
+		return "Numero do quarto: " + tipo + this.numeroQuato + "\n"
+		+ "Ocupado: " + this.ocupado + "\n"
+		+ "Conta: " + this.conta;
+	}
+	
 }

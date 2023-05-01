@@ -2,6 +2,7 @@ package teste;
 
 import dados.Normal;
 import dados.Prime;
+import repositorio.RepositorioQuarto;
 
 public class TesteQuarto {
 	public static void main(String[] args) {
@@ -24,7 +25,9 @@ public class TesteQuarto {
 		normal1.diaria(4);
 		System.out.println(normal1.getConta());
 		
-		System.out.println("\n\n");
+		System.out.println(normal1.toString());
+		
+		System.out.println("\n");
 		
 		Prime prime1 = new Prime(1);
 		
@@ -44,6 +47,35 @@ public class TesteQuarto {
 		prime1.diaria(4);
 		System.out.println(prime1.getConta());
 		
+		System.out.println(prime1.toString());
+		
+		System.out.println("\n");
+		
+		RepositorioQuarto quartos = new RepositorioQuarto();
+		
+		quartos.criarQuarto(100, 1);
+		System.out.println(quartos.getQuartos().get(0));
+		
+		quartos.adicionarQuarto(prime1);
+		System.out.println(quartos.getQuartos().get(1));
+		
+		quartos.adicionarQuarto(normal1);
+		int indexQuarto = quartos.buscarQuarto(normal1);
+		if(indexQuarto > -1 ) {
+			System.out.println(quartos.getQuartos().get(indexQuarto));
+		}
+		else {
+			System.out.println("Quarto informadao nao existe");
+		}
+		
+		quartos.deletarQuarto(1);
+		indexQuarto = quartos.buscarQuarto(prime1);
+		if(indexQuarto > -1 ) {
+			System.out.println(quartos.getQuartos().get(indexQuarto));
+		}
+		else {
+			System.out.println("Quarto informadao nao existe");
+		}
 		
 	}
 }
