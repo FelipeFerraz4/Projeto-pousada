@@ -1,7 +1,21 @@
 package repositorio;
 
+import dados.*;
+import java.util.ArrayList;
+
 public class RepositorioQuarto {
-	public void criarQuarto() {
+	
+	ArrayList<Quarto> quartos = new ArrayList();
+	
+	public void criarQuarto(int numeroQuarto, int tipoQuarto) {
+		Quarto quarto;
+		if (tipoQuarto==1) {
+			quarto = new Normal(numeroQuarto);
+		}
+		else{
+			quarto = new Prime(numeroQuarto);
+		}
+		quartos.add(quarto);
 		
 	}
 	public void buscarQuarto() {
