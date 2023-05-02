@@ -59,8 +59,27 @@ public class RepositorioQuarto {
 		}
 		return -1;
 	}
-	public void atualizarQuarto() {
-		 
+	public void atualizarQuarto(Quarto quarto) {
+		int indexQuarto = this.buscarQuarto(quarto);
+		if (quartos.get(indexQuarto).isOcupado()!=quarto.isOcupado()) {
+			quartos.get(indexQuarto).isOcupado();
+		}
+		quartos.get(indexQuarto).setConta(quarto.getConta());
+		quartos.get(indexQuarto).setCapacidade(quarto.getCapacidade());
+	}
+	
+	public int quartoVazio(int tipoQuarto) {
+		int indexQuarto = -1;
+		
+		for(int i = 0; i < quartos.size(); i++) {
+			if (quartos.get(i).getTipoQuarto()==tipoQuarto) {
+				if (quartos.get(i).isOcupado()==false) {
+					return i;
+				}
+			}
+		}
+		
+		return indexQuarto;
 	}
 
 }
