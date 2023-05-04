@@ -77,7 +77,8 @@ public abstract class Quarto {
 		
 		return "Numero do quarto: " + tipo + this.numeroQuato + "\n"
 		+ "Ocupado: " + this.ocupado + "\n"
-		+ "Conta: " + this.conta;
+		+ "Conta: " + this.conta + "\n"
+		+ "Capacidade" + this.capacidade;
 	}
 	
 }
