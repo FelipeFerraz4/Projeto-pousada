@@ -7,7 +7,7 @@ public abstract class Quarto {
 	private int capacidade;
 	private boolean ocupado = false;
 	private float conta = 0;
-	
+
 	public Quarto(int numero){
 		this.numeroQuato = numero;
 		this.ocupado = true;

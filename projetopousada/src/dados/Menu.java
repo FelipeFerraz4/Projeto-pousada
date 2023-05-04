@@ -1,6 +1,9 @@
 package dados;
 
 import java.util.Scanner;
+import dados.*;
+import repositorio.*;
+
 
 public class Menu {
 	public void linha(int quantidade){
@@ -43,6 +46,7 @@ public class Menu {
         		System.out.println("Alternativa invalida");
         	}
         }while(escolha>3 || escolha<1);
+        
         
         if(escolha == 1){
             System.out.println("Login feito");
@@ -148,6 +152,7 @@ public class Menu {
         		System.out.println("Alternativa invalida");
         	}
         }while(escolha>6 || escolha<1);
+        
         
         switch(escolha){
             case 1:
