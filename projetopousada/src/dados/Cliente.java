@@ -6,16 +6,34 @@ import java.util.Scanner;
 
 public class Cliente extends Pessoa {
 	
-	
-	public Cliente(String n, String cpf, int senha) {
-		super(n, cpf, senha);
-	}
-
 	private float Consumo;
 	public String Historico;
 	public float ValorQuarto;
 	public int Diarias;
 	public int Capacidade;
+	
+	public Cliente(String n, String cpf, int senha) {
+		super(n, cpf, senha);
+		this.setTipoPessoa(1);
+	}
+	
+	
+	public float getConsumo(int valorQuarto,int produto,int quantidade) {
+		Consumo = valorQuarto + produto*quantidade; 
+		return Consumo;
+	}
+
+	public void setConsumo(float consumo) {
+		Consumo = ValorQuarto + consumo;
+	}
+
+	public String getHistorico() {
+		return Historico;
+	}
+
+	public void setHistorico(String historico) {
+		Historico = historico;
+	}
 	
 	
 	public void checkin() {
@@ -52,22 +70,15 @@ public class Cliente extends Pessoa {
 	}
 	
 	public void sevircodequarto() {
-		
 		System.out.println("seriço de quarto acionado");
-		
-	
 	}
 
-	
-	
 	public void verconsumo() {
 		System.out.println("seu consumo atual é:R$" + Consumo );
 	}
 	
 	/*public void historicodeagendamento() {
 		System.out.println("Reservas anteriores:");
-		
-	
 	}}*/
 	
 	public void pagarconsumo() {
@@ -100,10 +111,6 @@ public class Cliente extends Pessoa {
 	
 	}
 	
-	
-	
-	
-	
 	public void tamanhoDoQuarto() {
 		int n;
 		Scanner scan = new Scanner(System.in);
@@ -122,6 +129,7 @@ public class Cliente extends Pessoa {
 		
 		this.Capacidade = n+1;
 	}
+	
 	public void diarias() {
 		int d;
 		Scanner scan = new Scanner(System.in);
@@ -137,40 +145,8 @@ public class Cliente extends Pessoa {
 		this.Diarias = d;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	private void sleep(int i) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public float getConsumo(int valorQuarto,int produto,int quantidade) {
-		
-		Consumo = valorQuarto + produto*quantidade; 
-		
-		return Consumo;
-	}
-
-	public void setConsumo(float consumo) {
-		Consumo = ValorQuarto + consumo;
-	}
-
-	public String getHistorico() {
-		return Historico;
-	}
-
-	public void setHistorico(String historico) {
-		Historico = historico;
-	}
-	
-	
-
 }

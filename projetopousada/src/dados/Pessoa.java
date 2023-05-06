@@ -4,9 +4,7 @@ public abstract class Pessoa {
 	private String CPF;
 	private int Senha;
 	private String Nome;
-	
-	
-	
+	private int tipoPessoa;
 	
 	public Pessoa(String n, String cpf, int senha){
 		this.Nome = n;
@@ -14,23 +12,13 @@ public abstract class Pessoa {
 		this.Senha = senha;
 	}
 	
-	@Override
-	public boolean equals(Object c) {
-		if(this.CPF.equals(((Pessoa)c).CPF)) {
-			return true;
-		}else {
-			return false;
-		}
+	
+	public int getTipoPessoa() {
+		return tipoPessoa;
 	}
-	
-	@Override
-	public String toString() {
-		String resultado = "Cliente " + this.getNome() + 
-				"\nportador do CPF: " + CPF + "com a senha: " + Senha;
-		return resultado;
+	public void setTipoPessoa(int tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
 	}
-	
-	
 	public String getCPF() {
 		return CPF;
 	}
@@ -49,4 +37,22 @@ public abstract class Pessoa {
 	public void setNome(String nome) {
 		Nome = nome;
 	}
+	
+	
+	@Override
+	public boolean equals(Object c) {
+		if(this.CPF.equals(((Pessoa)c).CPF)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String resultado = "Cliente " + this.getNome() + 
+				"\nportador do CPF: " + CPF + "com a senha: " + Senha;
+		return resultado;
+	}
+	
 }
