@@ -7,7 +7,7 @@ import dados.Pessoa;
 
 public class RepositorioPessoa {
 
-	ArrayList<Pessoa> pessoas = new ArrayList();
+	ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
 	public ArrayList getPessoas() {
 		return this.pessoas;

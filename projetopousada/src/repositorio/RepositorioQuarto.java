@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class RepositorioQuarto {
 	
-	ArrayList<Quarto> quartos = new ArrayList();
+	ArrayList<Quarto> quartos = new ArrayList<Quarto>();
 	
 	public ArrayList getQuartos() {
 		return this.quartos;

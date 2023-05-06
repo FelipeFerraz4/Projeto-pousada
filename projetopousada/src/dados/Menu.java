@@ -6,6 +6,10 @@ import repositorio.*;
 
 
 public class Menu {
+	
+	//RepositorioQuarto quartos = new RepositorioQuarto();
+	RepositorioPessoa pessoas = new RepositorioPessoa();
+	
 	public void linha(int quantidade){
         int i;
         for(i = 0; i < quantidade; i++){
@@ -32,7 +36,6 @@ public class Menu {
     	this.cabecarioPousada(nome);
     	
     	int escolha;
-    	//boolean escolhaCorreta = false;
     	
     	Scanner scan = new Scanner(System.in);
         System.out.println("1 - Fazer login");
@@ -49,15 +52,20 @@ public class Menu {
         
         
         if(escolha == 1){
+        	Login login = new Login();
+        	
+        	int option = login.entrar(pessoas);
+        	
             System.out.println("Login feito");
-            int option = 0;
             if (option==1){
                 this.menuGerente();
             }
-            else{
+            else if (option == 2){
                 this.menuCliente();
             }
-            this.menuInicial();
+            else {
+            	this.menuInicial();
+            }
         }
         else if(escolha == 2){
             System.out.println("Cadastro do usuario feito");
