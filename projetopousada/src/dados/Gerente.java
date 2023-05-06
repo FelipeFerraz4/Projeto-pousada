@@ -24,8 +24,8 @@ public class Gerente extends Pessoa  {
 		RepositorioPessoa cliente = new RepositorioPessoa();
 		cliente.criarPessoa(n, cpf, senha);
 		System.out.println(cliente.toString());
-		
 	}
+	
 	public void addQuarto(){
 		int numQuarto, TipoQuarto;
 		Scanner scan = new Scanner(System.in);
@@ -62,9 +62,5 @@ public class Gerente extends Pessoa  {
 		TipoQuarto= scan.nextInt();
 		RepositorioQuarto Q1 = new RepositorioQuarto();
 		Q1.deletarQuarto(numQuarto, TipoQuarto);
-
-
 	}
-	
-
 }

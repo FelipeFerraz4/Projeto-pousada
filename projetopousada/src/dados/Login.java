@@ -21,6 +21,7 @@ public class Login {
 		
 		return 1;
 	}
+	
 	public int cadastrar(RepositorioPessoa pessoas) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Digite o seu CPF: ");
