@@ -9,6 +9,7 @@ public class Menu {
 	
 	//RepositorioQuarto quartos = new RepositorioQuarto();
 	RepositorioPessoa pessoas = new RepositorioPessoa();
+	Login login = new Login();
 	
 	public void linha(int quantidade){
         int i;
@@ -52,7 +53,6 @@ public class Menu {
         
         
         if(escolha == 1){
-        	Login login = new Login();
         	
         	int option = login.entrar(pessoas);
         	
@@ -68,6 +68,7 @@ public class Menu {
             }
         }
         else if(escolha == 2){
+        	login.cadastrar(pessoas);
             System.out.println("Cadastro do usuario feito");
             this.menuInicial();
         }
