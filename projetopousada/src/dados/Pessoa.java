@@ -1,6 +1,7 @@
 package dados;
 
 public abstract class Pessoa {
+	
 	private String CPF;
 	private int Senha;
 	private String Nome;

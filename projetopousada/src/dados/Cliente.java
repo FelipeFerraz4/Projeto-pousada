@@ -5,15 +5,39 @@ import java.util.Scanner;
 
 
 public class Cliente extends Pessoa {
+
+	private Quarto quarto;
 	
+	public Cliente (String nome, String cpf, int senha, Quarto quarto) {
+		super(nome, cpf, senha);
+		this.setTipoPessoa(1);
+		this.quarto = quarto;
+		
+	}
+
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
+	}
+	
+	
+
+	
+	
+/*	
 	private float Consumo;
 	public String Historico;
 	public float ValorQuarto;
-	public int Diarias;
-	public int Capacidade;
+	private int diarias = 0;
+	private int capacidade;
+//	private int Historico;;
+	private Quarto quarto;
 	
-	public Cliente(String n, String cpf, int senha) {
-		super(n, cpf, senha);
+	public Cliente(String nome, String cpf, int senha) {
+		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
 	}
 	
@@ -29,6 +53,14 @@ public class Cliente extends Pessoa {
 
 	public String getHistorico() {
 		return Historico;
+	}
+
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
 	}
 
 	public void setHistorico(String historico) {
@@ -77,9 +109,12 @@ public class Cliente extends Pessoa {
 		System.out.println("seu consumo atual é:R$" + Consumo );
 	}
 	
-	/*public void historicodeagendamento() {
+	
+
+ 	public void historicodeagendamento() {
 		System.out.println("Reservas anteriores:");
-	}}*/
+	}
+
 	
 	public void pagarconsumo() {
 		int opção;
@@ -127,7 +162,7 @@ public class Cliente extends Pessoa {
 		
 		} while(n < 1 || n >3);
 		
-		this.Capacidade = n+1;
+		this.capacidade = n+1;
 	}
 	
 	public void diarias() {
@@ -142,11 +177,12 @@ public class Cliente extends Pessoa {
 		}
 		} while(d < 1 || d >15);
 		scan.close();
-		this.Diarias = d;
+		this.diarias = d;
 	}
 	
 	private void sleep(int i) {
 		// TODO Auto-generated method stub
 		
 	}
+*/
 }

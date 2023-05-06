@@ -7,7 +7,7 @@ public class RepositorioQuarto {
 	
 	ArrayList<Quarto> quartos = new ArrayList<Quarto>();
 	
-	public ArrayList getQuartos() {
+	public ArrayList<Quarto> getQuartos() {
 		return this.quartos;
 	}
 	

@@ -1,26 +1,21 @@
 package teste;
 
-import dados.Cliente;
-import dados.gerente;
+import dados.*;
 import repositorio.RepositorioPessoa;
 
-public class TesteQuarto {
+public class TestePessoa {
 	public static void main(String[] args) {
 
-        // Teste Cliente
+    // Teste Cliente
+		
+	Normal quartoN = new Normal(100);
    
-    Cliente cliente1 = new Cliente("André","1234");
-
-    System.out.println(cliente1.getCPF());
-	System.out.println(normal1.getNome());
-    System.out.println(normal1.getSenha());
-
+    Cliente cliente1 = new Cliente("Andre","1234",123, quartoN);
     
-	
-
+    System.out.println(cliente1.getCPF());
+    System.out.println(cliente1.getQuarto().toString());
+    
+    
+    
     }
-
-
-
-
 }
