@@ -58,9 +58,7 @@ public abstract class Quarto {
 				if(this.numeroQuato==quarto.getNumeroQuato()) {
 					return true;
 				}
-				return false;
 			}
-			return false;
 		}
 		return false;
 	}

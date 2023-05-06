@@ -38,7 +38,17 @@ public abstract class Pessoa {
 		Nome = nome;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Pessoa) {
+			Pessoa pessoa = (Pessoa) obj;
+			if (this.CPF == pessoa.CPF) {
+				return true;
+			}
+		}
+		return false;
+	}
+/*	
 	@Override
 	public boolean equals(Object c) {
 		if(this.CPF.equals(((Pessoa)c).CPF)) {
@@ -47,7 +57,7 @@ public abstract class Pessoa {
 			return false;
 		}
 	}
-	
+*/	
 	@Override
 	public String toString() {
 		String resultado = "Cliente " + this.getNome() + 
