@@ -10,7 +10,7 @@ public class Login {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Digite o seu CPF: ");
 		String cpf = scan.nextLine();
-		int pessoa = pessoas.buscarPesoa(cpf); 
+		int pessoa = pessoas.buscarPessoa(cpf); 
 		if(pessoa ==-1) {
 			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
 			return 0;
@@ -26,16 +26,16 @@ public class Login {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Digite o seu CPF: ");
 		String cpf = scan.nextLine();
-		if(pessoas.buscarPesoa(cpf)!=-1) {
+		if(pessoas.buscarPessoa(cpf)!=-1) {
 			System.out.println("Operacao invalida, CPF já cadastrado");
 			return 0;
 		}
 		System.out.println("Digite o seu Nome: ");
 		String nome = scan.nextLine();
 		System.out.println("Digite uma senha: ");
-		int senha = scan.nextInt();
+		String senha = scan.nextLine();
 		
-		pessoas.criarPessoa(nome, cpf, senha);
+		pessoas.criarPessoa(nome, cpf, senha, 1);
 		pessoas.getPessoas().get(0).toString();
 		
 		return 1;
