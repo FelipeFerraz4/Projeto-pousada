@@ -1,6 +1,7 @@
 package dados;
 
 import java.util.Scanner;
+import dados.*;
 
 public class Cliente extends Pessoa {
 	
@@ -11,32 +12,35 @@ public class Cliente extends Pessoa {
 
 	
 	
-/*	
-//	private float Consumo;
-	public String Historico;
-//	public float ValorQuarto;
+
+	//private float Consumo;
+//	public String Historico;
+	public float ValorQuarto;
 	private int diarias = 0;
-//	private int capacidade;
-//	private int Historico;;
-//	private Quarto quarto;
+	private int capacidade;
+	private int Historico;;
+	private Quarto quarto;
 	
-	public Cliente(String nome, String cpf, int senha) {
+	/*public Cliente(String nome, String cpf, String senha) {
 		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
-	}
+	}*/
 	
 	
-	public float getConsumo(int valorQuarto,int produto,int quantidade) {
+	/*public float getConsumo(int valorQuarto,int produto,int quantidade) {
 		Consumo = valorQuarto + produto*quantidade; 
 		return Consumo;
 	}
 
 	public void setConsumo(float consumo) {
 		Consumo = ValorQuarto + consumo;
-	}
+	}*/
 
-	public String getHistorico() {
+	public int getHistorico() {
 		return Historico;
+	}
+	public void setHistorico(int historico) {
+		Historico = Historico + historico;
 	}
 
 	public Quarto getQuarto() {
@@ -47,9 +51,7 @@ public class Cliente extends Pessoa {
 		this.quarto = quarto;
 	}
 
-	public void setHistorico(String historico) {
-		Historico = historico;
-	}
+	
 	
 	
 	public void checkin() {
@@ -57,8 +59,8 @@ public class Cliente extends Pessoa {
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Qual opção de quarto gostaria?");
-		System.out.println("1 - Quarto Normal");
-		System.out.println("2 - Quarto Prime");
+		System.out.println("1 - Quarto Normal(2-4)");
+		System.out.println("2 - Quarto Prime(5-7)");
 		System.out.println("3 - Voltar");
 		
 		do{
@@ -81,21 +83,57 @@ public class Cliente extends Pessoa {
 			this.checkin();
 		}
 		if(opção == 3) {
+			
 		}
+		
 		
 	}
 	
 	public void sevircodequarto() {
+		int opção,quantidade;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Qual opção de quarto gostaria?");
+		System.out.println("1 - Água - 2,00");
+		System.out.println("2 - Refrigarante - 4,00");
+		System.out.println("3 - Voltar");
+		
+		do{
+        	System.out.println("Escolha sua opção: ");
+        	opção = scan.nextInt();
+        	if(opção>3 || opção<1) {
+        		System.out.println("Opção Invalida:");
+        	}
+        }while(opção>3 || opção<1);
+		
+		if (opção==1){
+			Normal n1 = new Normal(1);
+			System.out.println("Qual a quantidade?");
+			quantidade = scan.nextInt();
+			n1.agua(quantidade);
+		}
+		if (opção==2){
+			Normal n1 = new Normal(1);
+			System.out.println("Qual a quantidade?");
+			quantidade = scan.nextInt();
+			n1.refrigerante(quantidade);
+		}
+		else{
+		}
+		
 		System.out.println("seriço de quarto acionado");
 	}
 
 	public void verconsumo() {
-		System.out.println("seu consumo atual é:R$" + Consumo );
+		float consumo;
+		Normal n1 = new Normal(1);
+		consumo = n1.getConta();
+		System.out.println("seu consumo atual é:R$" + consumo );
 	}
 	
 	
 
- 	public void historicodeagendamento() {
+ 	public void historicodeagendamento(int i) { 
+		System.out.println("você já fez "+ Historico + "reservas na nossa pousada");
 		System.out.println("Reservas anteriores:");
 	}
 
@@ -128,6 +166,9 @@ public class Cliente extends Pessoa {
 			System.out.println("pagamento aprovado");
 		}
 	
+	}
+	public void Checkout (){
+		historicodeagendamento(1);
 	}
 	
 	public void tamanhoDoQuarto() {
@@ -165,8 +206,6 @@ public class Cliente extends Pessoa {
 	}
 	
 	private void sleep(int i) {
-		// TODO Auto-generated method stub
-		
 	}
-*/
+
 }

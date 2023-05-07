@@ -7,7 +7,7 @@ public class TestePessoa {
 	public static void main(String[] args) {
 	
 	    // Cliente
-			
+		
 		Normal quartoN = new Normal(100);
 	   
 	    Cliente cliente1 = new Cliente("Andre","1234","123");
@@ -19,7 +19,8 @@ public class TestePessoa {
 	    System.out.println(cliente1.getQuarto().toString());
 	    
 	    System.out.println();
-	    // Repositorio
+	    // Repositorio 
+
 	    
 	    RepositorioPessoa pessoas = new RepositorioPessoa();
 	    
@@ -59,8 +60,18 @@ public class TestePessoa {
 	    System.out.println(pessoas.getPessoas().get(indexBusca).getNome());
 	    System.out.println(pessoas.getPessoas().get(indexBusca).getSenha());
 	    System.out.println(pessoas.getPessoas().get(indexBusca).getQuarto());
+
 	    
 	    System.out.println();
+
+		
+		Cliente pessoa = (Cliente) pessoas.getPessoas().get(1);
+		pessoas.atualizarPessoa(pessoa);
+	    indexBusca = pessoas.buscarPessoa(pessoa);
+	    System.out.println(pessoas.getPessoas().get(indexBusca).getCPF());
+	    System.out.println(pessoas.getPessoas().get(indexBusca).getNome());
+	    System.out.println(pessoas.getPessoas().get(indexBusca).getSenha());
+	    System.out.println(pessoas.getPessoas().get(indexBusca).getQuarto());
 	    
 	    if (pessoas.deletarPessoa("120")==1) {
 	    	System.out.println("pessoa deletada");

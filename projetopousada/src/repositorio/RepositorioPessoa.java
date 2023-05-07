@@ -58,7 +58,10 @@ public class RepositorioPessoa {
 		return -1;
 	}
 
-	public void atualizarPessoa() {
+	public void atualizarPessoa(Pessoa pessoa) {
+		int indicePessoa = this.buscarPessoa(pessoa);
+		pessoas.get(indicePessoa).setNome(pessoa.getNome());
+		pessoas.get(indicePessoa).setSenha(pessoa.getSenha());
 		
 	}
 }
