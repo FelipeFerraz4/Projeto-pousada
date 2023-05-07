@@ -5,8 +5,8 @@ import repositorio.*;
 
 public class Gerente extends Pessoa  {
 
-	public Gerente(String n, String cpf, String senha) {
-		super(n, cpf, senha);
+	public Gerente(String nome, String cpf, String senha) {
+		super(nome, cpf, senha);
 		this.setTipoPessoa(2);
 	}
 	

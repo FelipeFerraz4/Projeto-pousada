@@ -8,8 +8,16 @@ import repositorio.*;
 public class Menu {
 	
 	//RepositorioQuarto quartos = new RepositorioQuarto();
-	RepositorioPessoa pessoas = new RepositorioPessoa();
-	Login login = new Login();
+	private RepositorioPessoa pessoas;
+	private Gerente adm;
+	private Login login;
+	
+	public Menu() {
+		this.pessoas = new RepositorioPessoa();
+		this.adm = new Gerente("Andre", "0000", "12345");
+		this.login = new Login();
+		this.pessoas.addPessoa(adm);
+	}
 	
 	public void linha(int quantidade){
         int i;
@@ -56,20 +64,24 @@ public class Menu {
         	
         	int option = login.entrar(pessoas);
         	
-            System.out.println("Login feito");
             if (option==1){
-                this.menuGerente();
+            	System.out.println("Bem vindo Cliente");
+            	this.menuCliente();
             }
             else if (option == 2){
-                this.menuCliente();
+            	System.out.println("Bem vindo Gerente");
+            	this.menuGerente();
             }
             else {
             	this.menuInicial();
             }
         }
         else if(escolha == 2){
-        	login.cadastrar(pessoas);
-            System.out.println("Cadastro do usuario feito");
+        	int opition = login.cadastrar(pessoas);
+        	
+        	if (opition == 1) {
+        		System.out.println("Cadastro do cliente feito");
+        	}
             this.menuInicial();
         }
         else{
@@ -84,27 +96,28 @@ public class Menu {
     	int escolha;
     	
     	Scanner scan = new Scanner(System.in);
-        System.out.println("1 - Adicionar um pessoa");
+        System.out.println("1 - Adicionar um gerente");
         System.out.println("2 - Adicionar um quarto");
-        System.out.println("3 - Consultar estado do pessoa");
+        System.out.println("3 - Consultar estado do gerente");
         System.out.println("4 - Consultar estado do quarto");
-        System.out.println("5 - Atualizar dados do pessoa");
+        System.out.println("5 - Atualizar dados do gerente");
         System.out.println("6 - Atualizar dados do quarto");
-        System.out.println("7 - remover um pessoa");
+        System.out.println("7 - remover um gerente");
         System.out.println("8 - remover um quarto");
-        System.out.println("9 - Fechar guia gerente");
+        System.out.println("9 - Ver dados do gerente");
+        System.out.println("10 - Fechar guia gerente");
         
         do{
         	System.out.println("Digite a sua alternativa: ");
         	escolha = scan.nextInt();
-        	if(escolha>9 || escolha<1) {
+        	if(escolha>10 || escolha<1) {
         		System.out.println("Alternativa invalida");
         	}
-        }while(escolha>9 || escolha<1);
+        }while(escolha>10 || escolha<1);
         
         switch(escolha){
             case 1:
-                System.out.println("Pessoa adicionada");
+                System.out.println("Gerente adicionada");
                 this.menuGerente();
                 break;
             case 2:
@@ -112,7 +125,7 @@ public class Menu {
                 this.menuGerente();
                 break;
             case 3:
-                System.out.println("Pessoa consultada");
+                System.out.println("Gerente consultada");
                 this.menuGerente();
                 break;
             case 4:
@@ -120,7 +133,7 @@ public class Menu {
                 this.menuGerente();
                 break;
             case 5:
-                System.out.println("Pessoa atualizada");
+                System.out.println("Gerente atualizada");
                 this.menuGerente();
                 break;
             case 6:
@@ -128,15 +141,20 @@ public class Menu {
                 this.menuGerente();
                 break;
             case 7:
-                System.out.println("Pessoa removida");
+                System.out.println("Gerente removida");
                 this.menuGerente();
                 break;
             case 8:
                 System.out.println("Quarto removido");
                 this.menuGerente();
                 break;
+            case 9:
+                System.out.println("Quarto removido");
+                this.menuGerente();
+                break;
             default:
                 System.out.println("Fechado guia gerente");
+                this.menuInicial();
                 break;
         }
     }
@@ -152,15 +170,16 @@ public class Menu {
         System.out.println("3 - Ver consumo");
         System.out.println("4 - Ver historico de agendamento");
         System.out.println("5 - Pagar consumo");
-        System.out.println("6 - Checkout");
+        System.out.println("6 - Ver dados do cliente");
+        System.out.println("7 - Checkout");
         
         do{
         	System.out.println("Digite a sua alternativa: ");
         	escolha = scan.nextInt();
-        	if(escolha>6 || escolha<1) {
+        	if(escolha>7 || escolha<1) {
         		System.out.println("Alternativa invalida");
         	}
-        }while(escolha>6 || escolha<1);
+        }while(escolha>7 || escolha<1);
         
         
         switch(escolha){
@@ -184,8 +203,13 @@ public class Menu {
                 System.out.println("Consumo pago");
                 this.menuCliente();
                 break;
+            case 6:
+                System.out.println("Dados do cliente mostrados");
+                this.menuCliente();
+                break;
             default:
                 System.out.println("Checkout feito com sucesso");
+                this.menuInicial();
                 break;
         }
     }

@@ -50,7 +50,7 @@ public abstract class Pessoa {
 	public boolean equals(Object obj) {
 		if (obj instanceof Pessoa) {
 			Pessoa pessoa = (Pessoa) obj;
-			if (this.CPF == pessoa.CPF) {
+			if (this.CPF.equals(pessoa.getCPF())) {
 				return true;
 			}
 		}
@@ -69,7 +69,7 @@ public abstract class Pessoa {
 	@Override
 	public String toString() {
 		String resultado = "Cliente " + this.getNome() + 
-				"\nportador do CPF: " + CPF + "com a senha: " + Senha;
+				"\nportador do CPF: " + CPF + " com a senha: " + Senha;
 		return resultado;
 	}
 	
