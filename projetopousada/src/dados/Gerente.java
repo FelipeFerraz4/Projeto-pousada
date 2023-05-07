@@ -5,13 +5,38 @@ import repositorio.*;
 
 public class Gerente extends Pessoa  {
 
-	public Gerente(String n, String cpf, int senha) {
+	public Gerente(String n, String cpf, String senha) {
 		super(n, cpf, senha);
+		this.setTipoPessoa(2);
 	}
 	
-	Gerente G2 = new Gerente("felipe","12345678910", 1234);
+//	Gerente G2 = new Gerente("felipe","12345678910", 1234);
 	
-	public void addpessoa() {
+	public void addpessoa(RepositorioPessoa pessoas) {
+		String n,cpf;
+		String senha;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("qual nome do cliente:");
+        n = scan.nextLine();
+        System.out.println("qual CPF do cliente:");
+        cpf = scan.nextLine();
+		System.out.println("Qual a senha do cliente");
+		senha = scan.nextLine();
+		pessoas.criarPessoa(n, cpf, senha, 1);
+		System.out.println(pessoas.toString());
+	}
+	
+	public void addQuarto(RepositorioQuarto quartos){
+		int numQuarto, TipoQuarto;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("qual o numero do quarto?:");
+		numQuarto= scan.nextInt();
+		System.out.println("qual o tipo do quarto (1/0):");
+		TipoQuarto= scan.nextInt();
+		quartos.criarQuarto(numQuarto, TipoQuarto);
+	}
+
+	public void removerPessoa(RepositorioPessoa pessoas){
 		String n,cpf;
 		int senha;
 		Scanner scan = new Scanner(System.in);
@@ -21,46 +46,18 @@ public class Gerente extends Pessoa  {
         cpf = scan.nextLine();
 		System.out.println("Qual a senha do cliente");
 		senha = scan.nextInt();
-		RepositorioPessoa cliente = new RepositorioPessoa();
-		cliente.criarPessoa(n, cpf, senha);
-		System.out.println(cliente.toString());
+		pessoas.deletarPessoa(cpf);
+		System.out.println(pessoas.toString());
+
 	}
-	
-	public void addQuarto(){
+
+	public void removerQuarto(RepositorioQuarto quartos){
 		int numQuarto, TipoQuarto;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("qual o numero do quarto?:");
 		numQuarto= scan.nextInt();
 		System.out.println("qual o tipo do quarto (1/0):");
 		TipoQuarto= scan.nextInt();
-		RepositorioQuarto Q1 = new RepositorioQuarto();
-		Q1.criarQuarto(numQuarto, TipoQuarto);
-	}
-
-	public void removerPessoa(){
-		String n,cpf;
-		int senha;
-		Scanner scan = new Scanner(System.in);
-		System.out.println("qual nome do cliente:");
-        n = scan.nextLine();
-        System.out.println("qual CPF do cliente:");
-        cpf = scan.nextLine();
-		System.out.println("Qual a senha do cliente");
-		senha = scan.nextInt();
-		RepositorioPessoa cliente = new RepositorioPessoa();
-		cliente.deletarPessoa(n, cpf);
-		System.out.println(cliente.toString());
-
-	}
-
-	public void removerQuarto(){
-		int numQuarto, TipoQuarto;
-		Scanner scan = new Scanner(System.in);
-		System.out.println("qual o numero do quarto?:");
-		numQuarto= scan.nextInt();
-		System.out.println("qual o tipo do quarto (1/0):");
-		TipoQuarto= scan.nextInt();
-		RepositorioQuarto Q1 = new RepositorioQuarto();
-		Q1.deletarQuarto(numQuarto, TipoQuarto);
+		quartos.deletarQuarto(numQuarto, TipoQuarto);
 	}
 }

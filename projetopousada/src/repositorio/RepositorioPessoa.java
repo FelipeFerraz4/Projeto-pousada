@@ -2,8 +2,7 @@ package repositorio;
 
 import java.util.ArrayList;
 
-import dados.Cliente;
-import dados.Pessoa;
+import dados.*;
 
 public class RepositorioPessoa {
 
@@ -13,25 +12,47 @@ public class RepositorioPessoa {
 		return this.pessoas;
 	}
 	
-	public void criarPessoa(String nome, String cpf, int senha) {
+	public void criarPessoa(String nome, String cpf, String senha, int tipoPessoa) {
 		Pessoa pessoa;
-		pessoa = new Cliente(nome,cpf,senha);
+		if (tipoPessoa==1) {
+			pessoa = new Cliente(nome, cpf, senha);
+		}
+		else{
+			pessoa = new Gerente(nome, cpf, senha);
+		}
+		pessoas.add(pessoa);
+	}
+	public void addPessoa(Pessoa pessoa) {
 		pessoas.add(pessoa);
 	}
 	
-	public int buscarPesoa(String cpf) {
+	public int buscarPessoa(String cpf) {
 		for (int i = 0; i < pessoas.size(); i++) {
-			if (pessoas.get(i).getCPF()==cpf) {
+			if (pessoas.get(i).getCPF().equals(cpf)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	public int buscarPessoa(Pessoa pessoa) {
+		for (int i = 0; i < pessoas.size(); i++) {
+			if (pessoas.get(i).equals(pessoa)) {
 				return i;
 			}
 		}
 		return -1;
 	}
 
-	public int deletarPessoa(String nome, String cpf) {
-		int indeceQuarto = this.buscarPesoa(cpf);
+	public int deletarPessoa(String cpf) {
+		int indeceQuarto = this.buscarPessoa(cpf);
 		if (indeceQuarto > -1) {
 			pessoas.remove(indeceQuarto);
+			return 1;
+		}
+		return -1;
+	}
+	public int deletarPessoa(Pessoa pessoa) {
+		if (pessoas.remove(pessoa)) {
 			return 1;
 		}
 		return -1;

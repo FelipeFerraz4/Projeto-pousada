@@ -2,39 +2,23 @@ package dados;
 
 import java.util.Scanner;
 
-
-
 public class Cliente extends Pessoa {
-
-	private Quarto quarto;
 	
-	public Cliente (String nome, String cpf, int senha, Quarto quarto) {
+	public Cliente (String nome, String cpf, String senha) {
 		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
-		this.quarto = quarto;
-		
 	}
-
-	public Quarto getQuarto() {
-		return quarto;
-	}
-
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
-	}
-	
-	
 
 	
 	
 /*	
-	private float Consumo;
+//	private float Consumo;
 	public String Historico;
-	public float ValorQuarto;
+//	public float ValorQuarto;
 	private int diarias = 0;
-	private int capacidade;
+//	private int capacidade;
 //	private int Historico;;
-	private Quarto quarto;
+//	private Quarto quarto;
 	
 	public Cliente(String nome, String cpf, int senha) {
 		super(nome, cpf, senha);

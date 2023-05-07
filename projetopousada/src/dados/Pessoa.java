@@ -3,12 +3,13 @@ package dados;
 public abstract class Pessoa {
 	
 	private String CPF;
-	private int Senha;
+	private String Senha;
 	private String Nome;
 	private int tipoPessoa;
+	private Quarto quarto;
 	
-	public Pessoa(String n, String cpf, int senha){
-		this.Nome = n;
+	public Pessoa(String nome, String cpf, String senha){
+		this.Nome = nome;
 		this.CPF = cpf;
 		this.Senha = senha;
 	}
@@ -26,10 +27,10 @@ public abstract class Pessoa {
 	public void setCPF(String cPF) {
 		CPF = cPF;
 	}
-	public int getSenha() {
+	public String getSenha() {
 		return Senha;
 	}
-	public void setSenha(int senha) {
+	public void setSenha(String senha) {
 		Senha = senha;
 	}
 	public String getNome() {
@@ -37,6 +38,12 @@ public abstract class Pessoa {
 	}
 	public void setNome(String nome) {
 		Nome = nome;
+	}
+	public Quarto getQuarto() {
+		return quarto;
+	}
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
 	}
 	
 	@Override
