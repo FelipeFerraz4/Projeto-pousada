@@ -5,22 +5,18 @@ import dados.*;
 
 public class Cliente extends Pessoa {
 	
+	//private float Consumo;
+//	public String Historico;
+	private float ValorQuarto;
+	private int diarias = 0;
+	private int capacidade;
+	private int Historico;
+//	private Quarto quarto;
+	
 	public Cliente (String nome, String cpf, String senha) {
 		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
 	}
-
-	
-	
-
-	//private float Consumo;
-//	public String Historico;
-	public float ValorQuarto;
-	private int diarias = 0;
-	private int capacidade;
-	private int Historico;;
-	private Quarto quarto;
-	
 	/*public Cliente(String nome, String cpf, String senha) {
 		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
@@ -43,17 +39,7 @@ public class Cliente extends Pessoa {
 		Historico = Historico + historico;
 	}
 
-	public Quarto getQuarto() {
-		return quarto;
-	}
 
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
-	}
-
-	
-	
-	
 	public void checkin() {
 		int opção;
 		

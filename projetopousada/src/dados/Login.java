@@ -16,17 +16,17 @@ public class Login {
 		
 		if(pessoa ==-1) {
 			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
-			return 0;
+			return -1;
 		}
 		
 		System.out.println("Digite a sua senha: ");
 		String senha = scan.nextLine();
 		
 		if (pessoas.getPessoas().get(pessoa).getSenha().equals(senha)) {
-			return pessoas.getPessoas().get(pessoa).getTipoPessoa();
+			return pessoa;
 		}
 		System.out.println("Operacao invalida, CPF ou senha incorreto");
-		return 0;
+		return -1;
 	}
 	
 	public int cadastrar(RepositorioPessoa pessoas) {

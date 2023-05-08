@@ -17,6 +17,7 @@ public class TestePessoa {
 	    System.out.println(cliente1.getNome());
 	    System.out.println(cliente1.getSenha());
 	    System.out.println(cliente1.getQuarto().toString());
+	    System.out.println(cliente1.toString());
 	    
 	    System.out.println();
 	    // Repositorio 

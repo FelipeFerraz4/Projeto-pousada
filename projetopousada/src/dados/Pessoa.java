@@ -69,7 +69,8 @@ public abstract class Pessoa {
 	@Override
 	public String toString() {
 		String resultado = "Cliente " + this.getNome() + 
-				"\nportador do CPF: " + CPF + " com a senha: " + Senha;
+				"\nportador do CPF: " + CPF + " com a senha: " 
+				+ Senha;
 		return resultado;
 	}
 	

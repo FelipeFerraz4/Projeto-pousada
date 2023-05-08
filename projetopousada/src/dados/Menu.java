@@ -7,16 +7,20 @@ import repositorio.*;
 
 public class Menu {
 	
-	//RepositorioQuarto quartos = new RepositorioQuarto();
+	private RepositorioQuarto quartos;
 	private RepositorioPessoa pessoas;
 	private Gerente adm;
 	private Login login;
 	
 	public Menu() {
+		this.login = new Login();
+		this.quartos = new RepositorioQuarto();
 		this.pessoas = new RepositorioPessoa();
 		this.adm = new Gerente("Andre", "0000", "12345");
-		this.login = new Login();
+		Normal quarto = new Normal(0);
+		adm.setQuarto(quarto);
 		this.pessoas.addPessoa(adm);
+		this.quartos.adicionarQuarto(quarto);
 	}
 	
 	public void linha(int quantidade){
@@ -62,19 +66,20 @@ public class Menu {
         
         if(escolha == 1){
         	
-        	int option = login.entrar(pessoas);
+        	int indexPessoa = login.entrar(pessoas);
         	
-            if (option==1){
-            	System.out.println("Bem vindo Cliente");
-            	this.menuCliente();
+            if (indexPessoa!=-1) {
+            	int tipoPessoa = pessoas.getPessoas().get(indexPessoa).getTipoPessoa();
+            	if (tipoPessoa==1){
+                	System.out.println("Bem vindo Cliente");
+                	this.menuCliente(indexPessoa);
+                }
+                else if (tipoPessoa == 2){
+                	System.out.println("Bem vindo Gerente");
+                	this.menuGerente(indexPessoa);
+                }
             }
-            else if (option == 2){
-            	System.out.println("Bem vindo Gerente");
-            	this.menuGerente();
-            }
-            else {
-            	this.menuInicial();
-            }
+            this.menuInicial();
         }
         else if(escolha == 2){
         	int opition = login.cadastrar(pessoas);
@@ -89,22 +94,22 @@ public class Menu {
         }
     }
     
-    public void menuGerente(){
+    public void menuGerente(int indexGerente){
         String nome = "Sol Nascente";
     	this.cabecarioPousada(nome);
     	
     	int escolha;
     	
     	Scanner scan = new Scanner(System.in);
-        System.out.println("1 - Adicionar um gerente");
-        System.out.println("2 - Adicionar um quarto");
-        System.out.println("3 - Consultar estado do gerente");
-        System.out.println("4 - Consultar estado do quarto");
-        System.out.println("5 - Atualizar dados do gerente");
-        System.out.println("6 - Atualizar dados do quarto");
-        System.out.println("7 - remover um gerente");
-        System.out.println("8 - remover um quarto");
-        System.out.println("9 - Ver dados do gerente");
+        System.out.println("1  - Adicionar um gerente");
+        System.out.println("2  - Adicionar um quarto");
+        System.out.println("3  - Consultar estado do gerente");
+        System.out.println("4  - Consultar estado do quarto");
+        System.out.println("5  - Atualizar dados do gerente");
+        System.out.println("6  - Atualizar dados do quarto");
+        System.out.println("7  - remover um gerente");
+        System.out.println("8  - remover um quarto");
+        System.out.println("9  - Ver dados do gerente");
         System.out.println("10 - Fechar guia gerente");
         
         do{
@@ -118,39 +123,42 @@ public class Menu {
         switch(escolha){
             case 1:
                 System.out.println("Gerente adicionada");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 2:
                 System.out.println("Quarto adicionado");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 3:
                 System.out.println("Gerente consultada");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 4:
                 System.out.println("Quarto consultado");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 5:
                 System.out.println("Gerente atualizada");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 6:
                 System.out.println("Quarto atualizado");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 7:
                 System.out.println("Gerente removida");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 8:
                 System.out.println("Quarto removido");
-                this.menuGerente();
+                this.menuGerente(indexGerente);
                 break;
             case 9:
-                System.out.println("Quarto removido");
-                this.menuGerente();
+            	System.out.println(pessoas.getPessoas().get(indexGerente).toString());
+            	if (pessoas.getPessoas().get(indexGerente).getQuarto()!=null) {
+            		System.out.println(pessoas.getPessoas().get(indexGerente).getQuarto().toString());
+            	}
+                this.menuGerente(indexGerente);
                 break;
             default:
                 System.out.println("Fechado guia gerente");
@@ -158,7 +166,7 @@ public class Menu {
                 break;
         }
     }
-    public void menuCliente(){
+    public void menuCliente(int indexCliente){
         String nome = "Sol Nascente";
     	this.cabecarioPousada(nome);
     	
@@ -185,27 +193,30 @@ public class Menu {
         switch(escolha){
             case 1:
                 System.out.println("Check-in feito");
-                this.menuCliente();
+                this.menuCliente(indexCliente);
                 break;
             case 2:
                 System.out.println("Sevirco de quarto feito");
-                this.menuCliente();
+                this.menuCliente(indexCliente);
                 break;
             case 3:
                 System.out.println("Consumo mostrado");
-                this.menuCliente();
+                this.menuCliente(indexCliente);
                 break;
             case 4:
                 System.out.println("historico mostrado");
-                this.menuCliente();
+                this.menuCliente(indexCliente);
                 break;
             case 5:
                 System.out.println("Consumo pago");
-                this.menuCliente();
+                this.menuCliente(indexCliente);
                 break;
             case 6:
-                System.out.println("Dados do cliente mostrados");
-                this.menuCliente();
+            	System.out.println(pessoas.getPessoas().get(indexCliente).toString());
+            	if (pessoas.getPessoas().get(indexCliente).getQuarto()!=null) {
+            		System.out.println(pessoas.getPessoas().get(indexCliente).getQuarto().toString());
+            	}
+                this.menuCliente(indexCliente);
                 break;
             default:
                 System.out.println("Checkout feito com sucesso");
