@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 public class RepositorioQuarto {
 	
-	ArrayList<Quarto> quartos = new ArrayList<Quarto>();
+	private ArrayList<Quarto> quartos = new ArrayList<Quarto>();
 	
+	//melhora fazendo getPessoa receber um index e returna a pessoa 
 	public ArrayList<Quarto> getQuartos() {
 		return this.quartos;
 	}

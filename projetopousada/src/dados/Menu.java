@@ -89,9 +89,7 @@ public class Menu {
         	}
             this.menuInicial();
         }
-        else{
-            System.out.println("Programa finalizado");
-        }
+        System.out.println("Programa finalizado");
     }
     
     public void menuGerente(int indexGerente){

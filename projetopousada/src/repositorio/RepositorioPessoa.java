@@ -6,8 +6,9 @@ import dados.*;
 
 public class RepositorioPessoa {
 
-	ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
+	//melhora fazendo getPessoa receber um index e returna a pessoa 
 	public ArrayList<Pessoa> getPessoas() {
 		return this.pessoas;
 	}
