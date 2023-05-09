@@ -12,5 +12,4 @@ public class Main {
         		option = menu.menuInicial();
         	}while(option == -1);
 	}
-
 }

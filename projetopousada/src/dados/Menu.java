@@ -9,20 +9,40 @@ public class Menu {
 	
 	private RepositorioQuarto quartos;
 	private RepositorioPessoa pessoas;
-	private Gerente adm;
 	private Login login;
 	
 	public Menu() {
 		this.login = new Login();
 		this.quartos = new RepositorioQuarto();
-		this.pessoas = new RepositorioPessoa();
-		this.adm = new Gerente("Andre", "0000", "12345");
-		Normal quarto = new Normal(0);
-		adm.setQuarto(quarto);
-		this.pessoas.addPessoa(adm);
-		this.quartos.adicionarQuarto(quarto);
+		this.pessoas = new RepositorioPessoa();	
+		classesDefault();
 	}
 	
+	public void classesDefault() {
+		Gerente adm = new Gerente("Andre", "0000", "12345");
+		Normal quarto = new Normal(10001);
+		adm.setQuarto(quarto);
+		quarto.setOcupado();
+		pessoas.addPessoa(adm);
+		quartos.adicionarQuarto(quarto);
+		
+		Cliente cliente1 = new Cliente("Felipe", "1111", "12345");
+		Cliente cliente2 = new Cliente("Alice", "2222", "12345");
+		
+		pessoas.addPessoa(adm);
+		pessoas.addPessoa(cliente1);
+		pessoas.addPessoa(cliente2);
+		
+		Normal quartoNormal1 = new Normal(1111);
+		Normal quartoNormal2 = new Normal(2222);
+		Prime quartoPrime1 = new Prime(1111);
+		Prime quartoPrime2 = new Prime(2222);
+		
+		quartos.adicionarQuarto(quartoNormal1);
+		quartos.adicionarQuarto(quartoNormal2);
+		quartos.adicionarQuarto(quartoPrime1);
+		quartos.adicionarQuarto(quartoPrime2);
+	}
 	public void linha(int quantidade){
         int i;
         for(i = 0; i < quantidade; i++){
@@ -164,6 +184,7 @@ public class Menu {
         String nome = "Sol Nascente";
     	this.cabecarioPousada(nome);
     	
+    	Cliente cliente = (Cliente)pessoas.getPessoas().get(indexCliente);
     	int escolha;
     	
     	Scanner scan = new Scanner(System.in);
@@ -186,12 +207,14 @@ public class Menu {
         
         switch(escolha){
             case 1:
-                //System.out.println("Check-in feito");
-                Cliente c2 = (Cliente)pessoas.getPessoas().get(indexCliente);
-                int option;
-                do {
-                	option = c2.checkin(quartos);
-                }while(option == -1);
+            	if (cliente.isCheckin()==false) {
+            		int option;
+                    do {
+                    	option = cliente.checkin(quartos);
+                    }while(option == -1);
+                    return -1;
+            	}
+                System.out.println("Check-in feito anteriormente");
                 return -1;
             case 2:
                 System.out.println("Sevirco de quarto feito");

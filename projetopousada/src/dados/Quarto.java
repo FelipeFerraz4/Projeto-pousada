@@ -5,12 +5,13 @@ public abstract class Quarto {
 	private int numeroQuato;
 	private int tipoQuarto;
 	private int capacidade;
-	private boolean ocupado = false;
-	private float conta = 0;
+	private boolean ocupado;
+	private float conta;
 
 	public Quarto(int numero){
 		this.numeroQuato = numero;
-		this.ocupado = true;
+		this.ocupado = false;
+		this.conta = 0;
 	}
 	
 	public int getNumeroQuato() {

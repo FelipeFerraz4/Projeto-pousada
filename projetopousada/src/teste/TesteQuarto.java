@@ -124,7 +124,7 @@ public class TesteQuarto {
 		System.out.println(quartos.getQuartos().get(0));
 		
 		indexQuarto = quartos.quartoVazio(1);
-		System.out.println(quartos.getQuartos().get(0));
+		System.out.println(quartos.getQuartos().get(indexQuarto));
 
 		
 	}

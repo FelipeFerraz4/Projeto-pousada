@@ -6,21 +6,38 @@ import repositorio.RepositorioQuarto;
 
 public class Cliente extends Pessoa {
 	
-	//private float Consumo;
-//	public String Historico;
 	private int diarias;
 	//private int capacidade;
 	private int Historico=0;
-	private Normal quartoNormal;
-	private Prime quartoPrime;
-	//private Quarto quarto;
+	private boolean checkin;
 
 	
 	public Cliente (String nome, String cpf, String senha) {
 		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
+		this.checkin = false;
 	}
 	
+
+	public int getDiarias() {
+		return diarias;
+	}
+
+
+	public void setDiarias(int diarias) {
+		this.diarias = diarias;
+	}
+
+
+	public boolean isCheckin() {
+		return checkin;
+	}
+
+
+	public void setCheckin(boolean checkin) {
+		this.checkin = checkin;
+	}
+
 
 	public int getHistorico() {
 		return Historico;
@@ -49,21 +66,23 @@ public class Cliente extends Pessoa {
 		if (opção == 1) {
 			
 			//tamanhoDoQuarto();
-			diarias();
 			//falta algo para definir esse numero do quarto
 			int indexQuarto = quartos.quartoVazio(1);
 			if (indexQuarto == -1){
-				System.out.println("pousada esta lotada, favor falar com o gerente");
+				System.out.println("pousada esta lotada, por favor falar com o gerente");
 				return -1;
 			}
 			else{
+				diarias();
 				setQuarto(quartos.getQuartos().get(indexQuarto));
+				quartos.getQuartos().get(indexQuarto).setOcupado();
 				setHistorico(1);
+				this.checkin = true;
+				System.out.println("Check-in finalizado");
 				return 0;
 			}
 		}
 		if (opção == 2) {
-			diarias();
 			int indexQuarto = quartos.quartoVazio(2);
 			if (indexQuarto == -1){
 				System.out.println("pousada esta lotada, favor falar com o gerente");
@@ -71,8 +90,12 @@ public class Cliente extends Pessoa {
 				
 			}
 			else{
+				diarias();
 				setQuarto(quartos.getQuartos().get(indexQuarto));
+				quartos.getQuartos().get(indexQuarto).setOcupado();
 				setHistorico(1);
+				this.checkin = true;
+				System.out.println("Check-in finalizado");
 				return 0;
 			}
 				
