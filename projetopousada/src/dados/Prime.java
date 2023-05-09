@@ -21,6 +21,6 @@ public class Prime extends Quarto {
 		setConta(getConta() + quantidade*120);
 	}
 	public void diaria(int quantidade) {
-		setConta(getConta() + quantidade*700);
+		setConta(getConta() + quantidade*this.preco);
 	}
 }

@@ -95,7 +95,7 @@ public class TesteQuarto {
 		
 		indexQuarto = quartos.buscarQuarto(100, 1);
 		if(indexQuarto > -1 ) {
-			System.out.println(quartos.getQuartos().get(indexQuarto)+"--");
+			System.out.println(quartos.getQuartos().get(indexQuarto));
 		}
 		else {
 			System.out.println("Quarto informadao nao existe");
@@ -117,11 +117,11 @@ public class TesteQuarto {
 			System.out.println("Quarto informadao nao existe");
 		}
 		
-		System.out.println(quartos.getQuartos().get(0)+"--");
+		System.out.println(quartos.getQuartos().get(0));
 		Normal quarto = (Normal) quartos.getQuartos().get(0);
 		quarto.setOcupado();
 		quartos.atualizarQuarto(quarto);
-		System.out.println(quartos.getQuartos().get(0)+"--");
+		System.out.println(quartos.getQuartos().get(0));
 		
 		indexQuarto = quartos.quartoVazio(1);
 		System.out.println(quartos.getQuartos().get(0));
