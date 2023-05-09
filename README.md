@@ -2,4 +2,4 @@
 
 <h3>Diagrama UML<h3>
 
-[Fluxogramas.pdf](https://github.com/FelipeFerraz4/Projeto-pousada/files/11322440/Fluxogramas.pdf)
+[Projeto pousada.pdf](https://github.com/FelipeFerraz4/Projeto-pousada/files/11426040/Projeto.pousada.pdf)
