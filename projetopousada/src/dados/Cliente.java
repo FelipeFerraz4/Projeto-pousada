@@ -30,19 +30,19 @@ public class Cliente extends Pessoa {
 	}
 
 
-	public void checkin(RepositorioQuarto quartos) {
+	public int checkin(RepositorioQuarto quartos) {
 		int opção;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Qual opção de quarto gostaria?");
+		System.out.println("Qual opcao de quarto gostaria ?");
 		System.out.println("1 - Quarto Normal(2-4)");
 		System.out.println("2 - Quarto Prime(5-7)");
 		System.out.println("3 - Voltar");
 		
 		do{
-        	System.out.println("Escolha sua opção: ");
+        	System.out.println("Escolha sua opcao: ");
         	opção = scan.nextInt();
         	if(opção>3 || opção<1) {
-        		System.out.println("Opção Invalida:");
+        		System.out.println("Opcao Invalida:");
         	}
         }while(opção>3 || opção<1);
 		
@@ -53,34 +53,31 @@ public class Cliente extends Pessoa {
 			//falta algo para definir esse numero do quarto
 			int indexQuarto = quartos.quartoVazio(1);
 			if (indexQuarto == -1){
-				System.out.println("pousada está lotada, favor falar com o gerente");
-				this.checkin(quartos);
+				System.out.println("pousada esta lotada, favor falar com o gerente");
+				return -1;
 			}
 			else{
 				setQuarto(quartos.getQuartos().get(indexQuarto));
 				setHistorico(1);
+				return 0;
 			}
 		}
 		if (opção == 2) {
 			diarias();
 			int indexQuarto = quartos.quartoVazio(2);
 			if (indexQuarto == -1){
-				System.out.println("pousada está lotada, favor falar com o gerente");
-				this.checkin(quartos);
+				System.out.println("pousada esta lotada, favor falar com o gerente");
+				return -1;
 				
 			}
 			else{
 				setQuarto(quartos.getQuartos().get(indexQuarto));
 				setHistorico(1);
-
+				return 0;
 			}
 				
 		}
-		if (opção == 3){
-			
-		}
-		System.out.println("chegou aq");
-		
+		return 0;	
 	}
 	
 	public void sevircodequarto(RepositorioQuarto quartos,int indexQuarto) {
@@ -207,11 +204,11 @@ public class Cliente extends Pessoa {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("quantas diarias deseja reservar?");
 		do {
-			System.out.println(":");
 			d = scan.nextInt();
-		if (d < 1 || d >15) {
-			System.out.println("o maximo de diarias possivel são 15 por pessoa!");
-		}
+			if (d < 1 || d >15) {
+				System.out.println("o maximo de diarias possivel sao 15 por pessoa!");
+				System.out.println("Por favor, digite a quantidadede de diarias desejadas: ");
+			}
 		} while(d < 1 || d >15);
 		
 		this.diarias = d;
