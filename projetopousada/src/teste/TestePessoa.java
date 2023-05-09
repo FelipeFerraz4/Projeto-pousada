@@ -18,12 +18,16 @@ public class TestePessoa {
 	    System.out.println(cliente1.getSenha());
 	    System.out.println(cliente1.getQuarto().toString());
 	    System.out.println(cliente1.toString());
+
+
+		
 	    
 	    System.out.println();
 	    // Repositorio 
 
 	    
 	    RepositorioPessoa pessoas = new RepositorioPessoa();
+		
 	    
 	    pessoas.addPessoa(cliente1);
 	    System.out.println(pessoas.getPessoas().get(0).getCPF());
@@ -66,8 +70,8 @@ public class TestePessoa {
 	    System.out.println();
 
 		
-		Cliente pessoa = (Cliente) pessoas.getPessoas().get(1);
-		pessoas.atualizarPessoa(pessoa);
+		Cliente pessoa = (Cliente) pessoas.getPessoas().get(2);
+		pessoas.atualizarPessoa(pessoa,"felicia","0992");
 	    indexBusca = pessoas.buscarPessoa(pessoa);
 	    System.out.println(pessoas.getPessoas().get(indexBusca).getCPF());
 	    System.out.println(pessoas.getPessoas().get(indexBusca).getNome());

@@ -190,7 +190,10 @@ public class Menu {
         
         switch(escolha){
             case 1:
-                System.out.println("Check-in feito");
+                //System.out.println("Check-in feito");
+                Cliente c2 = (Cliente)pessoas.getPessoas().get(indexCliente);
+                c2.checkin(quartos);
+            
                 this.menuCliente(indexCliente);
                 break;
             case 2:
@@ -206,7 +209,17 @@ public class Menu {
                 this.menuCliente(indexCliente);
                 break;
             case 5:
-                System.out.println("Consumo pago");
+                //System.out.println("Consumo pago");
+                Cliente c1 = new Cliente("andre", "123", "123");
+                Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
+                int indexQuarto = quartos.buscarQuarto(quarto);
+                if (indexQuarto == -1){
+                    System.out.println("você não possui um quarto, por favor voltar ao check-in");
+                    this.menuCliente(indexCliente);
+                }
+                Normal n1 = new Normal(1);
+                c1.setQuarto(n1);
+                c1.pagarconsumo(quartos,indexQuarto);
                 this.menuCliente(indexCliente);
                 break;
             case 6:

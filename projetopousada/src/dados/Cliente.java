@@ -2,35 +2,25 @@ package dados;
 
 import java.util.Scanner;
 import dados.*;
+import repositorio.RepositorioQuarto;
 
 public class Cliente extends Pessoa {
 	
 	//private float Consumo;
 //	public String Historico;
-	private float ValorQuarto;
-	private int diarias = 0;
-	private int capacidade;
-	private int Historico;
-//	private Quarto quarto;
+	private int diarias;
+	//private int capacidade;
+	private int Historico=0;
+	private Normal quartoNormal;
+	private Prime quartoPrime;
+	//private Quarto quarto;
+
 	
 	public Cliente (String nome, String cpf, String senha) {
 		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
 	}
-	/*public Cliente(String nome, String cpf, String senha) {
-		super(nome, cpf, senha);
-		this.setTipoPessoa(1);
-	}*/
 	
-	
-	/*public float getConsumo(int valorQuarto,int produto,int quantidade) {
-		Consumo = valorQuarto + produto*quantidade; 
-		return Consumo;
-	}
-
-	public void setConsumo(float consumo) {
-		Consumo = ValorQuarto + consumo;
-	}*/
 
 	public int getHistorico() {
 		return Historico;
@@ -40,9 +30,8 @@ public class Cliente extends Pessoa {
 	}
 
 
-	public void checkin() {
+	public void checkin(RepositorioQuarto quartos) {
 		int opção;
-		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Qual opção de quarto gostaria?");
 		System.out.println("1 - Quarto Normal(2-4)");
@@ -58,75 +47,127 @@ public class Cliente extends Pessoa {
         }while(opção>3 || opção<1);
 		
 		if (opção == 1) {
-			tamanhoDoQuarto();
+			
+			//tamanhoDoQuarto();
 			diarias();
-			this.checkin();
+			//falta algo para definir esse numero do quarto
+			int indexQuarto = quartos.quartoVazio(1);
+			if (indexQuarto == -1){
+				System.out.println("pousada está lotada, favor falar com o gerente");
+				this.checkin(quartos);
+			}
+			else{
+				setQuarto(quartos.getQuartos().get(indexQuarto));
+				setHistorico(1);
+			}
 		}
 		if (opção == 2) {
-			tamanhoDoQuarto();
 			diarias();
-			
-			this.checkin();
+			int indexQuarto = quartos.quartoVazio(2);
+			if (indexQuarto == -1){
+				System.out.println("pousada está lotada, favor falar com o gerente");
+				this.checkin(quartos);
+				
+			}
+			else{
+				setQuarto(quartos.getQuartos().get(indexQuarto));
+				setHistorico(1);
+
+			}
+				
 		}
-		if(opção == 3) {
+		if (opção == 3){
 			
 		}
-		
+		System.out.println("chegou aq");
 		
 	}
 	
-	public void sevircodequarto() {
-		int opção,quantidade;
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Qual opção de quarto gostaria?");
-		System.out.println("1 - Água - 2,00");
-		System.out.println("2 - Refrigarante - 4,00");
-		System.out.println("3 - Voltar");
-		
-		do{
-        	System.out.println("Escolha sua opção: ");
-        	opção = scan.nextInt();
-        	if(opção>3 || opção<1) {
-        		System.out.println("Opção Invalida:");
-        	}
-        }while(opção>3 || opção<1);
-		
-		if (opção==1){
-			Normal n1 = new Normal(1);
-			System.out.println("Qual a quantidade?");
-			quantidade = scan.nextInt();
-			n1.agua(quantidade);
-		}
-		if (opção==2){
-			Normal n1 = new Normal(1);
-			System.out.println("Qual a quantidade?");
-			quantidade = scan.nextInt();
-			n1.refrigerante(quantidade);
+	public void sevircodequarto(RepositorioQuarto quartos,int indexQuarto) {
+		if (quartos.getQuartos().get(indexQuarto).getTipoQuarto()==1){
+			int opção,quantidade;
+			Normal quartoNormal = (Normal) quartos.getQuartos().get(indexQuarto);
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Qual opção de quarto gostaria?");
+			System.out.println("1 - Água - 2,00");
+			System.out.println("2 - Refrigarante - 4,00");
+			System.out.println("3 - Voltar");
+			
+			do{
+				System.out.println("Escolha sua opção: ");
+				opção = scan.nextInt();
+				if(opção>3 || opção<1) {
+					System.out.println("Opção Invalida:");
+				}
+			}while(opção>3 || opção<1);
+			
+			if (opção==1){
+				System.out.println("Qual a quantidade?");
+				quantidade = scan.nextInt();
+				quartoNormal.agua(quantidade);
+				
+			}
+			if (opção==2){
+				
+				System.out.println("Qual a quantidade?");
+				quantidade = scan.nextInt();
+				quartoNormal.refrigerante(quantidade);
+				
+			}
+			else{
+			}
 		}
 		else{
+			int opção,quantidade;
+			Prime quartoPrime = (Prime) quartos.getQuartos().get(indexQuarto);
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Qual opção de quarto gostaria?");
+			System.out.println("1 - Vinho - 70,00");
+			System.out.println("2 - champagne - 120,00");
+			System.out.println("3 - Voltar");
+			
+			do{
+				System.out.println("Escolha sua opção: ");
+				opção = scan.nextInt();
+				if(opção>3 || opção<1) {
+					System.out.println("Opção Invalida:");
+				}
+			}while(opção>3 || opção<1);
+			
+			if (opção==1){
+				System.out.println("Qual a quantidade?");
+				quantidade = scan.nextInt();
+				quartoPrime.vinho(quantidade);
+			}
+			if (opção==2){
+				
+				System.out.println("Qual a quantidade?");
+				quantidade = scan.nextInt();
+				quartoPrime.champagne(quantidade);
+			}
+			else{
+			}
 		}
+	}
+	
+	//Não está funcionando
+	public void verconsumo(RepositorioQuarto quartos, int indexQuarto) {
+		System.out.println("seu consumo atual é:R$" + quartos.getQuartos().get(indexQuarto).getConta());
+	}
+	
+	
+
+ 	public void historicodeagendamento() { 
+		System.out.println("você já fez "+ getHistorico() + " reservas na nossa pousada");
 		
-		System.out.println("seriço de quarto acionado");
-	}
-
-	public void verconsumo() {
-		float consumo;
-		Normal n1 = new Normal(1);
-		consumo = n1.getConta();
-		System.out.println("seu consumo atual é:R$" + consumo );
-	}
-	
-	
-
- 	public void historicodeagendamento(int i) { 
-		System.out.println("você já fez "+ Historico + "reservas na nossa pousada");
-		System.out.println("Reservas anteriores:");
 	}
 
 	
-	public void pagarconsumo() {
+	public void pagarconsumo(RepositorioQuarto quartos, int index) {
 		int opção;
 		Scanner scan = new Scanner(System.in);
+		System.out.println("valor da conta é "+quartos.getQuartos().get(index).getConta());
+		System.out.println("passou");
 		System.out.println("Qual forma de pagamento?");
 		System.out.println("1 - Dinheiro");
 		System.out.println("2 - Cartão");
@@ -146,35 +187,20 @@ public class Cliente extends Pessoa {
 		}
 		if (opção == 2) {
 			System.out.println("insira seu cartão");
-			sleep(1000);
 			System.out.println("coloque sua senha");
-			sleep(1000);
 			System.out.println("pagamento aprovado");
+		}
+		else{
+			System.out.println("A chave pix é: 55555");
 		}
 	
 	}
 	public void Checkout (){
-		historicodeagendamento(1);
+		//this..setConta(0);
+		//this..setOcupado();
+
 	}
 	
-	public void tamanhoDoQuarto() {
-		int n;
-		Scanner scan = new Scanner(System.in);
-		System.out.println("qual a capacidade do quarto você deseja?");
-		System.out.println("1 - 2 pessoa");
-		System.out.println("2 - 3 pessoas");
-		System.out.println("3 - 4 pessoas");
-		do {
-			System.out.println("digite sua escolha:");
-			n = scan.nextInt();
-		if (n < 1 || n >3) {
-			System.out.println("opção inavalida");
-		}
-		
-		} while(n < 1 || n >3);
-		
-		this.capacidade = n+1;
-	}
 	
 	public void diarias() {
 		int d;
@@ -187,11 +213,8 @@ public class Cliente extends Pessoa {
 			System.out.println("o maximo de diarias possivel são 15 por pessoa!");
 		}
 		} while(d < 1 || d >15);
-		scan.close();
+		
 		this.diarias = d;
-	}
-	
-	private void sleep(int i) {
 	}
 
 }

@@ -12,17 +12,17 @@ public class Gerente extends Pessoa  {
 	
 //	Gerente G2 = new Gerente("felipe","12345678910", 1234);
 	
-	public void addpessoa(RepositorioPessoa pessoas) {
+	public void addGerente(RepositorioPessoa pessoas) {
 		String n,cpf;
 		String senha;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("qual nome do cliente:");
+		System.out.println("qual nome do novo Gerente:");
         n = scan.nextLine();
-        System.out.println("qual CPF do cliente:");
+        System.out.println("qual CPF do novo Gerente:");
         cpf = scan.nextLine();
-		System.out.println("Qual a senha do cliente");
+		System.out.println("Qual a senha do novo Gerente");
 		senha = scan.nextLine();
-		pessoas.criarPessoa(n, cpf, senha, 1);
+		pessoas.criarPessoa(n, cpf, senha, 2);
 		System.out.println(pessoas.toString());
 	}
 	
@@ -36,15 +36,29 @@ public class Gerente extends Pessoa  {
 		quartos.criarQuarto(numQuarto, TipoQuarto);
 	}
 
-	public void removerPessoa(RepositorioPessoa pessoas){
+	public void verDadosdoGerente (RepositorioPessoa pessoas){
+		pessoas.toString();
+	}
+
+	public void atualizarGerente (RepositorioPessoa pessoas,String cpf){
+		int indece = pessoas.buscarPessoa(cpf);
+		pessoas.atualizarPessoa(pessoas.getPessoas().get(indece),
+		pessoas.getPessoas().get(indece).getNome(),pessoas.getPessoas().get(indece).getSenha());
+	}
+	public void atualiazarQuarto (RepositorioQuarto quarto){
+		quarto.atualizarQuarto(getQuarto());
+	}
+	
+
+	public void removerGerente(RepositorioPessoa pessoas){
 		String n,cpf;
 		int senha;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("qual nome do cliente:");
+		System.out.println("qual nome do Gerente:");
         n = scan.nextLine();
-        System.out.println("qual CPF do cliente:");
+        System.out.println("qual CPF do Gerente:");
         cpf = scan.nextLine();
-		System.out.println("Qual a senha do cliente");
+		System.out.println("Qual a senha do Gerente");
 		senha = scan.nextInt();
 		pessoas.deletarPessoa(cpf);
 		System.out.println(pessoas.toString());

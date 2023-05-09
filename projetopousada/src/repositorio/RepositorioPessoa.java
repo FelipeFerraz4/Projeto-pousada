@@ -65,4 +65,11 @@ public class RepositorioPessoa {
 		pessoas.get(indicePessoa).setSenha(pessoa.getSenha());
 		
 	}
+	public void atualizarPessoa(Pessoa pessoa,String Nome, String Senha){
+		int indicePessoa = this.buscarPessoa(pessoa);
+		pessoas.get(indicePessoa).setNome(Nome);
+		pessoas.get(indicePessoa).setSenha(Senha);
+
+	}
+
 }
