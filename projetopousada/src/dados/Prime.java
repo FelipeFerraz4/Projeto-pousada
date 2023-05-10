@@ -2,11 +2,11 @@ package dados;
 
 public class Prime extends Quarto {
 	
-	private float preco = 700;
+	private float preco = 400;
 	
 	public Prime(int numero) {
 		super(numero);
-		setCapacidade(10);
+		setCapacidade(7);
 		setTipoQuarto(2);
 	}
 	

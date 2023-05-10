@@ -2,11 +2,11 @@ package dados;
 
 public class Normal extends Quarto {
 	
-	private float preco = 200;
+	private float preco = 250;
 	
 	public Normal(int numero) {
 		super(numero);
-		setCapacidade(2);
+		setCapacidade(4);
 		setTipoQuarto(1);
 	}
 	

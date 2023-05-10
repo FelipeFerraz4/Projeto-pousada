@@ -16,9 +16,9 @@ public class Gerente extends Pessoa  {
 		String n,cpf;
 		String senha;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("qual nome do novo Gerente:");
+		System.out.println("Qual nome do novo Gerente:");
         n = scan.nextLine();
-        System.out.println("qual CPF do novo Gerente:");
+        System.out.println("Qual CPF do novo Gerente:");
         cpf = scan.nextLine();
 		System.out.println("Qual a senha do novo Gerente");
 		senha = scan.nextLine();

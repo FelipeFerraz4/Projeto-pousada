@@ -125,21 +125,17 @@ public class Menu {
     	int escolha;
     	
     	Scanner scan = new Scanner(System.in);
-        System.out.println("1  - Adicionar um gerente");
-        System.out.println("2  - Adicionar um quarto");
-        System.out.println("3  - Consultar estado do gerente");
-        System.out.println("4  - Consultar estado do quarto");
-        System.out.println("5  - Atualizar dados do gerente");
-        System.out.println("6  - Atualizar dados do quarto");
-        System.out.println("7  - remover um gerente");
-        System.out.println("8  - remover um quarto");
-        System.out.println("9  - Ver dados do gerente");
-        System.out.println("10 - Fechar guia gerente");
+        System.out.println("1  - Adicionar um Quarto ou uma Pessoa");
+        System.out.println("2  - Consultar dados de um Quarto ou de uma Pessoa");
+        System.out.println("3  - Modificar dados de um Quarto ou de uma Pessoa");
+        System.out.println("4  - Remover um Quarto ou uma Pessoa");
+        System.out.println("5  - Ver dados do gerente");
+        System.out.println("6 - Fechar guia gerente");
         
         do{
         	System.out.println("Digite a sua alternativa: ");
         	escolha = scan.nextInt();
-        	if(escolha>10 || escolha<1) {
+        	if(escolha>6 || escolha<1) {
         		System.out.println("Alternativa invalida");
         	}
         }while(escolha>10 || escolha<1);
@@ -149,27 +145,15 @@ public class Menu {
                 System.out.println("Gerente adicionada");
                 return -1;
             case 2:
-                System.out.println("Quarto adicionado");
-                return -1;
-            case 3:
                 System.out.println("Gerente consultada");
                 return -1;
-            case 4:
-                System.out.println("Quarto consultado");
-                return -1;
-            case 5:
+            case 3:
                 System.out.println("Gerente atualizada");
                 return -1;
-            case 6:
-                System.out.println("Quarto atualizado");
-                return -1;
-            case 7:
+            case 4:
                 System.out.println("Gerente removida");
                 return -1;
-            case 8:
-                System.out.println("Quarto removido");
-                return -1;
-            case 9:
+            case 5:
             	System.out.println(pessoas.getPessoas().get(indexGerente).toString());
             	if (pessoas.getPessoas().get(indexGerente).getQuarto()!=null) {
             		System.out.println(pessoas.getPessoas().get(indexGerente).getQuarto().toString());
@@ -217,26 +201,34 @@ public class Menu {
                 System.out.println("Check-in feito anteriormente");
                 return -1;
             case 2:
-                System.out.println("Sevirco de quarto feito");
+            	if (cliente.isCheckin()==true) {
+            		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
+            		int indexQuarto = quartos.buscarQuarto(quarto);
+            		cliente.sevircodequarto(quartos, indexQuarto);
+            		return -1;
+            	}
+                System.out.println("Por favor, fazer check-in");
                 return -1;
             case 3:
-                System.out.println("Consumo mostrado");
+            	if (cliente.isCheckin()==true) {
+            		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
+            		int indexQuarto = quartos.buscarQuarto(quarto);
+            		cliente.verconsumo(quartos, indexQuarto);
+            		return -1;
+            	}
+                System.out.println("Por favor, fazer check-in");
                 return -1;
             case 4:
-                System.out.println("historico mostrado");
+            	cliente.historicoAgendamento();
                 return -1;
             case 5:
-                //System.out.println("Consumo pago");
-                Cliente c1 = new Cliente("andre", "123", "123");
-                Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
-                int indexQuarto = quartos.buscarQuarto(quarto);
-                if (indexQuarto == -1){
-                    System.out.println("você não possui um quarto, por favor voltar ao check-in");
-                    return -1;
-                }
-                Normal n1 = new Normal(1);
-                c1.setQuarto(n1);
-                c1.pagarconsumo(quartos,indexQuarto);
+            	if (cliente.isCheckin()==true) {
+            		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
+            		int indexQuarto = quartos.buscarQuarto(quarto);
+            		cliente.pagarconsumo(quartos, indexQuarto);
+            		return -1;
+            	}
+                System.out.println("Por favor, fazer check-in");
                 return -1;
             case 6:
             	System.out.println(pessoas.getPessoas().get(indexCliente).toString());
@@ -245,7 +237,22 @@ public class Menu {
             	}
             	return -1;
             default:
-                System.out.println("Checkout feito com sucesso");
+            	if(cliente.getQuarto()!=null) {
+            		if (cliente.getQuarto().getConta() == 0) {
+                		cliente.getQuarto().setOcupado();
+                		cliente.setQuarto(null);
+                		cliente.setDiarias(0);
+                		cliente.setCheckin(false);
+                		System.out.println("Obrigado pela preferencia e volte sempre");
+                		return 0;
+                	}
+            		System.out.println("Por favor, finalize sua conta antes de sair");
+            		return -1;
+            	}
+            	//possivel de ser retirado, basta testa sem
+            	cliente.setDiarias(0);
+        		cliente.setCheckin(false);
+        		System.out.println("Obrigado e volte sempre");
                 return 0;
         }
     }

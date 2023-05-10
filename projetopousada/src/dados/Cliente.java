@@ -8,7 +8,7 @@ public class Cliente extends Pessoa {
 	
 	private int diarias;
 	//private int capacidade;
-	private int Historico=0;
+	private int historico;
 	private boolean checkin;
 
 	
@@ -16,6 +16,7 @@ public class Cliente extends Pessoa {
 		super(nome, cpf, senha);
 		this.setTipoPessoa(1);
 		this.checkin = false;
+		this.historico = 0;
 	}
 	
 
@@ -40,10 +41,10 @@ public class Cliente extends Pessoa {
 
 
 	public int getHistorico() {
-		return Historico;
+		return historico;
 	}
-	public void setHistorico(int historico) {
-		Historico = Historico + historico;
+	public void setHistorico(int novoHistorico) {
+		this.historico = novoHistorico;
 	}
 
 
@@ -51,8 +52,8 @@ public class Cliente extends Pessoa {
 		int opção;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Qual opcao de quarto gostaria ?");
-		System.out.println("1 - Quarto Normal(2-4)");
-		System.out.println("2 - Quarto Prime(5-7)");
+		System.out.println("1 - Quarto Normal(1-3) - 250,00");
+		System.out.println("2 - Quarto Prime(4-7) - 400,00");
 		System.out.println("3 - Voltar");
 		
 		do{
@@ -75,7 +76,9 @@ public class Cliente extends Pessoa {
 			else{
 				diarias();
 				setQuarto(quartos.getQuartos().get(indexQuarto));
-				quartos.getQuartos().get(indexQuarto).setOcupado();
+				Normal quarto = (Normal) quartos.getQuartos().get(indexQuarto);
+				quarto.setOcupado();
+				quarto.diaria(this.diarias);
 				setHistorico(1);
 				this.checkin = true;
 				System.out.println("Check-in finalizado");
@@ -92,7 +95,10 @@ public class Cliente extends Pessoa {
 			else{
 				diarias();
 				setQuarto(quartos.getQuartos().get(indexQuarto));
-				quartos.getQuartos().get(indexQuarto).setOcupado();
+				Prime quarto = (Prime) quartos.getQuartos().get(indexQuarto);
+				quarto.setOcupado();
+				quarto.diaria(this.diarias);
+				//quartos.getQuartos().get(indexQuarto).setOcupado();
 				setHistorico(1);
 				this.checkin = true;
 				System.out.println("Check-in finalizado");
@@ -108,16 +114,16 @@ public class Cliente extends Pessoa {
 			int opção,quantidade;
 			Normal quartoNormal = (Normal) quartos.getQuartos().get(indexQuarto);
 			Scanner scan = new Scanner(System.in);
-			System.out.println("Qual opção de quarto gostaria?");
-			System.out.println("1 - Água - 2,00");
+			System.out.println("Qual opcao de quarto gostaria ?");
+			System.out.println("1 - Agua - 2,00");
 			System.out.println("2 - Refrigarante - 4,00");
 			System.out.println("3 - Voltar");
 			
 			do{
-				System.out.println("Escolha sua opção: ");
+				System.out.println("Escolha sua opcao: ");
 				opção = scan.nextInt();
 				if(opção>3 || opção<1) {
-					System.out.println("Opção Invalida:");
+					System.out.println("Opcao Invalida:");
 				}
 			}while(opção>3 || opção<1);
 			
@@ -141,16 +147,16 @@ public class Cliente extends Pessoa {
 			int opção,quantidade;
 			Prime quartoPrime = (Prime) quartos.getQuartos().get(indexQuarto);
 			Scanner scan = new Scanner(System.in);
-			System.out.println("Qual opção de quarto gostaria?");
+			System.out.println("Qual opcao de quarto gostaria ?");
 			System.out.println("1 - Vinho - 70,00");
 			System.out.println("2 - champagne - 120,00");
 			System.out.println("3 - Voltar");
 			
 			do{
-				System.out.println("Escolha sua opção: ");
+				System.out.println("Escolha sua opcao: ");
 				opção = scan.nextInt();
 				if(opção>3 || opção<1) {
-					System.out.println("Opção Invalida:");
+					System.out.println("Opcao Invalida:");
 				}
 			}while(opção>3 || opção<1);
 			
@@ -170,48 +176,52 @@ public class Cliente extends Pessoa {
 		}
 	}
 	
-	//Não está funcionando
 	public void verconsumo(RepositorioQuarto quartos, int indexQuarto) {
-		System.out.println("seu consumo atual é:R$" + quartos.getQuartos().get(indexQuarto).getConta());
+		System.out.println("seu consumo atual: R$" + quartos.getQuartos().get(indexQuarto).getConta());
 	}
 	
 	
 
- 	public void historicodeagendamento() { 
-		System.out.println("você já fez "+ getHistorico() + " reservas na nossa pousada");
+ 	public void historicoAgendamento() { 
+		System.out.println("voce ja fez "+ this.historico + " reservas na nossa pousada");
 		
 	}
 
 	
-	public void pagarconsumo(RepositorioQuarto quartos, int index) {
+	public void pagarconsumo(RepositorioQuarto quartos, int indexQuarto) {
 		int opção;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("valor da conta é "+quartos.getQuartos().get(index).getConta());
+		System.out.println("valor da conta e "+quartos.getQuartos().get(indexQuarto).getConta());
 		System.out.println("passou");
 		System.out.println("Qual forma de pagamento?");
 		System.out.println("1 - Dinheiro");
-		System.out.println("2 - Cartão");
+		System.out.println("2 - Cartao");
 		System.out.println("3 - Pix");
+		System.out.println("4 - Voltar");
 	
 		do{
-        	System.out.println(": ");
         	opção = scan.nextInt();
-        	if(opção>3 || opção<1) {
-        		System.out.println("Opção Invalida:");
+        	if(opção>4 || opção<1) {
+        		System.out.println("Opcao Invalida:");
+        		System.out.println("Digite a opcao novamente: ");
         	}
-        }while(opção>3 || opção<1);
+        }while(opção>4 || opção<1);
 		
 		
 		if (opção == 1) {
-			System.out.println("pagamento efetuado. Obrigado, volte sempre!!");
+			System.out.println("pagamento efetuado. Obrigado, volte sempre!");
+			quartos.getQuartos().get(indexQuarto).setConta(0);
 		}
-		if (opção == 2) {
-			System.out.println("insira seu cartão");
+		else if (opção == 2) {
+			System.out.println("insira seu cartao");
 			System.out.println("coloque sua senha");
-			System.out.println("pagamento aprovado");
+			System.out.println("pagamento efetuado. Obrigado, volte sempre!");
+			quartos.getQuartos().get(indexQuarto).setConta(0);
 		}
-		else{
-			System.out.println("A chave pix é: 55555");
+		else if (opção == 3){
+			System.out.println("A chave pix: 55555");
+			System.out.println("pagamento efetuado. Obrigado, volte sempre!");
+			quartos.getQuartos().get(indexQuarto).setConta(0);
 		}
 	
 	}
