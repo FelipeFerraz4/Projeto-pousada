@@ -117,11 +117,30 @@ public class Menu {
         		return 0;
         }
     }
-    
+    public int optionGerente(String operation, String[] option, int numberOption) {
+    	String nome = "Sol Nascente";
+    	this.cabecarioPousada(nome);
+    	Scanner scan = new Scanner(System.in);
+    	int escolha = -1;
+    	for(int i = 0; i < numberOption; i++) {
+    		System.out.println((i+1)+" - "+operation + " um " + option[i]);
+    	}
+    	System.out.println((numberOption+1)+" - Voltar");
+    	do{
+        	System.out.println("Digite a sua alternativa: ");
+        	escolha = scan.nextInt();
+        	if(escolha>(numberOption+1) || escolha<1) {
+        		System.out.println("Alternativa invalida");
+        	}
+        }while(escolha>(numberOption+1) || escolha<1);
+    	return escolha;
+    	
+    }
     public int menuGerente(int indexGerente){
         String nome = "Sol Nascente";
     	this.cabecarioPousada(nome);
     	
+    	Gerente gerente = (Gerente) pessoas.getPessoas().get(indexGerente);
     	int escolha;
     	
     	Scanner scan = new Scanner(System.in);
@@ -138,11 +157,37 @@ public class Menu {
         	if(escolha>6 || escolha<1) {
         		System.out.println("Alternativa invalida");
         	}
-        }while(escolha>10 || escolha<1);
+        }while(escolha>6 || escolha<1);
         
         switch(escolha){
             case 1:
-                System.out.println("Gerente adicionada");
+            	String[] options = {"cliente", "gerente", "quarto normal", "quarto prime"};
+            	int option = this.optionGerente("Adicionar",options, options.length);
+            	if (option != -1) {
+            		switch(option) {
+            		case 1:
+            			gerente.addPessoa(pessoas, 1);
+            			System.out.println("Adicao concluida");
+            			break;
+            		case 2:
+            			gerente.addPessoa(pessoas, 2);
+            			System.out.println("Adicao concluida");
+            			break;
+            		case 3:
+            			gerente.addQuarto(quartos, 1);
+            			System.out.println("Adicao concluida");
+            			break;
+            		case 4:
+            			gerente.addQuarto(quartos, 2);
+            			System.out.println("Adicao concluida");
+            			break;
+            		default:
+            			break;
+            		}
+            	}
+            	else {
+            		System.out.println("Não foi possível adiconar");
+            	}
                 return -1;
             case 2:
                 System.out.println("Gerente consultada");

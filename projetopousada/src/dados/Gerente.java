@@ -10,34 +10,46 @@ public class Gerente extends Pessoa  {
 		this.setTipoPessoa(2);
 	}
 	
-//	Gerente G2 = new Gerente("felipe","12345678910", 1234);
-	
-	public void addGerente(RepositorioPessoa pessoas) {
-		String n,cpf;
+	public void addPessoa(RepositorioPessoa pessoas, int tipoPessoa) {
+		String nome,cpf;
+		String tipoUsario;
+		if (tipoPessoa==1) {
+			tipoUsario = "cliente";
+		}
+		else {
+			tipoUsario = "gerente";
+		}
 		String senha;
+		int busca;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Qual nome do novo Gerente:");
-        n = scan.nextLine();
-        System.out.println("Qual CPF do novo Gerente:");
-        cpf = scan.nextLine();
-		System.out.println("Qual a senha do novo Gerente");
+		do {
+			System.out.println("Digite o CPF do novo "+tipoUsario +":");
+	        cpf = scan.nextLine();
+	        busca = pessoas.buscarPessoa(cpf);
+	        if (busca!=-1) {
+	        	System.out.println("operacao invalida, CPF cadastrado anteriormente");
+	        }
+		}while(busca!=-1);
+		System.out.println("Qual nome do novo "+tipoUsario+":");
+        nome = scan.nextLine();
+		System.out.println("Qual a senha do novo "+tipoUsario+":");
 		senha = scan.nextLine();
-		pessoas.criarPessoa(n, cpf, senha, 2);
-		System.out.println(pessoas.toString());
+		pessoas.criarPessoa(nome, cpf, senha, tipoPessoa);
 	}
 	
-	public void addQuarto(RepositorioQuarto quartos){
-		int numQuarto, TipoQuarto;
+	public void addQuarto(RepositorioQuarto quartos, int tipoQuarto){
+		int numQuarto;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("qual o numero do quarto?:");
-		numQuarto= scan.nextInt();
-		System.out.println("qual o tipo do quarto (1/0):");
-		TipoQuarto= scan.nextInt();
-		quartos.criarQuarto(numQuarto, TipoQuarto);
-	}
-
-	public void verDadosdoGerente (RepositorioPessoa pessoas){
-		pessoas.toString();
+		int busca;
+		do {
+			System.out.println("qual o numero do quarto?");
+			numQuarto= scan.nextInt();
+			busca = quartos.buscarQuarto(numQuarto, tipoQuarto);
+			if (busca!=-1) {
+	        	System.out.println("operacao invalida, numero do quarto cadastrado anteriormente");
+	        }
+		}while(busca!=-1);
+		quartos.criarQuarto(numQuarto, tipoQuarto);
 	}
 
 	public void atualizarGerente (RepositorioPessoa pessoas,String cpf){
