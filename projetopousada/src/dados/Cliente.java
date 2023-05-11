@@ -111,7 +111,7 @@ public class Cliente extends Pessoa {
 	
 	public void sevircodequarto(RepositorioQuarto quartos,int indexQuarto) {
 		if (quartos.getQuartos().get(indexQuarto).getTipoQuarto()==1){
-			int opção,quantidade;
+			int opcao,quantidade;
 			Normal quartoNormal = (Normal) quartos.getQuartos().get(indexQuarto);
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Qual opcao de quarto gostaria ?");
@@ -121,19 +121,19 @@ public class Cliente extends Pessoa {
 			
 			do{
 				System.out.println("Escolha sua opcao: ");
-				opção = scan.nextInt();
-				if(opção>3 || opção<1) {
+				opcao = scan.nextInt();
+				if(opcao > 3 || opcao<1) {
 					System.out.println("Opcao Invalida:");
 				}
-			}while(opção>3 || opção<1);
+			}while(opcao>3 || opcao<1);
 			
-			if (opção==1){
+			if (opcao==1){
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();
 				quartoNormal.agua(quantidade);
 				
 			}
-			if (opção==2){
+			if (opcao==2){
 				
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();
@@ -144,7 +144,7 @@ public class Cliente extends Pessoa {
 			}
 		}
 		else{
-			int opção,quantidade;
+			int opcao,quantidade;
 			Prime quartoPrime = (Prime) quartos.getQuartos().get(indexQuarto);
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Qual opcao de quarto gostaria ?");
@@ -154,18 +154,18 @@ public class Cliente extends Pessoa {
 			
 			do{
 				System.out.println("Escolha sua opcao: ");
-				opção = scan.nextInt();
-				if(opção>3 || opção<1) {
+				opcao = scan.nextInt();
+				if(opcao>3 || opcao<1) {
 					System.out.println("Opcao Invalida:");
 				}
-			}while(opção>3 || opção<1);
+			}while(opcao>3 || opcao<1);
 			
-			if (opção==1){
+			if (opcao==1){
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();
 				quartoPrime.vinho(quantidade);
 			}
-			if (opção==2){
+			if (opcao==2){
 				
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();

@@ -7,9 +7,16 @@ import repositorio.RepositorioQuarto;
 public class TestePessoa {
 	public static void main(String[] args) {
 	
+		RepositorioQuarto quartos = new RepositorioQuarto();
+		RepositorioPessoa pessoas = new RepositorioPessoa();
+		
 	    // Cliente
 		
 		Normal quartoN = new Normal(100);
+		Normal quarto3 = new Normal(102);
+		Prime quarto4 = new Prime(102);
+		quartos.adicionarQuarto(quarto3);
+		quartos.adicionarQuarto(quarto4);
 	   
 	    Cliente cliente1 = new Cliente("Andre","1234","123");
 	    cliente1.setQuarto(quartoN);
@@ -17,20 +24,38 @@ public class TestePessoa {
 	    
 	    System.out.println(cliente1.getCPF());
 	    System.out.println(cliente1.getNome());
+	    System.out.println(cliente1.getHistorico());
+	    System.out.println(cliente1.getDiarias());
 	    System.out.println(cliente1.getSenha());
 	    System.out.println(cliente1.getQuarto().toString());
 	    System.out.println(cliente1.toString());
-
+	    
+	    System.out.println("teste quartos");
+	    cliente1.checkin(quartos);
+	    
+	    System.out.println("teste servico de quarto Normal");
+	    cliente1.sevircodequarto(quartos, 0);
+	    
+	    System.out.println("teste servico de quarto Prime");
+	    cliente1.sevircodequarto(quartos, 1);
+	    
+	    System.out.println("teste verConsumo");
+	    cliente1.verconsumo(quartos, 0);
+	    
+	    System.out.println("teste historico de agendamento");
+	    cliente1.historicoAgendamento();
+	    
+	    System.out.println("teste pagarconsumo");
+	    cliente1.pagarconsumo(quartos, 0);
+	    
+	    System.out.println("teste diarias");
+	    cliente1.diarias();
 
 		
 	    
 	    System.out.println();
 	    // Repositorio 
-
-	    RepositorioQuarto quartos = new RepositorioQuarto();
-	    RepositorioPessoa pessoas = new RepositorioPessoa();
 		
-	    
 	    pessoas.addPessoa(cliente1);
 	    System.out.println(pessoas.getPessoas().get(0).getCPF());
 	    System.out.println(pessoas.getPessoas().get(0).getNome());
@@ -118,14 +143,21 @@ public class TestePessoa {
 	    System.out.println();
 	    
 	    //CPF de pessoas já adicionadas: 1234, 50, 021, 120
-	    //Numero de quartos já cadastrados: N50, N101, P100, N100
+	    //Numero de quartos já cadastrados: N50, N101, P100, N100, N102, P102
+	    System.out.println("teste Adicionar cliente");
 	    gerente1.addPessoa(pessoas, 1);
+	    System.out.println("teste Adicionar gerente");
 	    gerente1.addPessoa(pessoas, 2);
+	    System.out.println("teste Adicionar quarto normal");
 	    gerente1.addQuarto(quartos, 1);
+	    System.out.println("teste Adicionar quarto prime");
 	    gerente1.addQuarto(quartos, 2);
 	    
+	    System.out.println("teste remover pesssoa");
 	    gerente1.removerPessoa(pessoas);
+	    System.out.println("teste remover quarto normal");
 	    gerente1.removerQuarto(quartos, 1);
+	    System.out.println("teste remover quarto Prime");
 	    gerente1.removerQuarto(quartos, 2);
 	    
     }
