@@ -225,12 +225,6 @@ public class Cliente extends Pessoa {
 		}
 	
 	}
-	public void Checkout (){
-		//this..setConta(0);
-		//this..setOcupado();
-
-	}
-	
 	
 	public void diarias() {
 		int d;
