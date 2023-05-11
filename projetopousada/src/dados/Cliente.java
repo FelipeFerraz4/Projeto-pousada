@@ -52,8 +52,8 @@ public class Cliente extends Pessoa {
 		int opção;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Qual opcao de quarto gostaria ?");
-		System.out.println("1 - Quarto Normal(1-3) - 250,00");
-		System.out.println("2 - Quarto Prime(4-7) - 400,00");
+		System.out.println("1 - Quarto Normal ate 3 pessoas - 250,00");
+		System.out.println("2 - Quarto Prime ate 7 pessoas - 400,00");
 		System.out.println("3 - Voltar");
 		
 		do{

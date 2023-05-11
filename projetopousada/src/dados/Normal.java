@@ -14,6 +14,10 @@ public class Normal extends Quarto {
 		return preco;
 	}
 	
+	public void setPreco(float preco) {
+		this.preco = preco;
+	}
+
 	public void agua(int quantAgua) {
 		setConta(getConta() + quantAgua*2);
 	}

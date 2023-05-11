@@ -13,7 +13,9 @@ public class Prime extends Quarto {
 	public float getPreco() {
 		return preco;
 	}
-	
+	public void setPreco(float preco) {
+		this.preco = preco;
+	}
 	public void vinho(int quantidade) {
 		setConta(getConta() + quantidade*70);
 	}
