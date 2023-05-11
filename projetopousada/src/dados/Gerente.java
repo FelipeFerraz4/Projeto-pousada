@@ -50,40 +50,55 @@ public class Gerente extends Pessoa  {
 	        }
 		}while(busca!=-1);
 		quartos.criarQuarto(numQuarto, tipoQuarto);
-	}
+	}	
 
-	public void atualizarGerente (RepositorioPessoa pessoas,String cpf){
-		int indece = pessoas.buscarPessoa(cpf);
-		pessoas.atualizarPessoa(pessoas.getPessoas().get(indece),
-		pessoas.getPessoas().get(indece).getNome(),pessoas.getPessoas().get(indece).getSenha());
-	}
-	public void atualiazarQuarto (RepositorioQuarto quarto){
-		quarto.atualizarQuarto(getQuarto());
-	}
-	
-
-	public void removerGerente(RepositorioPessoa pessoas){
-		String n,cpf;
-		int senha;
+	public void removerPessoa(RepositorioPessoa pessoas){
+		String cpf;
+		int busca;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("qual nome do Gerente:");
-        n = scan.nextLine();
-        System.out.println("qual CPF do Gerente:");
-        cpf = scan.nextLine();
-		System.out.println("Qual a senha do Gerente");
-		senha = scan.nextInt();
-		pessoas.deletarPessoa(cpf);
-		System.out.println(pessoas.toString());
-
+        do {
+        	System.out.println("Digite o CPF da Pessoa:");
+            cpf = scan.nextLine();
+            busca = pessoas.buscarPessoa(cpf);
+            if(busca == -1) {
+            	System.out.println("operacao invalida, CPF nao cadastrado");
+            }
+            else if(busca == 1) {
+            	System.out.println("CPF nao pode ser excluido");
+            }
+        }while(busca==-1);
+        System.out.println(pessoas.getPessoas().get(busca).toString());
+        System.out.println("Confirma remocao (0 - nao, 1 - sim): ");
+        int escolha = scan.nextInt();
+        if (escolha == 1) {
+        	pessoas.deletarPessoa(cpf);
+        	System.out.println("remocao conluida");
+        }
+        else {
+        	System.out.println("remocao cancelada");
+        }
 	}
 
-	public void removerQuarto(RepositorioQuarto quartos){
-		int numQuarto, TipoQuarto;
+	public void removerQuarto(RepositorioQuarto quartos, int tipoQuarto){
+		int numQuarto, busca;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("qual o numero do quarto?:");
-		numQuarto= scan.nextInt();
-		System.out.println("qual o tipo do quarto (1/0):");
-		TipoQuarto= scan.nextInt();
-		quartos.deletarQuarto(numQuarto, TipoQuarto);
+		do {
+			System.out.println("qual o numero do quarto?:");
+			numQuarto= scan.nextInt();
+			busca = quartos.buscarQuarto(numQuarto, tipoQuarto);
+			if(busca == -1) {
+            	System.out.println("operacao invalida, Quarto nao cadastrado");
+            }
+		}while(busca==-1);
+		System.out.println(quartos.getQuartos().get(busca).toString());
+		System.out.println("Confirma remocao (0 - nao, 1 - sim): ");
+        int escolha = scan.nextInt();
+        if (escolha == 1) {
+        	quartos.deletarQuarto(numQuarto, tipoQuarto);
+        	System.out.println("remocao conluida");
+        }
+        else {
+        	System.out.println("remocao cancelada");
+        }
 	}
 }

@@ -226,7 +226,7 @@ public class Menu {
             				System.out.println("Consulta concluida");
             			}
             			else {
-            				System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+            				System.out.println("Operacao invalida, quarto ainda nao cadastrado");
             			}
             			break;
             		case 3:
@@ -238,7 +238,7 @@ public class Menu {
             				System.out.println("Consulta concluida");
             			}
             			else {
-            				System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+            				System.out.println("Operacao invalida, quarto ainda nao cadastrado");
             			}
             			break;
             		default:
@@ -357,10 +357,20 @@ public class Menu {
             	else {
             		System.out.println("Não foi possível modificar os dados");
             	}
-            	
                 return -1;
             case 4:
-                System.out.println("Gerente removida");
+            	String[] options5 = {"pessoa", "quarto normal", "quarto prime"};
+            	
+            	option = this.optionGerente("Remover",options5, options5.length);
+            	if (option==1) {
+            		gerente.removerPessoa(pessoas);
+            	}
+            	if (option==2) {
+            		gerente.removerQuarto(quartos, 1);
+            	}
+            	if (option==3) {
+            		gerente.removerQuarto(quartos, 2);
+            	}
                 return -1;
             case 5:
             	System.out.println(pessoas.getPessoas().get(indexGerente).toString());
