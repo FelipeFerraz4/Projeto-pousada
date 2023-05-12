@@ -34,19 +34,19 @@ public class TestePessoa {
 	    cliente1.checkin(quartos);
 	    
 	    System.out.println("teste servico de quarto Normal");
-	    cliente1.sevircodequarto(quartos, 0);
+	    cliente1.sevircoDeQuarto(quartos, 0);
 	    
 	    System.out.println("teste servico de quarto Prime");
-	    cliente1.sevircodequarto(quartos, 1);
+	    cliente1.sevircoDeQuarto(quartos, 1);
 	    
 	    System.out.println("teste verConsumo");
-	    cliente1.verconsumo(quartos, 0);
+	    cliente1.verConsumo(quartos, 0);
 	    
 	    System.out.println("teste historico de agendamento");
 	    cliente1.historicoAgendamento();
 	    
-	    System.out.println("teste pagarconsumo");
-	    cliente1.pagarconsumo(quartos, 0);
+	    System.out.println("teste pagarConsumo");
+	    cliente1.pagarConsumo(quartos, 0);
 	    
 	    System.out.println("teste diarias");
 	    cliente1.diarias();

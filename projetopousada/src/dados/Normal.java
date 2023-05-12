@@ -13,7 +13,6 @@ public class Normal extends Quarto {
 	public float getPreco() {
 		return preco;
 	}
-	
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}

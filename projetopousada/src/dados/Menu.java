@@ -423,7 +423,7 @@ public class Menu {
             	if (cliente.isCheckin()==true) {
             		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
             		int indexQuarto = quartos.buscarQuarto(quarto);
-            		cliente.sevircodequarto(quartos, indexQuarto);
+            		cliente.sevircoDeQuarto(quartos, indexQuarto);
             		return -1;
             	}
                 System.out.println("Por favor, fazer check-in");
@@ -432,7 +432,7 @@ public class Menu {
             	if (cliente.isCheckin()==true) {
             		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
             		int indexQuarto = quartos.buscarQuarto(quarto);
-            		cliente.verconsumo(quartos, indexQuarto);
+            		cliente.verConsumo(quartos, indexQuarto);
             		return -1;
             	}
                 System.out.println("Por favor, fazer check-in");
@@ -444,7 +444,7 @@ public class Menu {
             	if (cliente.isCheckin()==true) {
             		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
             		int indexQuarto = quartos.buscarQuarto(quarto);
-            		cliente.pagarconsumo(quartos, indexQuarto);
+            		cliente.pagarConsumo(quartos, indexQuarto);
             		return -1;
             	}
                 System.out.println("Por favor, fazer check-in");

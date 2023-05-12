@@ -56,16 +56,7 @@ public abstract class Pessoa {
 		}
 		return false;
 	}
-/*	
-	@Override
-	public boolean equals(Object c) {
-		if(this.CPF.equals(((Pessoa)c).CPF)) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-*/	
+
 	@Override
 	public String toString() {
 		String resultado = "Cliente " + this.getNome() + 

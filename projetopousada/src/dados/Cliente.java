@@ -7,7 +7,6 @@ import repositorio.RepositorioQuarto;
 public class Cliente extends Pessoa {
 	
 	private int diarias;
-	//private int capacidade;
 	private int historico;
 	private boolean checkin;
 
@@ -109,7 +108,7 @@ public class Cliente extends Pessoa {
 		return 0;	
 	}
 	
-	public void sevircodequarto(RepositorioQuarto quartos,int indexQuarto) {
+	public void sevircoDeQuarto(RepositorioQuarto quartos,int indexQuarto) {
 		if (quartos.getQuartos().get(indexQuarto).getTipoQuarto()==1){
 			int opcao,quantidade;
 			Normal quartoNormal = (Normal) quartos.getQuartos().get(indexQuarto);
@@ -176,7 +175,7 @@ public class Cliente extends Pessoa {
 		}
 	}
 	
-	public void verconsumo(RepositorioQuarto quartos, int indexQuarto) {
+	public void verConsumo(RepositorioQuarto quartos, int indexQuarto) {
 		System.out.println("seu consumo atual: R$" + quartos.getQuartos().get(indexQuarto).getConta());
 	}
 	
@@ -188,7 +187,7 @@ public class Cliente extends Pessoa {
 	}
 
 	
-	public void pagarconsumo(RepositorioQuarto quartos, int indexQuarto) {
+	public void pagarConsumo(RepositorioQuarto quartos, int indexQuarto) {
 		int opção;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("valor da conta e "+quartos.getQuartos().get(indexQuarto).getConta());
