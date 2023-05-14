@@ -78,7 +78,7 @@ public class Cliente extends Pessoa {
 				Normal quarto = (Normal) quartos.getQuartos().get(indexQuarto);
 				quarto.setOcupado();
 				quarto.diaria(this.diarias);
-				setHistorico(1);
+				setHistorico(1+this.getHistorico());
 				this.checkin = true;
 				System.out.println("Check-in finalizado");
 				return 0;
@@ -98,7 +98,7 @@ public class Cliente extends Pessoa {
 				quarto.setOcupado();
 				quarto.diaria(this.diarias);
 				//quartos.getQuartos().get(indexQuarto).setOcupado();
-				setHistorico(1);
+				setHistorico(1+this.getHistorico());
 				this.checkin = true;
 				System.out.println("Check-in finalizado");
 				return 0;
@@ -129,14 +129,25 @@ public class Cliente extends Pessoa {
 			if (opcao==1){
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();
-				quartoNormal.agua(quantidade);
+				if(quantidade>=0) {
+					quartoNormal.agua(quantidade);
+				}
+				else {
+					System.out.println("Quantida invalida");
+				}
+					
 				
 			}
 			if (opcao==2){
 				
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();
-				quartoNormal.refrigerante(quantidade);
+				if(quantidade>=0) {
+					quartoNormal.refrigerante(quantidade);
+				}
+				else {
+					System.out.println("Quantida invalida");
+				}
 				
 			}
 			else{
@@ -162,13 +173,23 @@ public class Cliente extends Pessoa {
 			if (opcao==1){
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();
-				quartoPrime.vinho(quantidade);
+				if(quantidade>=0) {
+					quartoPrime.vinho(quantidade);
+				}
+				else {
+					System.out.println("Quantida invalida");
+				}
 			}
 			if (opcao==2){
 				
 				System.out.println("Qual a quantidade?");
 				quantidade = scan.nextInt();
-				quartoPrime.champagne(quantidade);
+				if(quantidade>=0) {
+					quartoPrime.champagne(quantidade);
+				}
+				else {
+					System.out.println("Quantida invalida");
+				}
 			}
 			else{
 			}

@@ -292,6 +292,8 @@ public class Menu {
             			int indexQuarto = quartos.buscarQuarto(numeroQuarto, 1);
             			if (indexQuarto!=-1) {
             				System.out.println(quartos.getQuartos().get(indexQuarto).toString());
+            				Normal quarto = (Normal) quartos.getQuartos().get(indexQuarto);
+            				System.out.println(quarto.getPreco());
             				String[] options4 = {"consumo", "capacidade", "preco do quarto"};
             				option = this.optionGerente("Modificar",options4, options4.length);
             				if (option==1) {
@@ -324,6 +326,8 @@ public class Menu {
             			indexQuarto = quartos.buscarQuarto(numeroQuarto, 2);
             			if (indexQuarto!=-1) {
             				System.out.println(quartos.getQuartos().get(indexQuarto).toString());
+            				Prime quarto = (Prime) quartos.getQuartos().get(indexQuarto);
+            				System.out.println(quarto.getPreco());
             				String[] options4 = {"consumo", "capacidade", "preco do quarto"};
             				option = this.optionGerente("Modificar",options4, options4.length);
             				if (option==1) {
@@ -363,7 +367,7 @@ public class Menu {
             	
             	option = this.optionGerente("Remover",options5, options5.length);
             	if (option==1) {
-            		gerente.removerPessoa(pessoas);
+            		gerente.removerPessoa(pessoas, indexGerente);
             	}
             	if (option==2) {
             		gerente.removerQuarto(quartos, 1);

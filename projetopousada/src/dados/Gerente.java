@@ -52,21 +52,27 @@ public class Gerente extends Pessoa  {
 		quartos.criarQuarto(numQuarto, tipoQuarto);
 	}	
 
-	public void removerPessoa(RepositorioPessoa pessoas){
+	public void removerPessoa(RepositorioPessoa pessoas, int indexGerente){
 		String cpf;
-		int busca;
+		int busca, valido = -1;
 		Scanner scan = new Scanner(System.in);
         do {
         	System.out.println("Digite o CPF da Pessoa:");
             cpf = scan.nextLine();
             busca = pessoas.buscarPessoa(cpf);
             if(busca == -1) {
+            	valido = -1;
             	System.out.println("operacao invalida, CPF nao cadastrado");
             }
-            else if(busca == 1) {
+            else if(busca == indexGerente) {
+            	valido = -1;
             	System.out.println("CPF nao pode ser excluido");
             }
-        }while(busca==-1);
+            else {
+            	valido = 1;
+            }
+            	
+        }while(valido == -1);
         System.out.println(pessoas.getPessoas().get(busca).toString());
         System.out.println("Confirma remocao (0 - nao, 1 - sim): ");
         int escolha = scan.nextInt();
