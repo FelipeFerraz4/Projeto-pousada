@@ -1,6 +1,6 @@
-package teste;
+package iuconsole;
 
-import dados.Menu;
+import negocios.Menu;
 
 public class Main {
 

@@ -1,8 +1,8 @@
-package teste;
+package iuconsole;
 
-import dados.Normal;
-import dados.Prime;
-import repositorio.RepositorioQuarto;
+import dados.RepositorioQuarto;
+import negocios.Normal;
+import negocios.Prime;
 
 public class TesteQuarto {
 	public static void main(String[] args) {

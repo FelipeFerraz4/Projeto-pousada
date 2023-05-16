@@ -1,4 +1,4 @@
-package dados;
+package negocios;
 
 public abstract class Quarto {
 	

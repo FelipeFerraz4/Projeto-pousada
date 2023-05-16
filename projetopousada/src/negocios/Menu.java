@@ -1,8 +1,9 @@
-package dados;
+package negocios;
 
 import java.util.Scanner;
+
 import dados.*;
-import repositorio.*;
+import negocios.*;
 
 
 public class Menu {

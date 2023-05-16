@@ -1,7 +1,8 @@
-package dados;
+package negocios;
 
 import java.util.Scanner;
-import repositorio.RepositorioPessoa;
+
+import dados.RepositorioPessoa;
 
 public class Login {
 	

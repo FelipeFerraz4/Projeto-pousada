@@ -1,8 +1,8 @@
-package teste;
+package iuconsole;
 
-import dados.*;
-import repositorio.RepositorioPessoa;
-import repositorio.RepositorioQuarto;
+import dados.RepositorioPessoa;
+import dados.RepositorioQuarto;
+import negocios.*;
 
 public class TestePessoa {
 	public static void main(String[] args) {
@@ -154,7 +154,7 @@ public class TestePessoa {
 	    gerente1.addQuarto(quartos, 2);
 	    
 	    System.out.println("teste remover pesssoa");
-	    gerente1.removerPessoa(pessoas);
+	    //gerente1.deletarPessoa(pessoas);
 	    System.out.println("teste remover quarto normal");
 	    gerente1.removerQuarto(quartos, 1);
 	    System.out.println("teste remover quarto Prime");

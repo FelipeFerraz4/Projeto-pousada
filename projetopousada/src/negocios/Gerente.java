@@ -1,7 +1,8 @@
-package dados;
+package negocios;
 
 import java.util.Scanner;
-import repositorio.*;
+
+import dados.*;
 
 public class Gerente extends Pessoa  {
 

@@ -1,4 +1,4 @@
-package dados;
+package negocios;
 
 public class Prime extends Quarto {
 	

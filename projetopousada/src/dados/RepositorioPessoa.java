@@ -1,8 +1,8 @@
-package repositorio;
+package dados;
 
 import java.util.ArrayList;
 
-import dados.*;
+import negocios.*;
 
 public class RepositorioPessoa {
 

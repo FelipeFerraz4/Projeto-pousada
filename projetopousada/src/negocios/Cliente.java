@@ -1,8 +1,9 @@
-package dados;
+package negocios;
 
 import java.util.Scanner;
-import dados.*;
-import repositorio.RepositorioQuarto;
+
+import dados.RepositorioQuarto;
+import negocios.*;
 
 public class Cliente extends Pessoa {
 	
