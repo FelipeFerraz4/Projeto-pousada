@@ -46,7 +46,8 @@ public class RepositorioQuarto {
 		return -1;
 	}
 	
-	public int deletarQuarto(int indexQuarto) {
+	public int deletarQuarto(Quarto quarto) {
+		int indexQuarto = this.buscarQuarto(quarto);
 		if (indexQuarto > 0 || indexQuarto < this.quartos.size()) {
 			quartos.remove(indexQuarto);
 			return 1;
