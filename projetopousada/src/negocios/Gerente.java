@@ -38,7 +38,7 @@ public class Gerente extends Pessoa  {
 		pessoas.criarPessoa(nome, cpf, senha, tipoPessoa);
 	}
 	
-	public void addQuarto(RepositorioQuarto quartos, int tipoQuarto){
+	public void addQuarto(RepositorioQuartoArrayList quartos, int tipoQuarto){
 		int numQuarto;
 		Scanner scan = new Scanner(System.in);
 		int busca;
@@ -50,7 +50,7 @@ public class Gerente extends Pessoa  {
 	        	System.out.println("operacao invalida, numero do quarto cadastrado anteriormente");
 	        }
 		}while(busca!=-1);
-		quartos.criarQuarto(numQuarto, tipoQuarto);
+		quartos.adicionarQuarto(numQuarto, tipoQuarto);
 	}	
 
 	public void removerPessoa(RepositorioPessoa pessoas, int indexGerente){
@@ -86,7 +86,7 @@ public class Gerente extends Pessoa  {
         }
 	}
 
-	public void removerQuarto(RepositorioQuarto quartos, int tipoQuarto){
+	public void removerQuarto(RepositorioQuartoArrayList quartos, int tipoQuarto){
 		int numQuarto, busca;
 		Scanner scan = new Scanner(System.in);
 		do {

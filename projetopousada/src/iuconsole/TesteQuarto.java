@@ -1,12 +1,13 @@
+
 package iuconsole;
 
-import dados.RepositorioQuarto;
+import dados.RepositorioQuartoArrayList;
 import negocios.Normal;
 import negocios.Prime;
 
 public class TesteQuarto {
 	public static void main(String[] args) {
-		
+/*		
 		// teste da classe Normal
 		
 		Normal normal1 = new Normal(1);
@@ -126,6 +127,6 @@ public class TesteQuarto {
 		indexQuarto = quartos.quartoVazio(1);
 		System.out.println(quartos.getQuartos().get(indexQuarto));
 
-		
+*/		
 	}
 }

@@ -8,13 +8,13 @@ import negocios.*;
 
 public class Menu {
 	
-	private RepositorioQuarto quartos;
+	private RepositorioQuartoArrayList quartos;
 	private RepositorioPessoa pessoas;
 	private Login login;
 	
 	public Menu() {
 		this.login = new Login();
-		this.quartos = new RepositorioQuarto();
+		this.quartos = new RepositorioQuartoArrayList();
 		this.pessoas = new RepositorioPessoa();	
 		classesDefault();
 	}

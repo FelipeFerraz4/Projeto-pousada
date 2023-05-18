@@ -2,7 +2,7 @@ package negocios;
 
 import java.util.Scanner;
 
-import dados.RepositorioQuarto;
+import dados.RepositorioQuartoArrayList;
 import negocios.*;
 
 public class Cliente extends Pessoa {
@@ -48,7 +48,7 @@ public class Cliente extends Pessoa {
 	}
 
 
-	public int checkin(RepositorioQuarto quartos) {
+	public int checkin(RepositorioQuartoArrayList quartos) {
 		int opção;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Qual opcao de quarto gostaria ?");
@@ -109,7 +109,7 @@ public class Cliente extends Pessoa {
 		return 0;	
 	}
 	
-	public void sevircoDeQuarto(RepositorioQuarto quartos,int indexQuarto) {
+	public void sevircoDeQuarto(RepositorioQuartoArrayList quartos,int indexQuarto) {
 		if (quartos.getQuartos().get(indexQuarto).getTipoQuarto()==1){
 			int opcao,quantidade;
 			Normal quartoNormal = (Normal) quartos.getQuartos().get(indexQuarto);
@@ -197,7 +197,7 @@ public class Cliente extends Pessoa {
 		}
 	}
 	
-	public void verConsumo(RepositorioQuarto quartos, int indexQuarto) {
+	public void verConsumo(RepositorioQuartoArrayList quartos, int indexQuarto) {
 		System.out.println("seu consumo atual: R$" + quartos.getQuartos().get(indexQuarto).getConta());
 	}
 	
@@ -209,7 +209,7 @@ public class Cliente extends Pessoa {
 	}
 
 	
-	public void pagarConsumo(RepositorioQuarto quartos, int indexQuarto) {
+	public void pagarConsumo(RepositorioQuartoArrayList quartos, int indexQuarto) {
 		int opção;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("valor da conta e "+quartos.getQuartos().get(indexQuarto).getConta());

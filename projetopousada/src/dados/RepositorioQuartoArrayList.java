@@ -4,13 +4,30 @@ import java.util.ArrayList;
 
 import negocios.*;
 
-public class RepositorioQuarto {
+public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 	
 	private ArrayList<Quarto> quartos = new ArrayList<Quarto>();
-	
-	//melhora fazendo getPessoa receber um index e returna a pessoa 
+/*	
 	public ArrayList<Quarto> getQuartos() {
 		return this.quartos;
+	}
+*/
+	public Quarto getQuarto(int indexQuarto) {
+		return this.quartos.get(indexQuarto);
+	}
+	
+	public int quartoVazio(int tipoQuarto) {
+		int indexQuarto = -1;
+		
+		for(int i = 0; i < quartos.size(); i++) {
+			if (quartos.get(i).getTipoQuarto()==tipoQuarto) {
+				if (quartos.get(i).isOcupado()==false) {
+					return i;
+				}
+			}
+		}
+		
+		return indexQuarto;
 	}
 	
 	public void adicionarQuarto(int numeroQuarto, int tipoQuarto) {
@@ -27,6 +44,7 @@ public class RepositorioQuarto {
 	public void adicionarQuarto(Quarto quarto) {
 		quartos.add(quarto);
 	}
+	
 	public int buscarQuarto(Quarto quarto) {
 		for (int i = 0; i < quartos.size(); i++) {
 			if (quartos.get(i).equals(quarto)) {
@@ -62,27 +80,19 @@ public class RepositorioQuarto {
 		}
 		return -1;
 	}
-	public void atualizarQuarto(Quarto quarto) {
-		int indexQuarto = this.buscarQuarto(quarto);
-		if (quartos.get(indexQuarto).isOcupado()!=quarto.isOcupado()) {
-			quartos.get(indexQuarto).isOcupado();
-		}
-		quartos.get(indexQuarto).setConta(quarto.getConta());
-		quartos.get(indexQuarto).setCapacidade(quarto.getCapacidade());
-	}
 	
-	public int quartoVazio(int tipoQuarto) {
-		int indexQuarto = -1;
-		
-		for(int i = 0; i < quartos.size(); i++) {
-			if (quartos.get(i).getTipoQuarto()==tipoQuarto) {
-				if (quartos.get(i).isOcupado()==false) {
-					return i;
-				}
+	public int atualizarQuarto(Quarto quarto) {
+		int indexQuarto = this.buscarQuarto(quarto);
+		if (indexQuarto!=-1) {
+			if (quartos.get(indexQuarto).isOcupado()!=quarto.isOcupado()) {
+				quartos.get(indexQuarto).isOcupado();
+				return 1;
 			}
+			quartos.get(indexQuarto).setConta(quarto.getConta());
+			quartos.get(indexQuarto).setCapacidade(quarto.getCapacidade());
+			return 1;
 		}
-		
-		return indexQuarto;
+		return -1;
 	}
 
 }

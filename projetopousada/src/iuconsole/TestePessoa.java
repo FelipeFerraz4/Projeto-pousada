@@ -1,13 +1,13 @@
 package iuconsole;
 
 import dados.RepositorioPessoa;
-import dados.RepositorioQuarto;
+import dados.RepositorioQuartoArrayList;
 import negocios.*;
 
 public class TestePessoa {
 	public static void main(String[] args) {
 	
-		RepositorioQuarto quartos = new RepositorioQuarto();
+		RepositorioQuartoArrayList quartos = new RepositorioQuartoArrayList();
 		RepositorioPessoa pessoas = new RepositorioPessoa();
 		
 	    // Cliente
