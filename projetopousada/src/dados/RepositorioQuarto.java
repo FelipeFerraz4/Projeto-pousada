@@ -13,7 +13,7 @@ public class RepositorioQuarto {
 		return this.quartos;
 	}
 	
-	public void criarQuarto(int numeroQuarto, int tipoQuarto) {
+	public void adicionarQuarto(int numeroQuarto, int tipoQuarto) {
 		Quarto quarto;
 		if (tipoQuarto==1) {
 			quarto = new Normal(numeroQuarto);
