@@ -97,7 +97,7 @@ public class Gerente extends Pessoa  {
             	System.out.println("operacao invalida, Quarto nao cadastrado");
             }
 		}while(busca==-1);
-		System.out.println(quartos.getQuartos().get(busca).toString());
+		System.out.println(quartos.getQuarto(busca).toString());
 		System.out.println("Confirma remocao (0 - nao, 1 - sim): ");
         int escolha = scan.nextInt();
         if (escolha == 1) {

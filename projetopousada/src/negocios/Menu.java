@@ -223,7 +223,7 @@ public class Menu {
             			int numeroQuarto = scan.nextInt();
             			busca = quartos.buscarQuarto(numeroQuarto, 1);
             			if (busca!=-1) {
-            				System.out.println(quartos.getQuartos().get(busca).toString());
+            				System.out.println(quartos.getQuarto(busca).toString());
             				System.out.println("Consulta concluida");
             			}
             			else {
@@ -235,7 +235,7 @@ public class Menu {
             			numeroQuarto = scan.nextInt();
             			busca = quartos.buscarQuarto(numeroQuarto, 2);
             			if (busca!=-1) {
-            				System.out.println(quartos.getQuartos().get(busca).toString());
+            				System.out.println(quartos.getQuarto(busca).toString());
             				System.out.println("Consulta concluida");
             			}
             			else {
@@ -292,27 +292,27 @@ public class Menu {
             			int numeroQuarto = scan.nextInt();
             			int indexQuarto = quartos.buscarQuarto(numeroQuarto, 1);
             			if (indexQuarto!=-1) {
-            				System.out.println(quartos.getQuartos().get(indexQuarto).toString());
-            				Normal quarto = (Normal) quartos.getQuartos().get(indexQuarto);
+            				System.out.println(quartos.getQuarto(indexQuarto).toString());
+            				Normal quarto = (Normal) quartos.getQuarto(indexQuarto);
             				System.out.println(quarto.getPreco());
             				String[] options4 = {"consumo", "capacidade", "preco do quarto"};
             				option = this.optionGerente("Modificar",options4, options4.length);
             				if (option==1) {
             					System.out.println("Digite o novo valor do consumo: ");
             					float consumo = scan.nextFloat();
-            					quartos.getQuartos().get(indexQuarto).setConta(consumo);
+            					quartos.getQuarto(indexQuarto).setConta(consumo);
             					System.out.println("Modificacao concluida");
             				}
             				if (option==2) {
             					System.out.println("Digite o novo valor da capacidade: ");
             					int capacidade = scan.nextInt();
-            					quartos.getQuartos().get(indexQuarto).setCapacidade(capacidade);
+            					quartos.getQuarto(indexQuarto).setCapacidade(capacidade);
             					System.out.println("Modificacao concluida");
             				}
             				if (option==3) {
             					System.out.println("Digite o novo valor do preco do quarto: ");
             					float precoQuarto = scan.nextFloat();
-            					Normal quartoNormal = (Normal) quartos.getQuartos().get(indexQuarto);
+            					Normal quartoNormal = (Normal) quartos.getQuarto(indexQuarto);
             					quartoNormal.setPreco(precoQuarto);
             					System.out.println("Modificacao concluida");
             				}
@@ -326,27 +326,27 @@ public class Menu {
             			numeroQuarto = scan.nextInt();
             			indexQuarto = quartos.buscarQuarto(numeroQuarto, 2);
             			if (indexQuarto!=-1) {
-            				System.out.println(quartos.getQuartos().get(indexQuarto).toString());
-            				Prime quarto = (Prime) quartos.getQuartos().get(indexQuarto);
+            				System.out.println(quartos.getQuarto(indexQuarto).toString());
+            				Prime quarto = (Prime) quartos.getQuarto(indexQuarto);
             				System.out.println(quarto.getPreco());
             				String[] options4 = {"consumo", "capacidade", "preco do quarto"};
             				option = this.optionGerente("Modificar",options4, options4.length);
             				if (option==1) {
             					System.out.println("Digite o novo valor do consumo: ");
             					float consumo = scan.nextFloat();
-            					quartos.getQuartos().get(indexQuarto).setConta(consumo);
+            					quartos.getQuarto(indexQuarto).setConta(consumo);
             					System.out.println("Modificacao concluida");
             				}
             				if (option==2) {
             					System.out.println("Digite o novo valor da capacidade: ");
             					int capacidade = scan.nextInt();
-            					quartos.getQuartos().get(indexQuarto).setCapacidade(capacidade);
+            					quartos.getQuarto(indexQuarto).setCapacidade(capacidade);
             					System.out.println("Modificacao concluida");
             				}
             				if (option==3) {
             					System.out.println("Digite o novo valor do preco do quarto: ");
             					float precoQuarto = scan.nextFloat();
-            					Prime quartoPrime = (Prime) quartos.getQuartos().get(indexQuarto);
+            					Prime quartoPrime = (Prime) quartos.getQuarto(indexQuarto);
             					quartoPrime.setPreco(precoQuarto);
             					System.out.println("Modificacao concluida");
             				}

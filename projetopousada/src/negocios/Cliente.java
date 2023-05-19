@@ -75,8 +75,8 @@ public class Cliente extends Pessoa {
 			}
 			else{
 				diarias();
-				setQuarto(quartos.getQuartos().get(indexQuarto));
-				Normal quarto = (Normal) quartos.getQuartos().get(indexQuarto);
+				setQuarto(quartos.getQuarto(indexQuarto));
+				Normal quarto = (Normal) quartos.getQuarto(indexQuarto);
 				quarto.setOcupado();
 				quarto.diaria(this.diarias);
 				setHistorico(1+this.getHistorico());
@@ -94,8 +94,8 @@ public class Cliente extends Pessoa {
 			}
 			else{
 				diarias();
-				setQuarto(quartos.getQuartos().get(indexQuarto));
-				Prime quarto = (Prime) quartos.getQuartos().get(indexQuarto);
+				setQuarto(quartos.getQuarto(indexQuarto));
+				Prime quarto = (Prime) quartos.getQuarto(indexQuarto);
 				quarto.setOcupado();
 				quarto.diaria(this.diarias);
 				//quartos.getQuartos().get(indexQuarto).setOcupado();
@@ -110,9 +110,9 @@ public class Cliente extends Pessoa {
 	}
 	
 	public void sevircoDeQuarto(RepositorioQuartoArrayList quartos,int indexQuarto) {
-		if (quartos.getQuartos().get(indexQuarto).getTipoQuarto()==1){
+		if (quartos.getQuarto(indexQuarto).getTipoQuarto()==1){
 			int opcao,quantidade;
-			Normal quartoNormal = (Normal) quartos.getQuartos().get(indexQuarto);
+			Normal quartoNormal = (Normal) quartos.getQuarto(indexQuarto);
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Qual opcao de quarto gostaria ?");
 			System.out.println("1 - Agua - 2,00");
@@ -156,7 +156,7 @@ public class Cliente extends Pessoa {
 		}
 		else{
 			int opcao,quantidade;
-			Prime quartoPrime = (Prime) quartos.getQuartos().get(indexQuarto);
+			Prime quartoPrime = (Prime) quartos.getQuarto(indexQuarto);
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Qual opcao de quarto gostaria ?");
 			System.out.println("1 - Vinho - 70,00");
@@ -198,7 +198,7 @@ public class Cliente extends Pessoa {
 	}
 	
 	public void verConsumo(RepositorioQuartoArrayList quartos, int indexQuarto) {
-		System.out.println("seu consumo atual: R$" + quartos.getQuartos().get(indexQuarto).getConta());
+		System.out.println("seu consumo atual: R$" + quartos.getQuarto(indexQuarto).getConta());
 	}
 	
 	
@@ -212,7 +212,7 @@ public class Cliente extends Pessoa {
 	public void pagarConsumo(RepositorioQuartoArrayList quartos, int indexQuarto) {
 		int opção;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("valor da conta e "+quartos.getQuartos().get(indexQuarto).getConta());
+		System.out.println("valor da conta e "+quartos.getQuarto(indexQuarto).getConta());
 		System.out.println("passou");
 		System.out.println("Qual forma de pagamento?");
 		System.out.println("1 - Dinheiro");
@@ -231,18 +231,18 @@ public class Cliente extends Pessoa {
 		
 		if (opção == 1) {
 			System.out.println("pagamento efetuado. Obrigado, volte sempre!");
-			quartos.getQuartos().get(indexQuarto).setConta(0);
+			quartos.getQuarto(indexQuarto).setConta(0);
 		}
 		else if (opção == 2) {
 			System.out.println("insira seu cartao");
 			System.out.println("coloque sua senha");
 			System.out.println("pagamento efetuado. Obrigado, volte sempre!");
-			quartos.getQuartos().get(indexQuarto).setConta(0);
+			quartos.getQuarto(indexQuarto).setConta(0);
 		}
 		else if (opção == 3){
 			System.out.println("A chave pix: 55555");
 			System.out.println("pagamento efetuado. Obrigado, volte sempre!");
-			quartos.getQuartos().get(indexQuarto).setConta(0);
+			quartos.getQuarto(indexQuarto).setConta(0);
 		}
 	
 	}

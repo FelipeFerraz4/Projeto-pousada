@@ -1,9 +1,9 @@
 
 package iuconsole;
 
-import dados.RepositorioQuartoArrayList;
-import negocios.Normal;
-import negocios.Prime;
+//import dados.RepositorioQuartoArrayList;
+//import negocios.Normal;
+//import negocios.Prime;
 
 public class TesteQuarto {
 	public static void main(String[] args) {
