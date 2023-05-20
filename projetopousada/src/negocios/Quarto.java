@@ -35,14 +35,8 @@ public abstract class Quarto {
 	public boolean isOcupado() {
 		return this.ocupado;
 	}
-	public void setOcupado() {
-		if (this.ocupado == false) {
-			this.ocupado = true;
-		}
-		else {
-			this.ocupado = false;
-			this.conta = 0;
-		}
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
 	}
 	public float getConta() {
 		return conta;

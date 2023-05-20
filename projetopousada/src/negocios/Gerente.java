@@ -11,7 +11,19 @@ public class Gerente extends Pessoa  {
 		this.setTipoPessoa(2);
 	}
 	
-	public void addPessoa(RepositorioPessoa pessoas, int tipoPessoa) {
+	//Lembrar adicionar a excetion do Repositorio Lotado 
+	public int addPessoa(RepositorioPessoa pessoas, Pessoa pessoa) {
+		int indexPessoa = pessoas.buscarPessoa(pessoa); 
+		if (indexPessoa != -1) {
+			//adicionar exception Pessoa já existe
+			return -1;
+		}
+		else {
+			pessoas.addPessoa(pessoa);
+			return 1;
+		}
+		
+		/*
 		String nome,cpf;
 		String tipoUsario;
 		if (tipoPessoa==1) {
@@ -36,24 +48,33 @@ public class Gerente extends Pessoa  {
 		System.out.println("Qual a senha do novo "+tipoUsario+":");
 		senha = scan.nextLine();
 		pessoas.criarPessoa(nome, cpf, senha, tipoPessoa);
+		*/
+	}
+	//Lembrar adicionar a excetion do Repositorio Lotado
+	public int addPessoa(RepositorioPessoa pessoas, int tipoPessoa, String nome, 
+			String cpf, String senha) {
+		int indexPessoa = pessoas.buscarPessoa(cpf); 
+		if (indexPessoa != -1) {
+			//adicionar exception Pessoa já existe
+			return -1;
+		}
+		else {
+			pessoas.criarPessoa(nome, cpf, senha, tipoPessoa);
+			return 1;
+		}
 	}
 	
-	public void addQuarto(RepositorioQuartoArrayList quartos, int tipoQuarto){
-		int numQuarto;
-		Scanner scan = new Scanner(System.in);
-		int busca;
-		do {
-			System.out.println("qual o numero do quarto?");
-			numQuarto= scan.nextInt();
-			busca = quartos.buscarQuarto(numQuarto, tipoQuarto);
-			if (busca!=-1) {
-	        	System.out.println("operacao invalida, numero do quarto cadastrado anteriormente");
-	        }
-		}while(busca!=-1);
-		quartos.adicionarQuarto(numQuarto, tipoQuarto);
-	}	
-
-	public void removerPessoa(RepositorioPessoa pessoas, int indexGerente){
+	public int removerPessoa(RepositorioPessoa pessoas, Pessoa pessoa){
+		int result = pessoas.deletarPessoa(pessoa);
+		if (result == -1) {
+			//adicionar exception Pessoa não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+		
+		/*
 		String cpf;
 		int busca, valido = -1;
 		Scanner scan = new Scanner(System.in);
@@ -84,9 +105,119 @@ public class Gerente extends Pessoa  {
         else {
         	System.out.println("remocao cancelada");
         }
+        */
+	}
+	public int removerPessoa(RepositorioPessoa pessoas, String cpf) {
+		int result = pessoas.deletarPessoa(cpf);
+		if (result == -1) {
+			//adicionar exception Pessoa não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	public int consultarPessoa(RepositorioPessoa pessoas, Pessoa pessoa) {
+		int indexPessoa = pessoas.buscarPessoa(pessoa);
+		if (indexPessoa == -1) {
+			//adicionar exception Pessoa não existe
+			return -1;
+		}
+		else {
+			return indexPessoa;
+		}
+	}
+	public int consultarPessoa(RepositorioPessoa pessoas, String cpf) {
+		int indexPessoa = pessoas.buscarPessoa(cpf);
+		if (indexPessoa == -1) {
+			//adicionar exception Pessoa não existe
+			return -1;
+		}
+		else {
+			return indexPessoa;
+		}
+	}
+	public int atualizarPessoa(RepositorioPessoa pessoas, Pessoa pessoa) {
+		int result = pessoas.atualizarPessoa(pessoa);
+		if (result == -1 ) {
+			//adicionar exception Pessoa não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	public int atualizarPessoa(RepositorioPessoa pessoas, String cpf, String nome,
+			String senha) {
+		int result = pessoas.atualizarPessoa(cpf, nome, senha);
+		if (result == -1 ) {
+			//adicionar exception Pessoa não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	
+	public int addQuarto(IRepositorioQuarto quartos, Quarto quarto){
+		int indexQuarto = quartos.buscarQuarto(quarto);
+		if (indexQuarto != -1) {
+			//adicionar exception Quarto já existe
+			return -1;
+		}
+		else {
+			int result = quartos.adicionarQuarto(quarto);
+			if (result == -1) {
+				//adicionar exception RepositorioQuartoLotado
+				return -1;
+			}
+			return 1;
+		}
+		
+		/*
+		int numQuarto;
+		Scanner scan = new Scanner(System.in);
+		int busca;
+		do {
+			System.out.println("qual o numero do quarto?");
+			numQuarto= scan.nextInt();
+			busca = quartos.buscarQuarto(numQuarto, tipoQuarto);
+			if (busca!=-1) {
+	        	System.out.println("operacao invalida, numero do quarto cadastrado anteriormente");
+	        }
+		}while(busca!=-1);
+		quartos.adicionarQuarto(numQuarto, tipoQuarto);
+		*/
+	}
+	public int addQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) {
+		int indexQuarto = quartos.buscarQuarto(numeroQuarto, tipoQuarto);
+		if (indexQuarto != -1) {
+			//adicionar exception Quarto já existe
+			return -1;
+		}
+		else {
+			int result = quartos.adicionarQuarto(numeroQuarto, tipoQuarto);
+			if (result == -1) {
+				//adicionar exception RepositorioQuartoLotado
+				return -1;
+			}
+			return 1;
+		}
 	}
 
-	public void removerQuarto(RepositorioQuartoArrayList quartos, int tipoQuarto){
+
+	public int deletarQuarto(IRepositorioQuarto quartos, Quarto quarto){
+		int result = quartos.deletarQuarto(quarto);
+		if (result == -1) {
+			//adicionar exception Quarto não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+		
+		
+		/*
 		int numQuarto, busca;
 		Scanner scan = new Scanner(System.in);
 		do {
@@ -107,5 +238,62 @@ public class Gerente extends Pessoa  {
         else {
         	System.out.println("remocao cancelada");
         }
+        */
 	}
+	public int deletarQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) {
+		int result = quartos.deletarQuarto(numeroQuarto, tipoQuarto);
+		if (result == -1) {
+			//adicionar exception Quarto não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	public int consultarQuarto(IRepositorioQuarto quartos, Quarto quarto) {
+		int indexPessoa = quartos.buscarQuarto(quarto);
+		if (indexPessoa == -1) {
+			//adicionar exception Quarto não existe
+			return -1;
+		}
+		else {
+			return indexPessoa;
+		}
+	}
+	public int consultarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
+			int tipoQuarto) {
+		int indexPessoa = quartos.buscarQuarto(numeroQuarto, tipoQuarto);
+		if (indexPessoa == -1) {
+			//adicionar exception Quarto não existe
+			return -1;
+		}
+		else {
+			return indexPessoa;
+		}
+	}
+	public int atualizarQuarto(IRepositorioQuarto quartos, Quarto quarto) {
+		int result = quartos.atualizarQuarto(quarto);
+		if (result == -1 ) {
+			//adicionar exception Quarto não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	public int atualizarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
+			int tipoQuarto, float consumo, boolean ocupado, int capacidade) {
+		
+		int result = quartos.atualizarQuarto(numeroQuarto, tipoQuarto, 
+				consumo, ocupado, capacidade);
+		
+		if (result == -1 ) {
+			//adicionar exception Quarto não existe
+			return -1;
+		}
+		else {
+			return 1;
+		}
+		
+	}	
 }

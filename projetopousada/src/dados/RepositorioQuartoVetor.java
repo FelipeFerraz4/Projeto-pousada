@@ -12,7 +12,6 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 	}
 	
 	public int quartoVazio(int tipoQuarto) {
-		int indexQuarto = -1;
 		for(int i = 0; i < size; i++) {
 			if (this.getQuarto(i).getTipoQuarto()==tipoQuarto) {
 				if (this.getQuarto(i).isOcupado()==false) {
@@ -20,7 +19,7 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 				}
 			}
 		}
-		return indexQuarto;
+		return -1;
 	}
 	
 	
@@ -108,12 +107,20 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 	public int atualizarQuarto(Quarto quarto) {
 		int indexQuarto = this.buscarQuarto(quarto);
 		if (indexQuarto!=-1) {
-			if (this.getQuarto(indexQuarto).isOcupado()!=quarto.isOcupado()) {
-				this.getQuarto(indexQuarto).isOcupado();
-				return 1;
-			}
+			this.getQuarto(indexQuarto).setOcupado(quarto.isOcupado());
 			this.getQuarto(indexQuarto).setConta(quarto.getConta());
 			this.getQuarto(indexQuarto).setCapacidade(quarto.getCapacidade());
+			return 1;
+		}
+		return -1;
+	}
+	public int atualizarQuarto(int numeroQuarto, int tipoQuarto, float consumo,
+			boolean ocupado, int capacidade) {
+		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
+		if (indexQuarto!=-1) {
+			this.getQuarto(indexQuarto).setOcupado(ocupado);
+			this.getQuarto(indexQuarto).setConta(consumo);
+			this.getQuarto(indexQuarto).setCapacidade(capacidade);
 			return 1;
 		}
 		return -1;

@@ -77,7 +77,7 @@ public class Cliente extends Pessoa {
 				diarias();
 				setQuarto(quartos.getQuarto(indexQuarto));
 				Normal quarto = (Normal) quartos.getQuarto(indexQuarto);
-				quarto.setOcupado();
+				quarto.setOcupado(true);
 				quarto.diaria(this.diarias);
 				setHistorico(1+this.getHistorico());
 				this.checkin = true;
@@ -96,7 +96,7 @@ public class Cliente extends Pessoa {
 				diarias();
 				setQuarto(quartos.getQuarto(indexQuarto));
 				Prime quarto = (Prime) quartos.getQuarto(indexQuarto);
-				quarto.setOcupado();
+				quarto.setOcupado(true);
 				quarto.diaria(this.diarias);
 				//quartos.getQuartos().get(indexQuarto).setOcupado();
 				setHistorico(1+this.getHistorico());
