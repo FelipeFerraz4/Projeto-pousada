@@ -1,6 +1,6 @@
 package iuconsole;
 
-import dados.RepositorioPessoa;
+import dados.RepositorioPessoaArrayList;
 import dados.RepositorioQuartoArrayList;
 import negocios.*;
 
@@ -8,7 +8,7 @@ public class TestePessoa {
 	public static void main(String[] args) {
 	
 		RepositorioQuartoArrayList quartos = new RepositorioQuartoArrayList();
-		RepositorioPessoa pessoas = new RepositorioPessoa();
+		RepositorioPessoaArrayList pessoas = new RepositorioPessoaArrayList();
 		
 	    // Cliente
 		
@@ -100,7 +100,7 @@ public class TestePessoa {
 
 		
 		Cliente pessoa = (Cliente) pessoas.getPessoas().get(2);
-		pessoas.atualizarPessoa(pessoa,"felicia","0992");
+		pessoas.atualizarPessoa(pessoa);//"felicia","0992"
 	    indexBusca = pessoas.buscarPessoa(pessoa);
 	    System.out.println(pessoas.getPessoas().get(indexBusca).getCPF());
 	    System.out.println(pessoas.getPessoas().get(indexBusca).getNome());

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import negocios.*;
 
-public class RepositorioPessoa {
+public class RepositorioPessoaArrayList implements IRepositorioPessoa {
 
 	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	

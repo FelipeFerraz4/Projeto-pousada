@@ -2,11 +2,11 @@ package negocios;
 
 import java.util.Scanner;
 
-import dados.RepositorioPessoa;
+import dados.RepositorioPessoaArrayList;
 
 public class Login {
 	
-	public int entrar(RepositorioPessoa pessoas) {
+	public int entrar(RepositorioPessoaArrayList pessoas) {
 
 		Scanner scan = new Scanner(System.in);
 		
@@ -30,7 +30,7 @@ public class Login {
 		return -1;
 	}
 	
-	public int cadastrar(RepositorioPessoa pessoas) {
+	public int cadastrar(RepositorioPessoaArrayList pessoas) {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Digite o seu CPF: ");
