@@ -1,14 +1,17 @@
 package testeClass;
 
-import dados.*;
-import negocios.*;
+import dados.IRepositorioQuarto;
+import dados.RepositorioQuartoArrayList;
+import dados.RepositorioQuartoVetor;
+import negocios.Normal;
+import negocios.Prime;
 
-public class TesteRepositorioQuartoArrayList {
-
+public class TesteRepositorioQuartoVetor {
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			
-		IRepositorioQuarto quartos = new RepositorioQuartoArrayList();
+		IRepositorioQuarto quartos = new RepositorioQuartoVetor();
 		Normal quartoNormal1 = new Normal(1);
 		Prime quartoPrime1 = new Prime(1);
 		
@@ -77,5 +80,5 @@ public class TesteRepositorioQuartoArrayList {
 		System.out.println(quartos.getQuarto(indexQuarto));
 		
 	}
-
+	
 }

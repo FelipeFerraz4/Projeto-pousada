@@ -68,7 +68,7 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 	
 	public int deletarQuarto(Quarto quarto) {
 		int indexQuarto = this.buscarQuarto(quarto);
-		if (indexQuarto > 0 || indexQuarto < this.quartos.size()) {
+		if (indexQuarto != -1) {
 			quartos.remove(indexQuarto);
 			return 1;
 		}
