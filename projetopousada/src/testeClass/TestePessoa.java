@@ -1,8 +1,12 @@
-package iuconsole;
+package testeClass;
 
 import dados.RepositorioPessoaArrayList;
 import dados.RepositorioQuartoArrayList;
 import negocios.*;
+import negocios.Pessoa.Cliente;
+import negocios.Pessoa.Gerente;
+import negocios.Quarto.Normal;
+import negocios.Quarto.Prime;
 
 public class TestePessoa {
 	public static void main(String[] args) {

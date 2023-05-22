@@ -1,8 +1,8 @@
-package negocios;
+package iu_console;
 
 import java.util.Scanner;
 
-import dados.RepositorioPessoaArrayList;
+import dados.repositoriospessoas.RepositorioPessoaArrayList;
 
 public class Login {
 	

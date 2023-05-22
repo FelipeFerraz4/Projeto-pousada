@@ -1,6 +1,7 @@
-package dados;
+package dados.repositoriosquartos;
 
 import negocios.*;
+import negocios.Quarto.Quarto;
 
 public interface IRepositorioQuarto {
 	

@@ -1,8 +1,11 @@
-package negocios;
+package negocios.Pessoa;
 
 import java.util.Scanner;
 
 import dados.*;
+import dados.repositoriospessoas.RepositorioPessoaArrayList;
+import dados.repositoriosquartos.IRepositorioQuarto;
+import negocios.Quarto.Quarto;
 
 public class Gerente extends Pessoa  {
 

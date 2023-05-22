@@ -1,4 +1,4 @@
-package negocios;
+package negocios.Quarto;
 
 public class Normal extends Quarto {
 	

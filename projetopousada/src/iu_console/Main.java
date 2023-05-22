@@ -1,6 +1,4 @@
-package iuconsole;
-
-import negocios.Menu;
+package iu_console;
 
 public class Main {
 

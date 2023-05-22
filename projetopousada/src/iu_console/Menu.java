@@ -1,9 +1,15 @@
-package negocios;
+package iu_console;
 
 import java.util.Scanner;
 
 import dados.*;
+import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import negocios.*;
+import negocios.Pessoa.Cliente;
+import negocios.Pessoa.Gerente;
+import negocios.Quarto.Normal;
+import negocios.Quarto.Prime;
+import negocios.Quarto.Quarto;
 
 
 public class Menu {

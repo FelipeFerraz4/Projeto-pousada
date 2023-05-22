@@ -1,7 +1,10 @@
 package testeClass;
 
 import dados.*;
+import dados.repositoriosquartos.IRepositorioQuarto;
 import negocios.*;
+import negocios.Quarto.Normal;
+import negocios.Quarto.Prime;
 
 public class TesteRepositorioQuartoArrayList {
 
