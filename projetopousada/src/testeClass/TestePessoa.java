@@ -1,7 +1,7 @@
 package testeClass;
 
-import dados.RepositorioPessoaArrayList;
-import dados.RepositorioQuartoArrayList;
+import dados.repositoriospessoas.*;
+import dados.repositoriosquartos.*;
 import negocios.*;
 import negocios.Pessoa.Cliente;
 import negocios.Pessoa.Gerente;
@@ -24,7 +24,7 @@ public class TestePessoa {
 	   
 	    Cliente cliente1 = new Cliente("Andre","1234","123");
 	    cliente1.setQuarto(quartoN);
-	    quartoN.setOcupado();
+	    quartoN.setOcupado(true);
 	    
 	    System.out.println(cliente1.getCPF());
 	    System.out.println(cliente1.getNome());
