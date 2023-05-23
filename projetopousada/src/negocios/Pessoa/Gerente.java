@@ -3,6 +3,7 @@ package negocios.Pessoa;
 import java.util.Scanner;
 
 import dados.*;
+import dados.repositoriospessoas.IRepositorioPessoa;
 import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
 import negocios.Quarto.Quarto;
@@ -15,7 +16,7 @@ public class Gerente extends Pessoa  {
 	}
 	
 	//Lembrar adicionar a excetion do Repositorio Lotado 
-	public int addPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa) {
+	public int addPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
 		int indexPessoa = pessoas.buscarPessoa(pessoa); 
 		if (indexPessoa != -1) {
 			//adicionar exception Pessoa já existe
@@ -54,7 +55,7 @@ public class Gerente extends Pessoa  {
 		*/
 	}
 	//Lembrar adicionar a excetion do Repositorio Lotado
-	public int addPessoa(RepositorioPessoaArrayList pessoas, int tipoPessoa, String nome, 
+	public int addPessoa(IRepositorioPessoa pessoas, int tipoPessoa, String nome, 
 			String cpf, String senha) {
 		int indexPessoa = pessoas.buscarPessoa(cpf); 
 		if (indexPessoa != -1) {
@@ -67,7 +68,7 @@ public class Gerente extends Pessoa  {
 		}
 	}
 	
-	public int removerPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa){
+	public int removerPessoa(IRepositorioPessoa pessoas, Pessoa pessoa){
 		int result = pessoas.deletarPessoa(pessoa);
 		if (result == -1) {
 			//adicionar exception Pessoa não existe
@@ -110,7 +111,7 @@ public class Gerente extends Pessoa  {
         }
         */
 	}
-	public int removerPessoa(RepositorioPessoaArrayList pessoas, String cpf) {
+	public int removerPessoa(IRepositorioPessoa pessoas, String cpf) {
 		int result = pessoas.deletarPessoa(cpf);
 		if (result == -1) {
 			//adicionar exception Pessoa não existe
@@ -120,7 +121,7 @@ public class Gerente extends Pessoa  {
 			return 1;
 		}
 	}
-	public int consultarPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa) {
+	public int consultarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
 		int indexPessoa = pessoas.buscarPessoa(pessoa);
 		if (indexPessoa == -1) {
 			//adicionar exception Pessoa não existe
@@ -130,7 +131,7 @@ public class Gerente extends Pessoa  {
 			return indexPessoa;
 		}
 	}
-	public int consultarPessoa(RepositorioPessoaArrayList pessoas, String cpf) {
+	public int consultarPessoa(IRepositorioPessoa pessoas, String cpf) {
 		int indexPessoa = pessoas.buscarPessoa(cpf);
 		if (indexPessoa == -1) {
 			//adicionar exception Pessoa não existe
@@ -140,7 +141,7 @@ public class Gerente extends Pessoa  {
 			return indexPessoa;
 		}
 	}
-	public int atualizarPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa) {
+	public int atualizarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
 		int result = pessoas.atualizarPessoa(pessoa);
 		if (result == -1 ) {
 			//adicionar exception Pessoa não existe
@@ -150,7 +151,7 @@ public class Gerente extends Pessoa  {
 			return 1;
 		}
 	}
-	public int atualizarPessoa(RepositorioPessoaArrayList pessoas, String cpf, String nome,
+	public int atualizarPessoa(IRepositorioPessoa pessoas, String cpf, String nome,
 			String senha) {
 		int result = pessoas.atualizarPessoa(cpf, nome, senha);
 		if (result == -1 ) {

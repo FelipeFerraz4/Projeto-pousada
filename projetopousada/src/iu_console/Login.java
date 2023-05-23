@@ -3,11 +3,12 @@ package iu_console;
 import java.util.Scanner;
 
 import dados.repositoriospessoas.RepositorioPessoaArrayList;
+import negocios.FachadaPousada;
 
 public class Login {
 	
-	public int entrar(RepositorioPessoaArrayList pessoas) {
-
+	public int entrar(FachadaPousada pousada) {
+		/*
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Digite o seu CPF: ");
@@ -28,9 +29,12 @@ public class Login {
 		}
 		System.out.println("Operacao invalida, CPF ou senha incorreto");
 		return -1;
+		*/
+		return 1;
 	}
 	
-	public int cadastrar(RepositorioPessoaArrayList pessoas) {
+	public int cadastrar(FachadaPousada pousada) {
+		/*
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Digite o seu CPF: ");
@@ -47,7 +51,7 @@ public class Login {
 		String senha = scan.nextLine();
 		
 		pessoas.criarPessoa(nome, cpf, senha, 1);
-		
+		*/
 		return 1;
 	}
 	
