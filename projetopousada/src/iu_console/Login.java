@@ -34,24 +34,18 @@ public class Login {
 	}
 	
 	public int cadastrar(FachadaPousada pousada) {
-		/*
+		
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Digite o seu CPF: ");
 		String cpf = scan.nextLine();
-		
-		if(pessoas.buscarPessoa(cpf)!=-1) {
-			System.out.println("Operacao invalida, CPF ja cadastrado");
-			return 0;
-		}
-		
 		System.out.println("Digite o seu Nome: ");
 		String nome = scan.nextLine();
 		System.out.println("Digite uma senha: ");
 		String senha = scan.nextLine();
 		
-		pessoas.criarPessoa(nome, cpf, senha, 1);
-		*/
+		pousada.cadastrarNovoCliente(nome, cpf, senha);
+		
 		return 1;
 	}
 	

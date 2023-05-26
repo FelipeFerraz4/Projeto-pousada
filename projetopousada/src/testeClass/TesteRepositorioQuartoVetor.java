@@ -1,8 +1,7 @@
 package testeClass;
 
-import dados.RepositorioQuartoArrayList;
-import dados.repositoriosquartos.IRepositorioQuarto;
-import dados.repositoriosquartos.RepositorioQuartoVetor;
+import dados.repositoriospessoas.*;
+import dados.repositoriosquartos.*;
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;
 

@@ -43,7 +43,6 @@ public class MenuInicial extends Menu {
                 return -1;
         	case 2:
         		int opition = login.cadastrar(this.getPousada());
-            	
             	if (opition == 1) {
             		System.out.println("Cadastro do cliente feito");
             	}

@@ -1,7 +1,7 @@
 package testeClass;
 
 import dados.*;
-import dados.repositoriosquartos.IRepositorioQuarto;
+import dados.repositoriosquartos.*;
 import negocios.*;
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;

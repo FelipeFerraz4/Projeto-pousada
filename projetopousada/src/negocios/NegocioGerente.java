@@ -13,20 +13,18 @@ public class NegocioGerente {
 	
 	private IRepositorioQuarto quartos;
 	private IRepositorioPessoa pessoas;
+	private Gerente gerente;
 	
-	public NegocioGerente() {
-		this.pessoas = new RepositorioPessoaArrayList();
-		this.quartos = new RepositorioQuartoArrayList();
+	public NegocioGerente(IRepositorioPessoa repositorioPessoa, IRepositorioQuarto repositorioQuarto) {
+		this.pessoas = repositorioPessoa;
+		this.quartos = repositorioQuarto;
+		this.gerente = new Gerente("admPousada", "00000","12345");
+		pessoas.addPessoa(this.gerente);
 		classesDefault();
 	}
 	
 	public void classesDefault() {
 		Gerente adm = new Gerente("Andre", "0000", "12345");
-		Normal quarto = new Normal(10001);
-		adm.setQuarto(quarto);
-		quarto.setOcupado(true);
-		pessoas.addPessoa(adm);
-		quartos.adicionarQuarto(quarto);
 		
 		Cliente cliente1 = new Cliente("Felipe", "1111", "12345");
 		Cliente cliente2 = new Cliente("Alice", "2222", "12345");
@@ -46,7 +44,11 @@ public class NegocioGerente {
 		quartos.adicionarQuarto(quartoPrime2);
 	}
 	
-	
+	public void cadastrarNovoCliente(String nome, String cpf, String senha) {
+		Cliente cliente = new Cliente(nome, cpf, senha);
+		//tratar a exception de addPessoa
+		gerente.addPessoa(pessoas, cliente);
+	}
 	
 
 }
