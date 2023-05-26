@@ -2,7 +2,7 @@ package dados;
 
 import negocios.*;
 
-public class RepositorioPessoaVetor {
+public class RepositorioPessoaVetor implements IRepositorioPessoa {
    
 	int tam = 100;
    	private Pessoa[] pessoas = new Pessoa[tam];
@@ -61,17 +61,25 @@ public class RepositorioPessoaVetor {
 		}
 		return -1;
 	}
-
-	public void atualizarPessoa(Pessoa pessoa) {
+	
+	public int atualizarPessoa(Pessoa pessoa) {
 		int indicePessoa = this.buscarPessoa(pessoa);
-		pessoas[indicePessoa].setNome(pessoa.getNome());
-		pessoas[indicePessoa].setSenha(pessoa.getSenha());
+		if (indicePessoa != -1) {
+			pessoas[indicePessoa].setNome(pessoa.getNome());
+			pessoas[indicePessoa].setSenha(pessoa.getSenha());
+			return 1;
+		}
+		return -1;
 		
 	}
-	public void atualizarPessoa(Pessoa pessoa,String Nome, String Senha){
-		int indicePessoa = this.buscarPessoa(pessoa);
-		pessoas[indicePessoa].setNome(Nome);
-		pessoas[indicePessoa].setSenha(Senha);
+	public int atualizarPessoa(String cpf,String nome, String senha){
+		int indicePessoa = this.buscarPessoa(cpf);
+		if (indicePessoa != 1) {
+			pessoas[indicePessoa].setNome(nome);
+			pessoas[indicePessoa].setSenha(senha);
+			return 1;
+		}
+		return -1;
 
 	}
 
