@@ -1,5 +1,5 @@
 
-package iuconsole;
+package testeClass;
 
 //import dados.RepositorioQuartoArrayList;
 //import negocios.Normal;

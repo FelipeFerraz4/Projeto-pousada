@@ -1,6 +1,9 @@
-package dados;
+package dados.repositoriosquartos;
 
 import negocios.*;
+import negocios.Quarto.Normal;
+import negocios.Quarto.Prime;
+import negocios.Quarto.Quarto;
 
 public class RepositorioQuartoVetor implements IRepositorioQuarto {
 	

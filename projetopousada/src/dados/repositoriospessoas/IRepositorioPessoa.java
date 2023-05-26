@@ -1,5 +1,6 @@
-package dados;
+package dados.repositoriospessoas;
 import negocios.*;
+import negocios.Pessoa.Pessoa;
 
 public interface IRepositorioPessoa {
     public void addPessoa(Pessoa pessoa);

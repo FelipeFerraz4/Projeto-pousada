@@ -1,12 +1,10 @@
-package iuconsole;
-
-import negocios.Menu;
+package iu_console;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Menu menu = new Menu();
+		MenuInicial menu = new MenuInicial();
         	int option;
         	do {
         		option = menu.menuInicial();

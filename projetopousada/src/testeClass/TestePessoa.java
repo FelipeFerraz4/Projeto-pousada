@@ -1,14 +1,18 @@
-package iuconsole;
+package testeClass;
 
-import dados.RepositorioPessoaArrayList;
-import dados.RepositorioQuartoArrayList;
+import dados.repositoriospessoas.*;
+import dados.repositoriosquartos.*;
 import negocios.*;
+import negocios.Pessoa.Cliente;
+import negocios.Pessoa.Gerente;
+import negocios.Quarto.Normal;
+import negocios.Quarto.Prime;
 
 public class TestePessoa {
 	public static void main(String[] args) {
 	
-		RepositorioQuartoArrayList quartos = new RepositorioQuartoArrayList();
-		RepositorioPessoaArrayList pessoas = new RepositorioPessoaArrayList();
+		IRepositorioQuarto quartos = new RepositorioQuartoArrayList();
+		IRepositorioPessoa pessoas = new RepositorioPessoaArrayList();
 		
 	    // Cliente
 		
@@ -20,7 +24,7 @@ public class TestePessoa {
 	   
 	    Cliente cliente1 = new Cliente("Andre","1234","123");
 	    cliente1.setQuarto(quartoN);
-	    quartoN.setOcupado();
+	    quartoN.setOcupado(true);
 	    
 	    System.out.println(cliente1.getCPF());
 	    System.out.println(cliente1.getNome());
@@ -67,7 +71,7 @@ public class TestePessoa {
 	    pessoas.criarPessoa("lucas", "120", "0000", 1);
 	    Prime quartoP = new Prime(100);
 	    pessoas.getPessoas().get(1).setQuarto(quartoP);
-	    pessoas.getPessoas().get(1).getQuarto().setOcupado();
+	    pessoas.getPessoas().get(1).getQuarto().setOcupado(true);
 	    System.out.println(pessoas.getPessoas().get(1).getCPF());
 	    System.out.println(pessoas.getPessoas().get(1).getNome());
 	    System.out.println(pessoas.getPessoas().get(1).getSenha());
@@ -86,7 +90,7 @@ public class TestePessoa {
 	    Cliente cliente2 = new Cliente("felipe", "021", "021");
 	    Normal quartoN2 = new Normal(101);
 	    cliente2.setQuarto(quartoN2);
-	    quartoN2.setOcupado();
+	    quartoN2.setOcupado(true);
 	    pessoas.addPessoa(cliente2);
 	    indexBusca = pessoas.buscarPessoa(cliente2);
 	    System.out.println(indexBusca);
@@ -132,7 +136,7 @@ public class TestePessoa {
 	    Normal quarto = new Normal(50);
 	    quartos.adicionarQuarto(quarto);
 	    gerente1.setQuarto(quarto);
-	    quarto.setOcupado();
+	    quarto.setOcupado(true);
 	    
 	    System.out.println(gerente1.getCPF());
 	    System.out.println(gerente1.getNome());
@@ -145,20 +149,20 @@ public class TestePessoa {
 	    //CPF de pessoas já adicionadas: 1234, 50, 021, 120
 	    //Numero de quartos já cadastrados: N50, N101, P100, N100, N102, P102
 	    System.out.println("teste Adicionar cliente");
-	    gerente1.addPessoa(pessoas, 1);
+	    gerente1.addPessoa(pessoas, 1, "1", "1","1");
 	    System.out.println("teste Adicionar gerente");
-	    gerente1.addPessoa(pessoas, 2);
+	    gerente1.addPessoa(pessoas, 2, "steve", "342", "7621");
 	    System.out.println("teste Adicionar quarto normal");
-	    gerente1.addQuarto(quartos, 1);
+	    gerente1.addQuarto(quartos, 1, 1);
 	    System.out.println("teste Adicionar quarto prime");
-	    gerente1.addQuarto(quartos, 2);
+	    gerente1.addQuarto(quartos, 1, 2);
 	    
 	    System.out.println("teste remover pesssoa");
 	    //gerente1.deletarPessoa(pessoas);
 	    System.out.println("teste remover quarto normal");
-	    gerente1.removerQuarto(quartos, 1);
+	    gerente1.deletarQuarto(quartos, 1, 1);
 	    System.out.println("teste remover quarto Prime");
-	    gerente1.removerQuarto(quartos, 2);
+	    gerente1.deletarQuarto(quartos, 1, 2);
 	    
     }
 }

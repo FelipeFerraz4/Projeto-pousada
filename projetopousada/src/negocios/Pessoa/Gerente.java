@@ -1,8 +1,12 @@
-package negocios;
+package negocios.Pessoa;
 
 import java.util.Scanner;
 
 import dados.*;
+import dados.repositoriospessoas.IRepositorioPessoa;
+import dados.repositoriospessoas.RepositorioPessoaArrayList;
+import dados.repositoriosquartos.IRepositorioQuarto;
+import negocios.Quarto.Quarto;
 
 public class Gerente extends Pessoa  {
 
@@ -12,7 +16,7 @@ public class Gerente extends Pessoa  {
 	}
 	
 	//Lembrar adicionar a excetion do Repositorio Lotado 
-	public int addPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa) {
+	public int addPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
 		int indexPessoa = pessoas.buscarPessoa(pessoa); 
 		if (indexPessoa != -1) {
 			//adicionar exception Pessoa já existe
@@ -22,36 +26,9 @@ public class Gerente extends Pessoa  {
 			pessoas.addPessoa(pessoa);
 			return 1;
 		}
-		
-		/*
-		String nome,cpf;
-		String tipoUsario;
-		if (tipoPessoa==1) {
-			tipoUsario = "cliente";
-		}
-		else {
-			tipoUsario = "gerente";
-		}
-		String senha;
-		int busca;
-		Scanner scan = new Scanner(System.in);
-		do {
-			System.out.println("Digite o CPF do novo "+tipoUsario +":");
-	        cpf = scan.nextLine();
-	        busca = pessoas.buscarPessoa(cpf);
-	        if (busca!=-1) {
-	        	System.out.println("operacao invalida, CPF cadastrado anteriormente");
-	        }
-		}while(busca!=-1);
-		System.out.println("Qual nome do novo "+tipoUsario+":");
-        nome = scan.nextLine();
-		System.out.println("Qual a senha do novo "+tipoUsario+":");
-		senha = scan.nextLine();
-		pessoas.criarPessoa(nome, cpf, senha, tipoPessoa);
-		*/
 	}
 	//Lembrar adicionar a excetion do Repositorio Lotado
-	public int addPessoa(RepositorioPessoaArrayList pessoas, int tipoPessoa, String nome, 
+	public int addPessoa(IRepositorioPessoa pessoas, int tipoPessoa, String nome, 
 			String cpf, String senha) {
 		int indexPessoa = pessoas.buscarPessoa(cpf); 
 		if (indexPessoa != -1) {
@@ -64,7 +41,7 @@ public class Gerente extends Pessoa  {
 		}
 	}
 	
-	public int removerPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa){
+	public int removerPessoa(IRepositorioPessoa pessoas, Pessoa pessoa){
 		int result = pessoas.deletarPessoa(pessoa);
 		if (result == -1) {
 			//adicionar exception Pessoa não existe
@@ -73,41 +50,8 @@ public class Gerente extends Pessoa  {
 		else {
 			return 1;
 		}
-		
-		/*
-		String cpf;
-		int busca, valido = -1;
-		Scanner scan = new Scanner(System.in);
-        do {
-        	System.out.println("Digite o CPF da Pessoa:");
-            cpf = scan.nextLine();
-            busca = pessoas.buscarPessoa(cpf);
-            if(busca == -1) {
-            	valido = -1;
-            	System.out.println("operacao invalida, CPF nao cadastrado");
-            }
-            else if(busca == indexGerente) {
-            	valido = -1;
-            	System.out.println("CPF nao pode ser excluido");
-            }
-            else {
-            	valido = 1;
-            }
-            	
-        }while(valido == -1);
-        System.out.println(pessoas.getPessoas().get(busca).toString());
-        System.out.println("Confirma remocao (0 - nao, 1 - sim): ");
-        int escolha = scan.nextInt();
-        if (escolha == 1) {
-        	pessoas.deletarPessoa(cpf);
-        	System.out.println("remocao conluida");
-        }
-        else {
-        	System.out.println("remocao cancelada");
-        }
-        */
 	}
-	public int removerPessoa(RepositorioPessoaArrayList pessoas, String cpf) {
+	public int removerPessoa(IRepositorioPessoa pessoas, String cpf) {
 		int result = pessoas.deletarPessoa(cpf);
 		if (result == -1) {
 			//adicionar exception Pessoa não existe
@@ -117,7 +61,7 @@ public class Gerente extends Pessoa  {
 			return 1;
 		}
 	}
-	public int consultarPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa) {
+	public int consultarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
 		int indexPessoa = pessoas.buscarPessoa(pessoa);
 		if (indexPessoa == -1) {
 			//adicionar exception Pessoa não existe
@@ -127,7 +71,7 @@ public class Gerente extends Pessoa  {
 			return indexPessoa;
 		}
 	}
-	public int consultarPessoa(RepositorioPessoaArrayList pessoas, String cpf) {
+	public int consultarPessoa(IRepositorioPessoa pessoas, String cpf) {
 		int indexPessoa = pessoas.buscarPessoa(cpf);
 		if (indexPessoa == -1) {
 			//adicionar exception Pessoa não existe
@@ -137,7 +81,7 @@ public class Gerente extends Pessoa  {
 			return indexPessoa;
 		}
 	}
-	public int atualizarPessoa(RepositorioPessoaArrayList pessoas, Pessoa pessoa) {
+	public int atualizarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
 		int result = pessoas.atualizarPessoa(pessoa);
 		if (result == -1 ) {
 			//adicionar exception Pessoa não existe
@@ -147,7 +91,7 @@ public class Gerente extends Pessoa  {
 			return 1;
 		}
 	}
-	public int atualizarPessoa(RepositorioPessoaArrayList pessoas, String cpf, String nome,
+	public int atualizarPessoa(IRepositorioPessoa pessoas, String cpf, String nome,
 			String senha) {
 		int result = pessoas.atualizarPessoa(cpf, nome, senha);
 		if (result == -1 ) {
@@ -173,21 +117,6 @@ public class Gerente extends Pessoa  {
 			}
 			return 1;
 		}
-		
-		/*
-		int numQuarto;
-		Scanner scan = new Scanner(System.in);
-		int busca;
-		do {
-			System.out.println("qual o numero do quarto?");
-			numQuarto= scan.nextInt();
-			busca = quartos.buscarQuarto(numQuarto, tipoQuarto);
-			if (busca!=-1) {
-	        	System.out.println("operacao invalida, numero do quarto cadastrado anteriormente");
-	        }
-		}while(busca!=-1);
-		quartos.adicionarQuarto(numQuarto, tipoQuarto);
-		*/
 	}
 	public int addQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) {
 		int indexQuarto = quartos.buscarQuarto(numeroQuarto, tipoQuarto);
@@ -215,30 +144,6 @@ public class Gerente extends Pessoa  {
 		else {
 			return 1;
 		}
-		
-		
-		/*
-		int numQuarto, busca;
-		Scanner scan = new Scanner(System.in);
-		do {
-			System.out.println("qual o numero do quarto?:");
-			numQuarto= scan.nextInt();
-			busca = quartos.buscarQuarto(numQuarto, tipoQuarto);
-			if(busca == -1) {
-            	System.out.println("operacao invalida, Quarto nao cadastrado");
-            }
-		}while(busca==-1);
-		System.out.println(quartos.getQuarto(busca).toString());
-		System.out.println("Confirma remocao (0 - nao, 1 - sim): ");
-        int escolha = scan.nextInt();
-        if (escolha == 1) {
-        	quartos.deletarQuarto(numQuarto, tipoQuarto);
-        	System.out.println("remocao conluida");
-        }
-        else {
-        	System.out.println("remocao cancelada");
-        }
-        */
 	}
 	public int deletarQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) {
 		int result = quartos.deletarQuarto(numeroQuarto, tipoQuarto);

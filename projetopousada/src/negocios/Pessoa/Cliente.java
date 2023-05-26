@@ -1,9 +1,11 @@
-package negocios;
+package negocios.Pessoa;
 
 import java.util.Scanner;
 
 import dados.RepositorioQuartoArrayList;
 import negocios.*;
+import negocios.Quarto.Normal;
+import negocios.Quarto.Prime;
 
 public class Cliente extends Pessoa {
 	

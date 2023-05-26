@@ -1,8 +1,12 @@
-package dados;
+package dados.repositoriosquartos;
 
 import java.util.ArrayList;
 
+import dados.repositoriosquartos.IRepositorioQuarto;
 import negocios.*;
+import negocios.Quarto.Normal;
+import negocios.Quarto.Prime;
+import negocios.Quarto.Quarto;
 
 public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 	

@@ -1,8 +1,11 @@
-package dados;
+package dados.repositoriospessoas;
 
 import java.util.ArrayList;
 
 import negocios.*;
+import negocios.Pessoa.Cliente;
+import negocios.Pessoa.Gerente;
+import negocios.Pessoa.Pessoa;
 
 public class RepositorioPessoaArrayList implements IRepositorioPessoa {
 
