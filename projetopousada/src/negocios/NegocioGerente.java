@@ -24,12 +24,9 @@ public class NegocioGerente {
 	}
 	
 	public void classesDefault() {
-		Gerente adm = new Gerente("Andre", "0000", "12345");
-		
 		Cliente cliente1 = new Cliente("Felipe", "1111", "12345");
 		Cliente cliente2 = new Cliente("Alice", "2222", "12345");
 		
-		pessoas.addPessoa(adm);
 		pessoas.addPessoa(cliente1);
 		pessoas.addPessoa(cliente2);
 		
