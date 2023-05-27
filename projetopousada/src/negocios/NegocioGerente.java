@@ -18,13 +18,13 @@ public class NegocioGerente {
 	public NegocioGerente(IRepositorioPessoa repositorioPessoa, IRepositorioQuarto repositorioQuarto) {
 		this.pessoas = repositorioPessoa;
 		this.quartos = repositorioQuarto;
-		this.gerente = new Gerente("admPousada", "00000","12345");
-		pessoas.addPessoa(this.gerente);
+		gerente = new Gerente("admPousada", "00000","12345");
+		pessoas.addPessoa(gerente);
 		classesDefault();
 	}
 	
 	public void classesDefault() {
-		Cliente cliente1 = new Cliente("Felipe", "1111", "12345");
+		Cliente cliente1 = new Cliente("Paula", "1111", "12345");
 		Cliente cliente2 = new Cliente("Alice", "2222", "12345");
 		
 		pessoas.addPessoa(cliente1);
@@ -46,6 +46,27 @@ public class NegocioGerente {
 		//tratar a exception de addPessoa
 		gerente.addPessoa(pessoas, cliente);
 	}
-	
+	public void cadastrarNovoGerente(String nome, String cpf, String senha) {
+		Gerente gerente = new Gerente(nome, cpf, senha);
+		//tratar a exception de addPessoa
+		gerente.addPessoa(pessoas, gerente);
+	}
+	public int buscarPessoa(String cpf) {
+		return gerente.consultarPessoa(pessoas, cpf);
+	}
+	public int verificarSenha(int indexPessoa, String senha) {
+		if (pessoas.getPessoa(indexPessoa).getSenha().equals(senha)) {
+			return 1;
+		}
+		return -1;
+	}
+	public int verificarTipoPessoa(int indexPessoa) {
+		if (pessoas.getPessoa(indexPessoa).getTipoPessoa() == 1) {
+			return 1;
+		}
+		else {
+			return 2;
+		}
+	}
 
 }

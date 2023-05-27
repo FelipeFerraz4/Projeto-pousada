@@ -3,6 +3,9 @@ import negocios.*;
 import negocios.Pessoa.Pessoa;
 
 public interface IRepositorioPessoa {
+	
+	public Pessoa getPessoa(int indexPessoa);
+	
     public void addPessoa(Pessoa pessoa);
     public int buscarPessoa(Pessoa pessoa);
     public int deletarPessoa(Pessoa pessoa);

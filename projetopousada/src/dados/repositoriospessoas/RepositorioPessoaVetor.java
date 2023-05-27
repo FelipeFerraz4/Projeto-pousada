@@ -11,7 +11,7 @@ public class RepositorioPessoaVetor implements IRepositorioPessoa {
    	private Pessoa[] pessoas = new Pessoa[tam];
     
 	
-	public Pessoa getpessoas (int indexPessoa){
+	public Pessoa getPessoa (int indexPessoa){
         return this.pessoas[indexPessoa];
     }
     

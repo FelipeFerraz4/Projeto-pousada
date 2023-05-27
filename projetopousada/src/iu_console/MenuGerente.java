@@ -8,11 +8,14 @@ import negocios.Quarto.Prime;
 
 public class MenuGerente extends Menu{
 	
-	public MenuGerente() {
+	private int gerente;
+	
+	public MenuGerente(int indexGerente) {
 		super();
+		this.gerente = indexGerente;
 	}
 	
-	public int menuGerente(int indexGerente){
+	public int menuGerente(){
 		
 		String option[] = {"Adicionar um Quarto ou uma Pessoa",
 				"Consultar dados de um Quarto ou de uma Pessoa",

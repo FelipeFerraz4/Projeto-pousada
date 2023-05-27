@@ -15,6 +15,9 @@ public class RepositorioPessoaArrayList implements IRepositorioPessoa {
 	public ArrayList<Pessoa> getPessoas() {
 		return this.pessoas;
 	}
+	public Pessoa getPessoa(int indexPessoa) {
+		return this.pessoas.get(indexPessoa);
+	}
 	
 	public void criarPessoa(String nome, String cpf, String senha, int tipoPessoa) {
 		Pessoa pessoa;

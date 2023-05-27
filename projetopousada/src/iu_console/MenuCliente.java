@@ -7,8 +7,11 @@ import negocios.Quarto.Quarto;
 
 public class MenuCliente extends Menu{
 	
-	public MenuCliente() {
+	private int cliente;
+	
+	public MenuCliente(int indexCliente) {
 		super();
+		this.cliente = indexCliente;
 	}
 	
 	public int menuCliente(){

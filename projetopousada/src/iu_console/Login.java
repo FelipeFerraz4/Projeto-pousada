@@ -8,29 +8,23 @@ import negocios.FachadaPousada;
 public class Login {
 	
 	public int entrar(FachadaPousada pousada) {
-		/*
+		
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Digite o seu CPF: ");
 		String cpf = scan.nextLine();
-		
-		int pessoa = pessoas.buscarPessoa(cpf); 
-		
-		if(pessoa ==-1) {
-			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
-			return -1;
-		}
-		
 		System.out.println("Digite a sua senha: ");
 		String senha = scan.nextLine();
-		
-		if (pessoas.getPessoas().get(pessoa).getSenha().equals(senha)) {
-			return pessoa;
+		//Tratar a exception de senha não existe e de senha errada
+		int indexPessoa = pousada.buscarPessoa(cpf);
+		if (indexPessoa == -1) {
+			return -1;
 		}
-		System.out.println("Operacao invalida, CPF ou senha incorreto");
-		return -1;
-		*/
-		return 1;
+		int verifyPassword = pousada.verificarSenha(indexPessoa, senha);
+		if (verifyPassword == -1) {
+			return -1;
+		}
+		return indexPessoa;
 	}
 	
 	public int cadastrar(FachadaPousada pousada) {
