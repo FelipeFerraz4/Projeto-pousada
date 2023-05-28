@@ -2,6 +2,7 @@ package iu_console;
 
 import java.util.Scanner;
 
+import negocios.FachadaPousada;
 import negocios.Pessoa.Cliente;
 import negocios.Quarto.Quarto;
 
@@ -14,9 +15,10 @@ public class MenuCliente extends Menu{
 		this.cliente = indexCliente;
 	}
 	
-	public int menuCliente(){
+	public int menuCliente(FachadaPousada pousada){
 		String option[] = {"Chenck-in", "Sevirco de quarto", "Ver consumo", 
-				"Ver historico de agendamento", "Pagar consumo", "Checkout"};
+				"Ver historico de agendamento", "Pagar consumo", 
+				"Perfil", "Checkout", "Fechar guia cliente" };
     	
 		int escolha = printOption(option, option.length);
         
@@ -79,7 +81,7 @@ public class MenuCliente extends Menu{
             	}
             	*/
             	return -1;
-            default:
+            case 7:
             	/*
             	if(cliente.getQuarto()!=null) {
             		if (cliente.getQuarto().getConta() == 0) {
@@ -98,7 +100,10 @@ public class MenuCliente extends Menu{
         		cliente.setCheckin(false);
         		System.out.println("Obrigado e volte sempre");
         		*/
-                return 0;
+                return -1;
+            default:
+            	System.out.println("Guia cliente fechada");
+            	return 0;
         }
     }
 }

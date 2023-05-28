@@ -15,6 +15,9 @@ public class Gerente extends Pessoa  {
 		this.setTipoPessoa(2);
 	}
 	
+	public Pessoa getPessoa(IRepositorioPessoa pessoas, int indexPessoa) {
+		return pessoas.getPessoa(indexPessoa);
+	}
 	//Lembrar adicionar a excetion do Repositorio Lotado 
 	public int addPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
 		int indexPessoa = pessoas.buscarPessoa(pessoa); 
@@ -101,6 +104,10 @@ public class Gerente extends Pessoa  {
 		else {
 			return 1;
 		}
+	}
+	
+	public Quarto getQuarto(IRepositorioQuarto quartos, int indexQuarto) {
+		return quartos.getQuarto(indexQuarto);
 	}
 	
 	public int addQuarto(IRepositorioQuarto quartos, Quarto quarto){

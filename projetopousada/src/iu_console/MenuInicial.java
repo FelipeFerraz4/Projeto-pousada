@@ -13,7 +13,7 @@ public class MenuInicial extends Menu {
 		this.login = new Login();
 	}
 	
-	public int menuInicial(){
+	public int menuInicial(FachadaPousada pousada){
     	String option[] = {"Fazer login", "Cadastrar usuario", 
     			"Finalizar programa"};
     	
@@ -21,16 +21,16 @@ public class MenuInicial extends Menu {
         switch(escolha) {
         	case 1:
         		
-        		int indexPessoa = login.entrar(super.getPousada());
+        		int indexPessoa = login.entrar(pousada);
 
                 if (indexPessoa != -1) {
-                	int tipoPessoa = super.getPousada().verificarTipoPessoa(indexPessoa);
+                	int tipoPessoa = pousada.verificarTipoPessoa(indexPessoa);
                 	if (tipoPessoa==1){
                     	System.out.println("Bem vindo Cliente");
                     	MenuCliente tela = new MenuCliente(indexPessoa);
                     	int result;
                     	do {
-                    		result = tela.menuCliente();
+                    		result = tela.menuCliente(pousada);
                     	}while(result == -1);
                     	return -1;
                     }
@@ -39,7 +39,7 @@ public class MenuInicial extends Menu {
                     	MenuGerente tela = new MenuGerente(indexPessoa);
                     	int result;
                     	do {
-                    		result = tela.menuGerente();
+                    		result = tela.menuGerente(pousada);
                     	}while(result == -1);
                     	return -1;
                     }
@@ -49,9 +49,12 @@ public class MenuInicial extends Menu {
                 	return -1;
                 }
         	case 2:
-        		int opition = login.cadastrar(super.getPousada());
+        		int opition = login.cadastrar(pousada);
             	if (opition == 1) {
             		System.out.println("Cadastro do cliente feito");
+            	}
+            	else {
+            		System.out.println("operacao invalida, cliente cadastrado anteriomente");
             	}
                 return -1;
         	default:

@@ -2,20 +2,61 @@ package iu_console;
 
 import java.util.Scanner;
 
+import negocios.FachadaPousada;
 import negocios.Pessoa.Gerente;
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;
 
 public class MenuGerente extends Menu{
 	
-	private int gerente;
+	private int indexGerente;
 	
 	public MenuGerente(int indexGerente) {
 		super();
-		this.gerente = indexGerente;
+		this.indexGerente = indexGerente;
 	}
 	
-	public int menuGerente(){
+	public int UI_adicionarPessoa(FachadaPousada pousada, int tipoPessoa) {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Digite o CPF da pessoa: ");
+		String cpf = scan.nextLine();
+		System.out.println("Digite o Nome da pessoa: ");
+		String nome = scan.nextLine();
+		System.out.println("Digite a senha da pessoa: ");
+		String senha = scan.nextLine();
+		// Tratar exception cadastro já existe
+		int indexPessoa = pousada.buscarPessoa(cpf);
+		if (indexPessoa != -1) {
+			return -1;
+		}
+		if (tipoPessoa == 1) {
+			
+			pousada.cadastrarNovoCliente(nome, cpf, senha);
+		}
+		else {
+			pousada.cadastrarNovoGerente(nome, cpf, senha);
+		}
+		return 1;
+	}
+	public int UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite o numero do quarto: ");
+		int numeroQuarto = scan.nextInt();
+		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
+		if (indexQuarto != -1) {
+			return -1;
+		}
+		if (tipoQuarto == 1) {
+			pousada.cadastrarQuartoNormal(numeroQuarto);
+		}
+		else {
+			pousada.cadastrarQUartoPrime(numeroQuarto);
+		}
+		return 1;
+	}
+	
+	public int menuGerente(FachadaPousada pousada){
 		
 		String option[] = {"Adicionar um Quarto ou uma Pessoa",
 				"Consultar dados de um Quarto ou de uma Pessoa",
@@ -29,44 +70,64 @@ public class MenuGerente extends Menu{
         
         switch(escolha){
             case 1:
-            	/*
-            	String[] options = {"cliente", "gerente", "quarto normal", "quarto prime"};
             	
-            	int option = this.optionGerente("Adicionar",options, options.length);
+            	String[] options = {"Adicionar cliente", 
+            			"Adicionar gerente", "Adicionar quarto normal",
+            			"Adicionar quarto prime", "Voltar"};
             	
-            	if (option != -1) {
-            		switch(option) {
+            	int option1 = this.printOption(options, options.length);
+            	
+            	if (option1 != -1) {
+            		switch(option1) {
             		case 1:
-            			gerente.addPessoa(pessoas, 1);
-            			System.out.println("Adicao concluida");
+            			int result = this.UI_adicionarPessoa(pousada, 1);
+            			if (result != -1) {
+            				System.out.println("Adicao concluida");
+            			}
+            			else {
+            				System.out.println("CPF cadastrada anteriomente");
+            			}
             			break;
             		case 2:
-            			gerente.addPessoa(pessoas, 2);
-            			System.out.println("Adicao concluida");
+            			result = this.UI_adicionarPessoa(pousada, 2);
+            			if (result != -1) {
+            				System.out.println("Adicao concluida");
+            			}
+            			else {
+            				System.out.println("CPF cadastrada anteriomente");
+            			}
             			break;
             		case 3:
-            			gerente.addQuarto(quartos, 1);
-            			System.out.println("Adicao concluida");
+            			result = this.UI_adicionarQuarto(pousada, 1);
+            			if (result != -1) {
+            				System.out.println("Adicao concluida");
+            			}
+            			else {
+            				System.out.println("Numero do quarto cadastrada anteriomente");
+            			}
             			break;
             		case 4:
-            			gerente.addQuarto(quartos, 2);
-            			System.out.println("Adicao concluida");
+            			result = this.UI_adicionarQuarto(pousada, 2);
+            			if (result != -1) {
+            				System.out.println("Adicao concluida");
+            			}
+            			else {
+            				System.out.println("Numero do quarto cadastrada anteriomente");
+            			}
             			break;
             		default:
             			break;
             		}
             	}
-            	else {
-            		System.out.println("Não foi possível adiconar");
-            	}
-            	*/
                 return -1;
             case 2:
+            	
+            	String[] options2 = {"Consultar uma pessoa", 
+            			"Consultar um quarto normal", 
+            			"Consultar quarto prime", "Voltar"};
+            	
+            	int option2 = this.printOption(options2, options2.length);
             	/*
-            	String[] options2 = {"pessoa", "quarto normal", "quarto prime"};
-            	
-            	option = this.optionGerente("Consultar",options2, options2.length);
-            	
             	if (option != -1) {
             		switch(option) {
             		case 1:
@@ -121,11 +182,13 @@ public class MenuGerente extends Menu{
             	*/
                 return -1;
             case 3:
+            	
+            	String[] options3 = {"Modificar dados de uma pessoa", 
+            		"Modificar dados de um quarto normal", 
+            		"Modificar dados de um quarto prime"};
+            	
+            	int option3 = this.printOption(options3, options3.length);
             	/*
-            	String[] options3 = {"pessoa", "quarto normal", "quarto prime"};
-            	
-            	option = this.optionGerente("Modificar",options3, options3.length);
-            	
             	if (option != -1) {
             		switch(option) {
             		case 1:
@@ -234,10 +297,12 @@ public class MenuGerente extends Menu{
             	*/
                 return -1;
             case 4:
-            	/*
-            	String[] options5 = {"pessoa", "quarto normal", "quarto prime"};
             	
-            	option = this.optionGerente("Remover",options5, options5.length);
+            	String[] options4 = {"Remover uma pessoa", 
+            		"Remover um quarto normal", "Remover um quarto prime"};
+            	
+            	int option4 = this.printOption(options4, options4.length);
+            	/*
             	if (option==1) {
             		gerente.removerPessoa(pessoas, indexGerente);
             	}
@@ -250,17 +315,10 @@ public class MenuGerente extends Menu{
             	*/
                 return -1;
             case 5:
-            	/*
-            	System.out.println(pessoas.getPessoas().get(indexGerente).toString());
-            	if (pessoas.getPessoas().get(indexGerente).getQuarto()!=null) {
-            		System.out.println(pessoas.getPessoas().get(indexGerente).getQuarto().toString());
-            	}
-            	*/
+            	System.out.println(pousada.toStringPessoa(indexGerente));
                 return -1;
             default:
-            	/*
-                System.out.println("Fechado guia gerente");
-                */
+                System.out.println("Guia gerente fechada");
                 return 0;
         }
     }

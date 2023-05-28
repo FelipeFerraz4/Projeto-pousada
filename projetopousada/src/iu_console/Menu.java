@@ -6,15 +6,9 @@ import negocios.FachadaPousada;
 public class Menu {
 	
 	private String nomePousada;
-	private FachadaPousada pousada;
 	
 	public Menu() {
 		this.nomePousada = "Sol Nascente";
-		this.pousada = new FachadaPousada();
-	}
-	
-	public FachadaPousada getPousada() {
-		return this.pousada;
 	}
 	
 	public void linha(int quantidade){

@@ -51,9 +51,24 @@ public class NegocioGerente {
 		//tratar a exception de addPessoa
 		gerente.addPessoa(pessoas, gerente);
 	}
+	public void cadastrarQuartoNormal(int numeroQuarto) {
+		Normal quarto = new Normal(numeroQuarto);
+		//tratar a exception de addQuarto
+		gerente.addQuarto(quartos, quarto);
+	}
+	public void cadastrarQuartoPrime(int numeroQuarto) {
+		Prime quarto = new Prime(numeroQuarto);
+		//tratar a exception de addQuarto
+		gerente.addQuarto(quartos, quarto);
+	}
+	
 	public int buscarPessoa(String cpf) {
 		return gerente.consultarPessoa(pessoas, cpf);
 	}
+	public int buscarQuarto(int numeroQuarto, int tipoQuarto) {
+		return gerente.consultarQuarto(quartos, numeroQuarto, tipoQuarto);
+	}
+	
 	public int verificarSenha(int indexPessoa, String senha) {
 		if (pessoas.getPessoa(indexPessoa).getSenha().equals(senha)) {
 			return 1;
@@ -67,6 +82,15 @@ public class NegocioGerente {
 		else {
 			return 2;
 		}
+	}
+	
+	public String toStringPessoa(int indexPessoa) {
+		String toStringPessoa = gerente.getPessoa(pessoas, indexPessoa).toString();
+		if (gerente.getPessoa(pessoas, indexPessoa).getQuarto()!=null) {
+    		return toStringPessoa + 
+    				gerente.getPessoa(pessoas, indexPessoa).getQuarto().toString();
+    	}
+		return toStringPessoa;
 	}
 
 }

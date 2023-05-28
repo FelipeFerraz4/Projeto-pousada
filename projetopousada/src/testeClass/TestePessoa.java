@@ -61,29 +61,29 @@ public class TestePessoa {
 	    // Repositorio 
 		
 	    pessoas.addPessoa(cliente1);
-	    System.out.println(pessoas.getPessoas().get(0).getCPF());
-	    System.out.println(pessoas.getPessoas().get(0).getNome());
-	    System.out.println(pessoas.getPessoas().get(0).getSenha());
-	    System.out.println(pessoas.getPessoas().get(0).getQuarto());
+	    System.out.println(pessoas.getPessoa(0).getCPF());
+	    System.out.println(pessoas.getPessoa(0).getNome());
+	    System.out.println(pessoas.getPessoa(0).getSenha());
+	    System.out.println(pessoas.getPessoa(0).getQuarto());
 	    
 	    System.out.println();
 	    
 	    pessoas.criarPessoa("lucas", "120", "0000", 1);
 	    Prime quartoP = new Prime(100);
-	    pessoas.getPessoas().get(1).setQuarto(quartoP);
-	    pessoas.getPessoas().get(1).getQuarto().setOcupado(true);
-	    System.out.println(pessoas.getPessoas().get(1).getCPF());
-	    System.out.println(pessoas.getPessoas().get(1).getNome());
-	    System.out.println(pessoas.getPessoas().get(1).getSenha());
-	    System.out.println(pessoas.getPessoas().get(1).getQuarto());
+	    pessoas.getPessoa(1).setQuarto(quartoP);
+	    pessoas.getPessoa(1).getQuarto().setOcupado(true);
+	    System.out.println(pessoas.getPessoa(1).getCPF());
+	    System.out.println(pessoas.getPessoa(1).getNome());
+	    System.out.println(pessoas.getPessoa(1).getSenha());
+	    System.out.println(pessoas.getPessoa(1).getQuarto());
 	    
 	    System.out.println();
 	    
 	    int indexBusca = pessoas.buscarPessoa("1234");
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getCPF());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getNome());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getSenha());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getQuarto());
+	    System.out.println(pessoas.getPessoa(indexBusca).getCPF());
+	    System.out.println(pessoas.getPessoa(indexBusca).getNome());
+	    System.out.println(pessoas.getPessoa(indexBusca).getSenha());
+	    System.out.println(pessoas.getPessoa(indexBusca).getQuarto());
 	    
 	    System.out.println();
 	    
@@ -94,22 +94,22 @@ public class TestePessoa {
 	    pessoas.addPessoa(cliente2);
 	    indexBusca = pessoas.buscarPessoa(cliente2);
 	    System.out.println(indexBusca);
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getCPF());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getNome());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getSenha());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getQuarto());
+	    System.out.println(pessoas.getPessoa(indexBusca).getCPF());
+	    System.out.println(pessoas.getPessoa(indexBusca).getNome());
+	    System.out.println(pessoas.getPessoa(indexBusca).getSenha());
+	    System.out.println(pessoas.getPessoa(indexBusca).getQuarto());
 
 	    
 	    System.out.println();
 
 		
-		Cliente pessoa = (Cliente) pessoas.getPessoas().get(2);
+		Cliente pessoa = (Cliente) pessoas.getPessoa(2);
 		pessoas.atualizarPessoa(pessoa);//"felicia","0992"
 	    indexBusca = pessoas.buscarPessoa(pessoa);
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getCPF());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getNome());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getSenha());
-	    System.out.println(pessoas.getPessoas().get(indexBusca).getQuarto());
+	    System.out.println(pessoas.getPessoa(indexBusca).getCPF());
+	    System.out.println(pessoas.getPessoa(indexBusca).getNome());
+	    System.out.println(pessoas.getPessoa(indexBusca).getSenha());
+	    System.out.println(pessoas.getPessoa(indexBusca).getQuarto());
 	    
 	    if (pessoas.deletarPessoa("120")==1) {
 	    	System.out.println("pessoa deletada");

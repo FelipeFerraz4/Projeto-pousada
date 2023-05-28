@@ -37,9 +37,12 @@ public class Login {
 		String nome = scan.nextLine();
 		System.out.println("Digite uma senha: ");
 		String senha = scan.nextLine();
-		
+		// Tratar exception cadastro já existe
+		int indexPessoa = pousada.buscarPessoa(cpf);
+		if (indexPessoa != -1) {
+			return -1;
+		}
 		pousada.cadastrarNovoCliente(nome, cpf, senha);
-		
 		return 1;
 	}
 	
