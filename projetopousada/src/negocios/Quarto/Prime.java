@@ -2,19 +2,11 @@ package negocios.Quarto;
 
 public class Prime extends Quarto {
 	
-	private float preco = 400;
-	
 	public Prime(int numero) {
 		super(numero);
-		setCapacidade(7);
-		setTipoQuarto(2);
-	}
-	
-	public float getPreco() {
-		return preco;
-	}
-	public void setPreco(float preco) {
-		this.preco = preco;
+		super.setCapacidade(7);
+		super.setTipoQuarto(2);
+		super.setPrecoQuarto(400);
 	}
 	
 	public void vinho(int quantidade) {
@@ -24,6 +16,6 @@ public class Prime extends Quarto {
 		setConta(getConta() + quantidade*120);
 	}
 	public void diaria(int quantidade) {
-		setConta(getConta() + quantidade*this.preco);
+		setConta(getConta() + quantidade*super.getPrecoQuarto());
 	}
 }

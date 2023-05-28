@@ -2,19 +2,12 @@ package negocios.Quarto;
 
 public class Normal extends Quarto {
 	
-	private float preco = 250;
 	
 	public Normal(int numero) {
 		super(numero);
-		setCapacidade(4);
-		setTipoQuarto(1);
-	}
-	
-	public float getPreco() {
-		return preco;
-	}
-	public void setPreco(float preco) {
-		this.preco = preco;
+		super.setCapacidade(4);
+		super.setTipoQuarto(1);
+		super.setPrecoQuarto(250);
 	}
 
 	public void agua(int quantAgua) {
@@ -24,7 +17,7 @@ public class Normal extends Quarto {
 		setConta(getConta() + quantRefri*4);
 	}
 	public void diaria(int dias) {
-		setConta(getConta() + dias*getPreco());
+		setConta(getConta() + dias*super.getPrecoQuarto());
 	}
 	
 	

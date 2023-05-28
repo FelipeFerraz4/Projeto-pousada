@@ -28,6 +28,7 @@ public class MenuGerente extends Menu{
 		// Tratar exception cadastro já existe
 		int indexPessoa = pousada.buscarPessoa(cpf);
 		if (indexPessoa != -1) {
+			System.out.println("CPF cadastrado anteriomente");
 			return -1;
 		}
 		if (tipoPessoa == 1) {
@@ -37,14 +38,19 @@ public class MenuGerente extends Menu{
 		else {
 			pousada.cadastrarNovoGerente(nome, cpf, senha);
 		}
+		System.out.println("Adicao concluida");
 		return 1;
 	}
 	public int UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Digite o numero do quarto: ");
 		int numeroQuarto = scan.nextInt();
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
 		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
 		if (indexQuarto != -1) {
+			System.out.println("Numero do quarto cadastrado anteriomente");
 			return -1;
 		}
 		if (tipoQuarto == 1) {
@@ -53,7 +59,159 @@ public class MenuGerente extends Menu{
 		else {
 			pousada.cadastrarQUartoPrime(numeroQuarto);
 		}
+		System.out.println("Adicao concluida");
 		return 1;
+	}
+	
+	public void UI_ConsultarPessoa(FachadaPousada pousada) {
+		/*
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
+		*/
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite o cpf: ");
+		String cpf = scan.nextLine();
+		int indexPessoa = pousada.buscarPessoa(cpf);
+		if (indexPessoa!=-1) {
+			System.out.println(pousada.toStringPessoa(indexPessoa));
+			System.out.println("Consulta concluida");
+		}
+		else {
+			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+		}
+	}
+	public void UI_ConsultarQuarto(FachadaPousada pousada, int tipoQuarto) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite o numero do quarto: ");
+		int numeroQuarto = scan.nextInt();
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
+		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
+		if (indexQuarto!=-1) {
+			System.out.println(pousada.toStringQuarto(indexQuarto));
+			System.out.println("Consulta concluida");
+		}
+		else {
+			System.out.println("Operacao invalida, quarto ainda nao cadastrado");
+		}
+	}
+	public void UI_ModificarPessoa(FachadaPousada pousada) {
+		/*
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
+		*/
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite o CPF da pessoa: ");
+		String cpf = scan.nextLine();
+		int indexPessoa = pousada.buscarPessoa(cpf);
+		if(indexPessoa != -1) {
+			System.out.println(pousada.toStringPessoa(indexPessoa));
+			String[] options = {"Modificar senha", "Modificar nome", "Voltar"};
+			int option = this.printOption(options, options.length);
+			if(option==1) {
+				System.out.println("Digite a nova senha: ");
+				String senha = scan.nextLine();
+				pousada.modificarPessoaSenha(indexPessoa, senha);
+			}
+			if(option == 2) {
+				System.out.println("Digite o novo nome: ");
+				String nomeUsuario = scan.nextLine();
+				pousada.modificarPessoaNome(indexPessoa, nomeUsuario);
+			}
+			if(option != 3) {
+				System.out.println("Modificacao concluida");
+			}
+		}
+		else {
+			System.out.println("Pessoa nao encontrada");
+		}
+	}
+	public void UI_ModificarQuarto(FachadaPousada pousada, int tipoQuarto) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite o numero de quarto Normal");
+		int numeroQuarto = scan.nextInt();
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
+		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
+		if (indexQuarto!=-1) {
+			System.out.println(pousada.toStringQuarto(indexQuarto));
+			String[] options = {"Modificar consumo", "Modificar capacidade",
+					"Modificar preco do quarto","Modificar ocupacao", "Voltar"};
+			int option = this.printOption(options, options.length);
+			if (option==1) {
+				System.out.println("Digite o novo valor do consumo: ");
+				float consumo = scan.nextFloat();
+				pousada.modificarQuartoConsumo(indexQuarto, consumo);
+			}
+			if (option==2) {
+				System.out.println("Digite o novo valor da capacidade: ");
+				int capacidade = scan.nextInt();
+				pousada.modificarQuartoCapacidade(indexQuarto, capacidade);
+			}
+			if (option==3) {
+				System.out.println("Digite o novo valor do preco do quarto: ");
+				float precoQuarto = scan.nextFloat();
+				pousada.modificarQuartoPrecoQuarto(indexQuarto, precoQuarto);
+			}
+			if (option == 4) {
+				pousada.modificarQuartoOcupado(indexQuarto);
+			}
+			if (option != 5) {
+				System.out.println("Modificacao concluida");
+			}
+		}
+		else {
+			System.out.println("Quarto nao encontrado");
+		}
+	}
+	public void UI_DeletarPessoa(FachadaPousada pousada) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite o cpf: ");
+		String cpf = scan.nextLine();
+		int indexPessoa = pousada.buscarPessoa(cpf);
+		if (indexPessoa!=-1) {
+			System.out.println(pousada.toStringPessoa(indexPessoa));
+			System.out.println("Confirmar remocao [S/N]");
+			String confirmation = scan.nextLine();
+			if (confirmation.equals("S") || confirmation.equals("s")) {
+				pousada.deletarPessoa(cpf);
+				System.out.println("Remocao concluida");
+			}
+			else {
+				System.out.println("Remocao cancelada");
+			}
+		}
+		else {
+			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+		}
+	}
+	public void UI_DeletarQuarto(FachadaPousada pousada, int tipoQuarto) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite o numero do quarto: ");
+		int numeroQuarto = scan.nextInt();
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
+		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
+		if (indexQuarto!=-1) {
+			System.out.println(pousada.toStringQuarto(indexQuarto));
+			System.out.println("Confirmar remocao [S/N]");
+			String confirmation = scan.nextLine();
+			if (confirmation.equals("S") || confirmation.equals("s")) {
+				pousada.deletarQuarto(numeroQuarto, tipoQuarto);
+				System.out.println("Remocao concluida");
+			}
+			else {
+				System.out.println("Remocao cancelada");
+			}
+		}
+		else {
+			System.out.println("Operacao invalida, quarto ainda nao cadastrado");
+		}
 	}
 	
 	public int menuGerente(FachadaPousada pousada){
@@ -76,243 +234,88 @@ public class MenuGerente extends Menu{
             			"Adicionar quarto prime", "Voltar"};
             	
             	int option1 = this.printOption(options, options.length);
+            	int result;
             	
-            	if (option1 != -1) {
-            		switch(option1) {
-            		case 1:
-            			int result = this.UI_adicionarPessoa(pousada, 1);
-            			if (result != -1) {
-            				System.out.println("Adicao concluida");
-            			}
-            			else {
-            				System.out.println("CPF cadastrada anteriomente");
-            			}
-            			break;
-            		case 2:
-            			result = this.UI_adicionarPessoa(pousada, 2);
-            			if (result != -1) {
-            				System.out.println("Adicao concluida");
-            			}
-            			else {
-            				System.out.println("CPF cadastrada anteriomente");
-            			}
-            			break;
-            		case 3:
-            			result = this.UI_adicionarQuarto(pousada, 1);
-            			if (result != -1) {
-            				System.out.println("Adicao concluida");
-            			}
-            			else {
-            				System.out.println("Numero do quarto cadastrada anteriomente");
-            			}
-            			break;
-            		case 4:
-            			result = this.UI_adicionarQuarto(pousada, 2);
-            			if (result != -1) {
-            				System.out.println("Adicao concluida");
-            			}
-            			else {
-            				System.out.println("Numero do quarto cadastrada anteriomente");
-            			}
-            			break;
-            		default:
-            			break;
-            		}
-            	}
+        		switch(option1) {
+        		case 1:
+        			this.UI_adicionarPessoa(pousada, 1);
+        			break;
+        		case 2:
+        			this.UI_adicionarPessoa(pousada, 2);
+        			break;
+        		case 3:
+        			this.UI_adicionarQuarto(pousada, 1);
+        			break;
+        		case 4:
+        			this.UI_adicionarQuarto(pousada, 2);
+        			break;
+        		default:
+        			break;
+        		}
                 return -1;
             case 2:
             	
             	String[] options2 = {"Consultar uma pessoa", 
             			"Consultar um quarto normal", 
-            			"Consultar quarto prime", "Voltar"};
+            			"Consultar um quarto prime", "Voltar"};
             	
             	int option2 = this.printOption(options2, options2.length);
-            	/*
-            	if (option != -1) {
-            		switch(option) {
-            		case 1:
-            			System.out.println("Digite o cpf: ");
-            			if(scan.hasNextLine()) {
-            				scan.nextLine();
-            			}
-            			String cpf = scan.nextLine();
-            			int busca = pessoas.buscarPessoa(cpf);
-            			if (busca!=-1) {
-            				System.out.println(pessoas.getPessoas().get(busca).toString());
-            				if(pessoas.getPessoas().get(busca).getQuarto()!=null) {
-            					System.out.println(pessoas.getPessoas().get(busca).getQuarto().toString());
-            				}
-            				System.out.println("Consulta concluida");
-            			}
-            			else {
-            				System.out.println("Operacao invalida, CPF ainda nao cadastrado");
-            			}
-            			break;
-            		case 2:
-            			System.out.println("Digite o numero do quarto: ");
-            			int numeroQuarto = scan.nextInt();
-            			busca = quartos.buscarQuarto(numeroQuarto, 1);
-            			if (busca!=-1) {
-            				System.out.println(quartos.getQuarto(busca).toString());
-            				System.out.println("Consulta concluida");
-            			}
-            			else {
-            				System.out.println("Operacao invalida, quarto ainda nao cadastrado");
-            			}
-            			break;
-            		case 3:
-            			System.out.println("Digite o numero do quarto: ");
-            			numeroQuarto = scan.nextInt();
-            			busca = quartos.buscarQuarto(numeroQuarto, 2);
-            			if (busca!=-1) {
-            				System.out.println(quartos.getQuarto(busca).toString());
-            				System.out.println("Consulta concluida");
-            			}
-            			else {
-            				System.out.println("Operacao invalida, quarto ainda nao cadastrado");
-            			}
-            			break;
-            		default:
-            			break;
-            		}
-            	}
-            	else {
-            		System.out.println("Não foi possível consultar");
-            	}
-            	*/
+            	
+        		switch(option2) {
+        		case 1:
+        			this.UI_ConsultarPessoa(pousada);
+        			break;
+        		case 2:
+        			this.UI_ConsultarQuarto(pousada, 1);
+        			break;
+        		case 3:
+        			this.UI_ConsultarQuarto(pousada, 2);
+        			break;
+        		default:
+        			break;
+        		}
                 return -1;
             case 3:
             	
             	String[] options3 = {"Modificar dados de uma pessoa", 
             		"Modificar dados de um quarto normal", 
-            		"Modificar dados de um quarto prime"};
+            		"Modificar dados de um quarto prime",
+            		"Voltar"};
             	
             	int option3 = this.printOption(options3, options3.length);
-            	/*
-            	if (option != -1) {
-            		switch(option) {
-            		case 1:
-            			System.out.println("Digite o CPF da pessoa: ");
-            			if(scan.hasNextLine()) {
-            				scan.nextLine();
-            			}
-            			String cpf = scan.nextLine();
-            			int indexPessoa = pessoas.buscarPessoa(cpf);
-            			if(indexPessoa != -1) {
-            				System.out.println(pessoas.getPessoas().get(indexPessoa).toString());
-            				String[] options4 = {"senha", "nome"};
-            				option = this.optionGerente("Modificar",options4, options4.length);
-            				if(option==1) {
-            					System.out.println("Digite a nova senha: ");
-            					String senha = scan.nextLine();
-            					pessoas.getPessoas().get(indexPessoa).setSenha(senha);
-            					System.out.println("Modificacao concluida");
-            				}
-            				if(option == 2) {
-            					System.out.println("Digite o novo nome: ");
-            					String nomeUsuario = scan.nextLine();
-            					pessoas.getPessoas().get(indexPessoa).setNome(nomeUsuario);
-            					System.out.println("Modificacao concluida");
-            				}
-            			}
-            			else {
-            				System.out.println("Pessoa nao encontrada");
-            			}
-            			break;
-            		case 2:
-            			System.out.println("Digite o numero de quarto Normal");
-            			int numeroQuarto = scan.nextInt();
-            			int indexQuarto = quartos.buscarQuarto(numeroQuarto, 1);
-            			if (indexQuarto!=-1) {
-            				System.out.println(quartos.getQuarto(indexQuarto).toString());
-            				Normal quarto = (Normal) quartos.getQuarto(indexQuarto);
-            				System.out.println(quarto.getPreco());
-            				String[] options4 = {"consumo", "capacidade", "preco do quarto"};
-            				option = this.optionGerente("Modificar",options4, options4.length);
-            				if (option==1) {
-            					System.out.println("Digite o novo valor do consumo: ");
-            					float consumo = scan.nextFloat();
-            					quartos.getQuarto(indexQuarto).setConta(consumo);
-            					System.out.println("Modificacao concluida");
-            				}
-            				if (option==2) {
-            					System.out.println("Digite o novo valor da capacidade: ");
-            					int capacidade = scan.nextInt();
-            					quartos.getQuarto(indexQuarto).setCapacidade(capacidade);
-            					System.out.println("Modificacao concluida");
-            				}
-            				if (option==3) {
-            					System.out.println("Digite o novo valor do preco do quarto: ");
-            					float precoQuarto = scan.nextFloat();
-            					Normal quartoNormal = (Normal) quartos.getQuarto(indexQuarto);
-            					quartoNormal.setPreco(precoQuarto);
-            					System.out.println("Modificacao concluida");
-            				}
-            			}
-            			else {
-            				System.out.println("Quarto nao encontrado");
-            			}
-            			break;
-            		case 3:
-            			System.out.println("Digite o numero de quarto Prime");
-            			numeroQuarto = scan.nextInt();
-            			indexQuarto = quartos.buscarQuarto(numeroQuarto, 2);
-            			if (indexQuarto!=-1) {
-            				System.out.println(quartos.getQuarto(indexQuarto).toString());
-            				Prime quarto = (Prime) quartos.getQuarto(indexQuarto);
-            				System.out.println(quarto.getPreco());
-            				String[] options4 = {"consumo", "capacidade", "preco do quarto"};
-            				option = this.optionGerente("Modificar",options4, options4.length);
-            				if (option==1) {
-            					System.out.println("Digite o novo valor do consumo: ");
-            					float consumo = scan.nextFloat();
-            					quartos.getQuarto(indexQuarto).setConta(consumo);
-            					System.out.println("Modificacao concluida");
-            				}
-            				if (option==2) {
-            					System.out.println("Digite o novo valor da capacidade: ");
-            					int capacidade = scan.nextInt();
-            					quartos.getQuarto(indexQuarto).setCapacidade(capacidade);
-            					System.out.println("Modificacao concluida");
-            				}
-            				if (option==3) {
-            					System.out.println("Digite o novo valor do preco do quarto: ");
-            					float precoQuarto = scan.nextFloat();
-            					Prime quartoPrime = (Prime) quartos.getQuarto(indexQuarto);
-            					quartoPrime.setPreco(precoQuarto);
-            					System.out.println("Modificacao concluida");
-            				}
-            			}
-            			else {
-            				System.out.println("Quarto nao encontrado");
-            			}
-            			break;
-            		default:
-            			break;
-            		}
-            	}
-            	else {
-            		System.out.println("Não foi possível modificar os dados");
-            	}
-            	*/
-                return -1;
+        	
+        		switch(option3) {
+        		case 1:
+        			this.UI_ModificarPessoa(pousada);
+        			break;
+        		case 2:
+        			this.UI_ModificarQuarto(pousada, 1);
+        			break;
+        		case 3:
+        			this.UI_ModificarQuarto(pousada, 2);
+        			break;
+        		default:
+        			break;
+        		}
+        		return -1;
             case 4:
             	
             	String[] options4 = {"Remover uma pessoa", 
-            		"Remover um quarto normal", "Remover um quarto prime"};
+            		"Remover um quarto normal", "Remover um quarto prime",
+            		"Voltar"};
             	
             	int option4 = this.printOption(options4, options4.length);
-            	/*
-            	if (option==1) {
-            		gerente.removerPessoa(pessoas, indexGerente);
+            	
+            	if (option4==1) {
+            		this.UI_DeletarPessoa(pousada);
             	}
-            	if (option==2) {
-            		gerente.removerQuarto(quartos, 1);
+            	else if (option4==2) {
+            		this.UI_DeletarQuarto(pousada, 1);
             	}
-            	if (option==3) {
-            		gerente.removerQuarto(quartos, 2);
+            	else if (option4==3) {
+            		this.UI_DeletarQuarto(pousada, 2);
             	}
-            	*/
+            
                 return -1;
             case 5:
             	System.out.println(pousada.toStringPessoa(indexGerente));

@@ -30,11 +30,35 @@ public class FachadaPousada {
 	public void cadastrarQUartoPrime(int numeroQuarto) {
 		adm.cadastrarQuartoPrime(numeroQuarto);
 	}
+	public int deletarPessoa(String cpf) {
+		return adm.deletarPessoa(cpf);
+	}
+	public int deletarQuarto(int numeroQuarto, int tipoQuarto) {
+		return adm.deletarQuarto(numeroQuarto, tipoQuarto);
+	}
 	public int buscarPessoa(String cpf) {
 		return adm.buscarPessoa(cpf);
 	}
 	public int buscarQuarto(int numeroQuarto, int tipoQuarto) {
 		return adm.buscarQuarto(numeroQuarto, tipoQuarto);
+	}
+	public void modificarPessoaNome(int indexPessoa, String nome) {
+		adm.modificarPessoaNome(indexPessoa, nome);
+	}
+	public void modificarPessoaSenha(int indexPessoa, String senha) {
+		adm.modificarPessoaSenha(indexPessoa, senha);
+	}
+	public void modificarQuartoConsumo(int indexQuarto, float consumo) {
+		adm.modificarQuartoConsumo(indexQuarto, consumo);
+	}
+	public void modificarQuartoCapacidade(int indexQuarto, int capacidade) {
+		adm.modificarQuartoCapacidade(indexQuarto, capacidade);
+	}
+	public void modificarQuartoPrecoQuarto(int indexQuarto, float precoQuarto) {
+		adm.modificarQuartoPrecoQuarto(indexQuarto, precoQuarto);
+	}
+	public void modificarQuartoOcupado(int indexQuarto) {
+		adm.modificarQuartoOcupado(indexQuarto);
 	}
 	public int verificarSenha(int indexPessoa, String senha) {
 		return adm.verificarSenha(indexPessoa, senha);
@@ -44,5 +68,8 @@ public class FachadaPousada {
 	}
 	public String toStringPessoa(int indexPessoa) {
 		return adm.toStringPessoa(indexPessoa);
+	}
+	public String toStringQuarto(int indexQuarto) {
+		return adm.toStringQuarto(indexQuarto);
 	}
 }

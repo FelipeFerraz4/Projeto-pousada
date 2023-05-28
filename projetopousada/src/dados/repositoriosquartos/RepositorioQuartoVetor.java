@@ -113,17 +113,19 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 			this.getQuarto(indexQuarto).setOcupado(quarto.isOcupado());
 			this.getQuarto(indexQuarto).setConta(quarto.getConta());
 			this.getQuarto(indexQuarto).setCapacidade(quarto.getCapacidade());
+			this.getQuarto(indexQuarto).setPrecoQuarto(quarto.getPrecoQuarto());
 			return 1;
 		}
 		return -1;
 	}
 	public int atualizarQuarto(int numeroQuarto, int tipoQuarto, float consumo,
-			boolean ocupado, int capacidade) {
+			boolean ocupado, int capacidade, float precoQuarto) {
 		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
 		if (indexQuarto!=-1) {
 			this.getQuarto(indexQuarto).setOcupado(ocupado);
 			this.getQuarto(indexQuarto).setConta(consumo);
 			this.getQuarto(indexQuarto).setCapacidade(capacidade);
+			this.getQuarto(indexQuarto).setPrecoQuarto(precoQuarto);
 			return 1;
 		}
 		return -1;

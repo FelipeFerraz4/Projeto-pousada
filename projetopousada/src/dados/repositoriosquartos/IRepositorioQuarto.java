@@ -14,7 +14,8 @@ public interface IRepositorioQuarto {
 	int buscarQuarto(int numeroQuarto, int tipoQuarto);
 	int deletarQuarto(int numeroQuarto, int tipoQuarto);
 	int atualizarQuarto(int numeroQuarto, int tipoQuarto, 
-			float consumo, boolean ocupado, int capacidade);
+			float consumo, boolean ocupado, int capacidade,
+			float precoQuarto);
 	
 	int quartoVazio(int tipoQuarto);
 	Quarto getQuarto(int indexQuarto);

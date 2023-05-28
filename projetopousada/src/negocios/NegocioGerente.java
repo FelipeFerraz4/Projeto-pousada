@@ -68,6 +68,37 @@ public class NegocioGerente {
 	public int buscarQuarto(int numeroQuarto, int tipoQuarto) {
 		return gerente.consultarQuarto(quartos, numeroQuarto, tipoQuarto);
 	}
+	public int deletarPessoa(String cpf) {
+		return gerente.removerPessoa(pessoas, cpf);
+	}
+	public int deletarQuarto(int numeroQuarto, int tipoQuarto) {
+		return gerente.deletarQuarto(quartos, numeroQuarto, tipoQuarto);
+	}
+	
+	public void modificarPessoaNome(int indexPessoa, String nome) {
+		gerente.getPessoa(pessoas, indexPessoa).setNome(nome);
+	}
+	public void modificarPessoaSenha(int indexPessoa, String senha) {
+		gerente.getPessoa(pessoas, indexPessoa).setSenha(senha);
+	}
+	public void modificarQuartoOcupado(int indexQuarto) {
+		boolean ocupado = gerente.getQuarto(quartos, indexQuarto).isOcupado();
+		if (ocupado == false) {
+			gerente.getQuarto(quartos, indexQuarto).setOcupado(true);
+		}
+		else {
+			gerente.getQuarto(quartos, indexQuarto).setOcupado(false);
+		}
+	}
+	public void modificarQuartoConsumo(int indexQuarto, float consumo) {
+		gerente.getQuarto(quartos, indexQuarto).setConta(consumo);
+	}
+	public void modificarQuartoCapacidade(int indexQuarto, int capacidade) {
+		gerente.getQuarto(quartos, indexQuarto).setCapacidade(capacidade);
+	}
+	public void modificarQuartoPrecoQuarto(int indexQuarto, float precoQuarto) {
+		gerente.getQuarto(quartos, indexQuarto).setPrecoQuarto(precoQuarto);
+	}
 	
 	public int verificarSenha(int indexPessoa, String senha) {
 		if (pessoas.getPessoa(indexPessoa).getSenha().equals(senha)) {
@@ -91,6 +122,9 @@ public class NegocioGerente {
     				gerente.getPessoa(pessoas, indexPessoa).getQuarto().toString();
     	}
 		return toStringPessoa;
+	}
+	public String toStringQuarto(int indexQuarto) {
+		return gerente.getQuarto(quartos, indexQuarto).toString();
 	}
 
 }

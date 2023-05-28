@@ -194,10 +194,11 @@ public class Gerente extends Pessoa  {
 		}
 	}
 	public int atualizarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
-			int tipoQuarto, float consumo, boolean ocupado, int capacidade) {
+			int tipoQuarto, float consumo, boolean ocupado, int capacidade,
+			float precoQuarto) {
 		
 		int result = quartos.atualizarQuarto(numeroQuarto, tipoQuarto, 
-				consumo, ocupado, capacidade);
+				consumo, ocupado, capacidade, precoQuarto);
 		
 		if (result == -1 ) {
 			//adicionar exception Quarto não existe
