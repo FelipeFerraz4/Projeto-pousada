@@ -30,7 +30,7 @@ public class MenuInicial extends Menu {
                     	MenuCliente tela = new MenuCliente(indexPessoa);
                     	int result;
                     	do {
-                    		result = tela.menuCliente();
+                    		result = tela.menuCliente(super.getPousada());
                     	}while(result == -1);
                     	return -1;
                     }

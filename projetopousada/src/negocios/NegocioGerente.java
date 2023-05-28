@@ -68,5 +68,8 @@ public class NegocioGerente {
 			return 2;
 		}
 	}
+	/*public int quartoVazio(int tipoQuarto){
+		return quartos.quartoVazio(tipoQuarto);
+	}*/
 
 }

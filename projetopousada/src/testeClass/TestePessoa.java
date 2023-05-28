@@ -1,4 +1,4 @@
-package testeClass;
+/*package testeClass;
 
 import dados.repositoriospessoas.*;
 import dados.repositoriosquartos.*;
@@ -165,4 +165,4 @@ public class TestePessoa {
 	    gerente1.deletarQuarto(quartos, 1, 2);
 	    
     }
-}
+}*/

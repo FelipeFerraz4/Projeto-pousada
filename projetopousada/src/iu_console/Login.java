@@ -42,5 +42,12 @@ public class Login {
 		
 		return 1;
 	}
+
+	public int reservarQuarto(FachadaPousada pousada){
+		
+		
+		return 0;
+
+	}
 	
 }

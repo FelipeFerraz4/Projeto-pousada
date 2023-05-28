@@ -2,10 +2,11 @@ package negocios.Pessoa;
 
 import java.util.Scanner;
 
-import dados.RepositorioQuartoArrayList;
+import dados.repositoriosquartos.RepositorioQuartoArrayList;
 import negocios.*;
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;
+
 
 public class Cliente extends Pessoa {
 	
@@ -20,38 +21,30 @@ public class Cliente extends Pessoa {
 		this.checkin = false;
 		this.historico = 0;
 	}
-	
-
 	public int getDiarias() {
 		return diarias;
 	}
-
-
 	public void setDiarias(int diarias) {
 		this.diarias = diarias;
 	}
-
-
 	public boolean isCheckin() {
 		return checkin;
 	}
-
-
 	public void setCheckin(boolean checkin) {
 		this.checkin = checkin;
 	}
-
-
 	public int getHistorico() {
 		return historico;
 	}
 	public void setHistorico(int novoHistorico) {
 		this.historico = novoHistorico;
 	}
-
-
 	public int checkin(RepositorioQuartoArrayList quartos) {
-		int opção;
+		
+		
+		
+		return 0;
+		/*int opção;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Qual opcao de quarto gostaria ?");
 		System.out.println("1 - Quarto Normal ate 3 pessoas - 250,00");
@@ -68,8 +61,7 @@ public class Cliente extends Pessoa {
 		
 		if (opção == 1) {
 			
-			//tamanhoDoQuarto();
-			//falta algo para definir esse numero do quarto
+			
 			int indexQuarto = quartos.quartoVazio(1);
 			if (indexQuarto == -1){
 				System.out.println("pousada esta lotada, por favor falar com o gerente");
@@ -108,10 +100,10 @@ public class Cliente extends Pessoa {
 			}
 				
 		}
-		return 0;	
+		return 0;	*/
 	}
 	
-	public void sevircoDeQuarto(RepositorioQuartoArrayList quartos,int indexQuarto) {
+	/*public void sevircoDeQuarto(RepositorioQuartoArrayList quartos,int indexQuarto) {
 		if (quartos.getQuarto(indexQuarto).getTipoQuarto()==1){
 			int opcao,quantidade;
 			Normal quartoNormal = (Normal) quartos.getQuarto(indexQuarto);
@@ -197,7 +189,7 @@ public class Cliente extends Pessoa {
 			else{
 			}
 		}
-	}
+	}*/
 	
 	public void verConsumo(RepositorioQuartoArrayList quartos, int indexQuarto) {
 		System.out.println("seu consumo atual: R$" + quartos.getQuarto(indexQuarto).getConta());
