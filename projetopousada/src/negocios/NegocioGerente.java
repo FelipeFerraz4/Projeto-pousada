@@ -41,6 +41,9 @@ public class NegocioGerente {
 		quartos.adicionarQuarto(quartoPrime2);
 	}
 	
+	
+	
+	
 	public void cadastrarNovoCliente(String nome, String cpf, String senha) {
 		Cliente cliente = new Cliente(nome, cpf, senha);
 		//tratar a exception de addPessoa
@@ -68,8 +71,99 @@ public class NegocioGerente {
 			return 2;
 		}
 	}
-	/*public int quartoVazio(int tipoQuarto){
-		return quartos.quartoVazio(tipoQuarto);
-	}*/
+
+
+
+
+		//A partir daqui acontece um duplicação de codigo com o NegocioCliente,
+		//só foi feito em prol do codigo rodar;
+
+
+
+		public int quartovazio(int tipoQuarto){
+			return quartos.quartoVazio(tipoQuarto);
+	
+		}
+		public void buscarCliente(int indexCliente){
+			pessoas.getPessoa(indexCliente);
+		}
+		public void reservarQuarto(int indexQuarto, int diarias, int tipoDeQuarto){
+			if(tipoDeQuarto == 1){
+				Normal quarto = (Normal)quartos.getQuarto(indexQuarto);
+				quarto.setOcupado(true);
+				quarto.diaria(diarias);}
+			else{
+				Prime quarto = (Prime)quartos.getQuarto(indexQuarto);
+				quarto.setOcupado(true);
+				quarto.diaria(diarias);
+			}
+		}
+		public int buscarQuarto(int indexQuarto){
+			return quartos.getQuarto(indexQuarto).getTipoQuarto();
+			
+		}
+	
+		public void agua(int indexCliente, int quantidade){
+			Normal quarto = (Normal)quartos.getQuarto(indexCliente);
+			quarto.agua(quantidade);
+		}
+		public void refrigerante(int indexCliente, int quantidade){
+			Normal quarto = (Normal)quartos.getQuarto(indexCliente);
+			quarto.refrigerante(quantidade);
+		}
+		public void vinho(int indexCliente, int quantidade){
+			Prime quarto = (Prime)quartos.getQuarto(indexCliente);
+			quarto.vinho(quantidade);
+		}
+		public void champagne(int indexCliente, int quantidade){
+			Prime quarto = (Prime)quartos.getQuarto(indexCliente);
+			quarto.champagne(quantidade);
+		}
+		public float consumo(int indexQuarto){
+			return quartos.getQuarto(indexQuarto).getConta();
+			
+		}
+		public void pagarConta(int indexQuarto){
+			quartos.getQuarto(indexQuarto).setConta(0);
+		}
+		public String dadosDoCliente(int indexPessoa){
+			String cliente = pessoas.getPessoa(indexPessoa).toString();
+			return cliente;
+			
+		}
+		public int isCheckin (int indexCliente){
+			Cliente cliente = (Cliente)pessoas.getPessoa(indexCliente);
+			if (cliente.isCheckin() == false ){
+				return -1;
+			}
+			else{ 
+				return 1;
+			}
+		}
+		public void setCheckin(int indexCliente, boolean checkin){
+			Cliente cliente = (Cliente) pessoas.getPessoa(indexCliente);
+			cliente.setCheckin(checkin);
+		}
+	
+		public int getHistorico(int indexPessoa){
+			Cliente cliente = (Cliente) pessoas.getPessoa(indexPessoa);
+			return cliente.getHistorico();
+		}
+	
+		public void setHistorico(int indexPessoa){
+			Cliente cliente = (Cliente) pessoas.getPessoa(indexPessoa);
+			int novoHistorico = cliente.getHistorico()+1;
+			cliente.setHistorico(novoHistorico);
+		}
+
+
+
+
+
+
+
+
+
+
 
 }

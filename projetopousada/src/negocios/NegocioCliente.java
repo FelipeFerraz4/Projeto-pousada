@@ -16,7 +16,6 @@ public class NegocioCliente {
 		this.pessoas = repositorioPessoa;
 		this.quartos = repositorioQuarto;
 	}
-
 	public int quartovazio(int tipoQuarto){
 		return quartos.quartoVazio(tipoQuarto);
 
@@ -24,13 +23,20 @@ public class NegocioCliente {
 	public void buscarCliente(int indexCliente){
 		pessoas.getPessoa(indexCliente);
 	}
-	public void reservarQuarto(int indexQuarto, int diarias){
-		Normal quarto = (Normal)quartos.getQuarto(indexQuarto);
-		quarto.setOcupado(true);
-		quarto.diaria(diarias);
+	public void reservarQuarto(int indexQuarto, int diarias, int tipoDeQuarto){
+		if(tipoDeQuarto == 1){
+			Normal quarto = (Normal)quartos.getQuarto(indexQuarto);
+			quarto.setOcupado(true);
+			quarto.diaria(diarias);}
+		else{
+			Prime quarto = (Prime)quartos.getQuarto(indexQuarto);
+			quarto.setOcupado(true);
+			quarto.diaria(diarias);
+		}
 	}
 	public int buscarQuarto(int indexQuarto){
 		return quartos.getQuarto(indexQuarto).getTipoQuarto();
+		
 	}
 
 	public void agua(int indexCliente, int quantidade){
@@ -57,8 +63,9 @@ public class NegocioCliente {
 		quartos.getQuarto(indexQuarto).setConta(0);
 	}
 	public String dadosDoCliente(int indexPessoa){
-		String cliente = pessoas.getPessoa(indexPessoa).toString();
-		return cliente;
+		//String cliente = pessoas.getPessoa(indexPessoa).toString();
+		//return cliente;
+		return pessoas.getPessoa(indexPessoa).toString();
 	}
 	public int isCheckin (int indexCliente){
 		Cliente cliente = (Cliente)pessoas.getPessoa(indexCliente);

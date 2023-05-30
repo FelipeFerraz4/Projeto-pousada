@@ -1,11 +1,9 @@
 package negocios.Pessoa;
 
 import java.util.Scanner;
-
-import dados.repositoriosquartos.RepositorioQuartoArrayList;
+import dados.repositoriospessoas.IRepositorioPessoa;
+import dados.repositoriosquartos.IRepositorioQuarto;
 import negocios.*;
-import negocios.Quarto.Normal;
-import negocios.Quarto.Prime;
 
 
 public class Cliente extends Pessoa {
@@ -39,12 +37,12 @@ public class Cliente extends Pessoa {
 	public void setHistorico(int novoHistorico) {
 		this.historico = novoHistorico;
 	}
-	public int checkin(RepositorioQuartoArrayList quartos) {
+	/*public int checkin(RepositorioQuartoArrayList quartos) {
 		
 		
 		
 		return 0;
-		/*int opção;
+		int opção;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Qual opcao de quarto gostaria ?");
 		System.out.println("1 - Quarto Normal ate 3 pessoas - 250,00");
@@ -101,7 +99,7 @@ public class Cliente extends Pessoa {
 				
 		}
 		return 0;	*/
-	}
+	
 	
 	/*public void sevircoDeQuarto(RepositorioQuartoArrayList quartos,int indexQuarto) {
 		if (quartos.getQuarto(indexQuarto).getTipoQuarto()==1){
@@ -189,7 +187,7 @@ public class Cliente extends Pessoa {
 			else{
 			}
 		}
-	}*/
+	}
 	
 	public void verConsumo(RepositorioQuartoArrayList quartos, int indexQuarto) {
 		System.out.println("seu consumo atual: R$" + quartos.getQuarto(indexQuarto).getConta());
@@ -254,6 +252,6 @@ public class Cliente extends Pessoa {
 		} while(d < 1 || d >15);
 		
 		this.diarias = d;
-	}
+	}*/
 
 }

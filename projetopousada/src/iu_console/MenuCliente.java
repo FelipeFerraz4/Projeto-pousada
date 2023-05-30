@@ -12,7 +12,7 @@ public class MenuCliente extends Menu{
 	
 	private int cliente;
 	private int indexQuarto;
-	
+	private int tipoDeQuarto;
 
 	public MenuCliente(int indexCliente) {
 		super();
@@ -25,14 +25,8 @@ public class MenuCliente extends Menu{
         
         switch(escolha){
             case 1:
-				System.out.println("chegou aq");
-				
 				if ( pousada.isCheckin(cliente) == -1) {
-					System.out.println("passou o if");
-            		int options;
-                    do {
-                    	options = this.menuCheckin(pousada);
-                    }while(options == -1);
+                    this.menuCheckin(pousada);
                     return -1;
             	}
 				else{
@@ -41,9 +35,7 @@ public class MenuCliente extends Menu{
                 
                 return -1;
             case 2:
-            	
             	if (pousada.isCheckin(cliente)== 1) {
-            		
             		this.menuServisoDeQuarto(pousada);
             		return -1;
             	}
@@ -51,20 +43,19 @@ public class MenuCliente extends Menu{
                 
                 return -1;
             case 3:
-            	if (pousada.isCheckin(cliente)== 1) {
+				if (pousada.isCheckin(cliente)== 1) {
             		verConsumo(pousada);
             		return -1;
             	}
                 System.out.println("Por favor, fazer check-in");
-                
                 return -1;
             case 4:
-            	
-            	this.historicoAgendamento(pousada);
+        
+            	historicoAgendamento(pousada);
             	
                 return -1;
             case 5:
-				this.dadosDoCliente(pousada);
+				System.out.println(dadosDoCliente(pousada));	
                 return -1;
             case 6:
 				if (pousada.isCheckin(cliente)== 1) {
@@ -97,9 +88,13 @@ public class MenuCliente extends Menu{
 				int indexQuartoN = pousada.quartoVazio(1);
 				if(indexQuartoN == -1){
 					System.out.println("Nenhum Quarto normal disponivel, por favor falar com o gerente ");
-					return 0;
+					this.menuCheckin(pousada);
+					return -1;
 				}
-				else{this.diarias(pousada, indexQuartoN); }
+				else{
+					this.tipoDeQuarto = 1;
+					this.diarias(pousada, indexQuartoN); 
+				}
 				
 			return -1;
 
@@ -107,9 +102,12 @@ public class MenuCliente extends Menu{
 				int indexQuartoP = pousada.quartoVazio(2);
 				if(indexQuartoP == -1){
 					System.out.println("Nenhum Quarto Prime disponivel, por favor falar com o gerente ");
-					return 0;
+					this.menuCheckin(pousada);
+					return 1;
 				}
-				else{this.diarias(pousada, indexQuartoP); }
+				else{
+					this.tipoDeQuarto = 2;
+					this.diarias(pousada, indexQuartoP); }
 				
 			return -1;
 			
@@ -132,7 +130,7 @@ public class MenuCliente extends Menu{
 				}
 			} while( d < 1 || d >15);
 			this.indexQuarto = indexQuarto;
-			pousada.reservarQuarto(indexQuarto, d);
+			pousada.reservarQuarto(indexQuarto, d,this.tipoDeQuarto);
 			pousada.setCheckin(this.cliente, true);
 			pousada.setHistorico(cliente);
 			System.out.println("Reserva Realizada");
@@ -140,7 +138,7 @@ public class MenuCliente extends Menu{
 	}
 
 	public int menuServisoDeQuarto(FachadaPousada pousada){
-		if (pousada.buscarQuarto(cliente) == 1){
+		if (this.tipoDeQuarto == 1){
 			int opcao,quantidade;
 			System.out.println("Qual opcao de quarto gostaria ?");
 			String option[] = {"Agua - 2,00",
@@ -183,7 +181,7 @@ public class MenuCliente extends Menu{
 		}
 			
 		else{
-			int opcao,quantidade;
+			int quantidade;
 			System.out.println("Qual opcao de quarto gostaria ?");
 			String option[] = {" Vinho - 70,00",
 				"champagne - 120,00", "Voltar"};
@@ -234,7 +232,6 @@ public class MenuCliente extends Menu{
 	}
 
 	public int pagarConsumo(FachadaPousada pousada, int indexQuarto) {
-		int opção;
 		System.out.println("valor da conta e "+ pousada.consumo(this.indexQuarto));
 		System.out.println("Qual forma de pagamento?");
 		String option[] = {" Dinheiro","Cartao", "pix","Voltar"};
@@ -267,7 +264,8 @@ public class MenuCliente extends Menu{
 
 	}
 	public String dadosDoCliente (FachadaPousada pousada){
-		return pousada.dadosDoCliente(cliente);
+		
+		return pousada.dadosDoCliente(this.cliente);
 	}
 
 	public int Checkout(FachadaPousada pousada){

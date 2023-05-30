@@ -29,50 +29,61 @@ public class FachadaPousada {
 	public int verificarTipoPessoa(int indexPessoa) {
 		return adm.verificarTipoPessoa(indexPessoa);
 	}
+
+
+
+
+
+
+
+	// mudança de user para adm feita a partir daqui
+
+
+
 	public int quartoVazio(int tipoQuarto){
-		return user.quartovazio(tipoQuarto);
+		return adm.quartovazio(tipoQuarto);
 	}
 	public int buscarQuarto(int indexQuarto){
-		return user.buscarQuarto(indexQuarto);
+		return adm.buscarQuarto(indexQuarto);
 	}
 	public void sevircoDeQuarto(int tipoDeServico , int indexQuarto, int quantidade){
 		if(tipoDeServico == 1){
-			user.agua(indexQuarto, quantidade);
+			adm.agua(indexQuarto, quantidade);
 		}
 		if (tipoDeServico == 2){
-			user.refrigerante(indexQuarto, quantidade);
+			adm.refrigerante(indexQuarto, quantidade);
 		}
 		if (tipoDeServico == 3){
-			user.vinho(indexQuarto, quantidade);
+			adm.vinho(indexQuarto, quantidade);
 		}
 		if(tipoDeServico == 4){
-			user.champagne(indexQuarto, quantidade);
+			adm.champagne(indexQuarto, quantidade);
 		}
 	}
-	public void reservarQuarto(int indexQuarto, int diarias){
-		user.reservarQuarto(indexQuarto, diarias);
+	public void reservarQuarto(int indexQuarto, int diarias, int tipoDeQuarto){
+		adm.reservarQuarto(indexQuarto, diarias, tipoDeQuarto);
 	}
 	public float consumo(int indexQuarto){
-		return user.consumo(indexQuarto);
+		return adm.consumo(indexQuarto);
 	}
 	public void pagarConta(int indexQuarto){
-		user.pagarConta(indexQuarto);
+		adm.pagarConta(indexQuarto);
 	}
 	public String dadosDoCliente(int indexPessoa){
-		return user.dadosDoCliente(indexPessoa);
+		return adm.dadosDoCliente(indexPessoa);
 	}
 	public int isCheckin (int indexCliente){
-		return user.isCheckin(indexCliente);
+		return adm.isCheckin(indexCliente);
 
 	}
 	public void setCheckin(int indexCliente, boolean checkin){
-		user.setCheckin(indexCliente, checkin);
+		adm.setCheckin(indexCliente, checkin);
 	}
 	public int getHistorico(int indexPessoa){
-		return user.getHistorico(indexPessoa);
+		return adm.getHistorico(indexPessoa);
 	}
 	
 	public void setHistorico(int indexPessoa){
-		user.setHistorico(indexPessoa);
+		adm.setHistorico(indexPessoa);
 	}
 }
