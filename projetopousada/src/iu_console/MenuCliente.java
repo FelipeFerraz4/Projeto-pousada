@@ -20,7 +20,7 @@ public class MenuCliente extends Menu{
 	}
 	public int menuCliente(FachadaPousada pousada){
 		String option[] = {"Chenck-in", "Sevirco de quarto", "Ver consumo", 
-				"Ver historico de agendamento", "Dados do Cliente","Pagar consumo", "Checkout"};		
+				"Ver historico de agendamento", "Dados do Cliente","Pagar consumo", "Checkout","voltar"};		
 		int escolha = printOption(option, option.length);
         
         switch(escolha){
@@ -64,13 +64,13 @@ public class MenuCliente extends Menu{
 				}
 				System.out.println("Por favor, fazer check-in");
 					return -1;
-            default:
-            	
+			case 7:
 				while(this.Checkout(pousada)== -1){
 					return -1;
 				}
-				
-				
+				return 0;
+			default:
+            	
 				return 0;
         }
     }
@@ -158,7 +158,7 @@ public class MenuCliente extends Menu{
 					else {
 						System.out.println("Quantida invalida");
 					}
-				return -1;
+					return -1;
 
 				case 2:
 					System.out.println("Qual a quantidade?");
@@ -170,12 +170,12 @@ public class MenuCliente extends Menu{
 						System.out.println("Quantida invalida");
 					}
 
-				return -1;
+					return -1;
 			
 				default:
 				
 
-				return 0;
+					return 0;
 			
 			}
 		}
