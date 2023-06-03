@@ -18,14 +18,14 @@ public class NegocioGerente {
 	public NegocioGerente(IRepositorioPessoa repositorioPessoa, IRepositorioQuarto repositorioQuarto) {
 		this.pessoas = repositorioPessoa;
 		this.quartos = repositorioQuarto;
-		gerente = new Gerente("admPousada", "00000","12345");
+		gerente = new Gerente("admPousada", "0000","1234");
 		pessoas.addPessoa(gerente);
 		classesDefault();
 	}
 	
 	public void classesDefault() {
-		Cliente cliente1 = new Cliente("Paula", "1111", "12345");
-		Cliente cliente2 = new Cliente("Alice", "2222", "12345");
+		Cliente cliente1 = new Cliente("Paula", "1111", "1234");
+		Cliente cliente2 = new Cliente("Alice", "2222", "1234");
 		
 		pessoas.addPessoa(cliente1);
 		pessoas.addPessoa(cliente2);

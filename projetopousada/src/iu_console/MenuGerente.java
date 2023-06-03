@@ -3,9 +3,7 @@ package iu_console;
 import java.util.Scanner;
 
 import negocios.FachadaPousada;
-import negocios.Pessoa.Gerente;
-import negocios.Quarto.Normal;
-import negocios.Quarto.Prime;
+
 
 public class MenuGerente extends Menu{
 	
@@ -16,9 +14,10 @@ public class MenuGerente extends Menu{
 		this.indexGerente = indexGerente;
 	}
 	
-	public int UI_adicionarPessoa(FachadaPousada pousada, int tipoPessoa) {
-		Scanner scan = new Scanner(System.in);
-		
+	public int UI_adicionarPessoa(FachadaPousada pousada, int tipoPessoa, Scanner scan) {
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
 		System.out.println("Digite o CPF da pessoa: ");
 		String cpf = scan.nextLine();
 		System.out.println("Digite o Nome da pessoa: ");
@@ -41,8 +40,7 @@ public class MenuGerente extends Menu{
 		System.out.println("Adicao concluida");
 		return 1;
 	}
-	public int UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto) {
-		Scanner scan = new Scanner(System.in);
+	public int UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
 		System.out.println("Digite o numero do quarto: ");
 		int numeroQuarto = scan.nextInt();
 		if(scan.hasNextLine()) {
@@ -63,13 +61,10 @@ public class MenuGerente extends Menu{
 		return 1;
 	}
 	
-	public void UI_ConsultarPessoa(FachadaPousada pousada) {
-		/*
+	public void UI_ConsultarPessoa(FachadaPousada pousada, Scanner scan) {
 		if(scan.hasNextLine()) {
 			scan.nextLine();
 		}
-		*/
-		Scanner scan = new Scanner(System.in);
 		System.out.println("Digite o cpf: ");
 		String cpf = scan.nextLine();
 		int indexPessoa = pousada.buscarPessoa(cpf);
@@ -81,8 +76,7 @@ public class MenuGerente extends Menu{
 			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
 		}
 	}
-	public void UI_ConsultarQuarto(FachadaPousada pousada, int tipoQuarto) {
-		Scanner scan = new Scanner(System.in);
+	public void UI_ConsultarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
 		System.out.println("Digite o numero do quarto: ");
 		int numeroQuarto = scan.nextInt();
 		if(scan.hasNextLine()) {
@@ -97,20 +91,20 @@ public class MenuGerente extends Menu{
 			System.out.println("Operacao invalida, quarto ainda nao cadastrado");
 		}
 	}
-	public void UI_ModificarPessoa(FachadaPousada pousada) {
-		/*
+	public void UI_ModificarPessoa(FachadaPousada pousada, Scanner scan) {
 		if(scan.hasNextLine()) {
 			scan.nextLine();
 		}
-		*/
-		Scanner scan = new Scanner(System.in);
 		System.out.println("Digite o CPF da pessoa: ");
 		String cpf = scan.nextLine();
 		int indexPessoa = pousada.buscarPessoa(cpf);
 		if(indexPessoa != -1) {
 			System.out.println(pousada.toStringPessoa(indexPessoa));
 			String[] options = {"Modificar senha", "Modificar nome", "Voltar"};
-			int option = this.printOption(options, options.length);
+			int option = this.printOption(options, options.length, scan);
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
 			if(option==1) {
 				System.out.println("Digite a nova senha: ");
 				String senha = scan.nextLine();
@@ -129,8 +123,7 @@ public class MenuGerente extends Menu{
 			System.out.println("Pessoa nao encontrada");
 		}
 	}
-	public void UI_ModificarQuarto(FachadaPousada pousada, int tipoQuarto) {
-		Scanner scan = new Scanner(System.in);
+	public void UI_ModificarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
 		System.out.println("Digite o numero de quarto Normal");
 		int numeroQuarto = scan.nextInt();
 		if(scan.hasNextLine()) {
@@ -141,7 +134,7 @@ public class MenuGerente extends Menu{
 			System.out.println(pousada.toStringQuarto(indexQuarto));
 			String[] options = {"Modificar consumo", "Modificar capacidade",
 					"Modificar preco do quarto","Modificar ocupacao", "Voltar"};
-			int option = this.printOption(options, options.length);
+			int option = this.printOption(options, options.length, scan);
 			if (option==1) {
 				System.out.println("Digite o novo valor do consumo: ");
 				float consumo = scan.nextFloat();
@@ -168,8 +161,10 @@ public class MenuGerente extends Menu{
 			System.out.println("Quarto nao encontrado");
 		}
 	}
-	public void UI_DeletarPessoa(FachadaPousada pousada) {
-		Scanner scan = new Scanner(System.in);
+	public void UI_DeletarPessoa(FachadaPousada pousada, Scanner scan) {
+		if(scan.hasNextLine()) {
+			scan.nextLine();
+		}
 		System.out.println("Digite o cpf: ");
 		String cpf = scan.nextLine();
 		int indexPessoa = pousada.buscarPessoa(cpf);
@@ -189,8 +184,7 @@ public class MenuGerente extends Menu{
 			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
 		}
 	}
-	public void UI_DeletarQuarto(FachadaPousada pousada, int tipoQuarto) {
-		Scanner scan = new Scanner(System.in);
+	public void UI_DeletarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
 		System.out.println("Digite o numero do quarto: ");
 		int numeroQuarto = scan.nextInt();
 		if(scan.hasNextLine()) {
@@ -214,7 +208,7 @@ public class MenuGerente extends Menu{
 		}
 	}
 	
-	public int menuGerente(FachadaPousada pousada){
+	public int menuGerente(FachadaPousada pousada, Scanner scan){
 		
 		String option[] = {"Adicionar um Quarto ou uma Pessoa",
 				"Consultar dados de um Quarto ou de uma Pessoa",
@@ -224,7 +218,7 @@ public class MenuGerente extends Menu{
 				"Fechar guia gerente"
 		};
 		
-		int escolha = printOption(option, option.length);
+		int escolha = printOption(option, option.length, scan);
         
         switch(escolha){
             case 1:
@@ -233,21 +227,20 @@ public class MenuGerente extends Menu{
             			"Adicionar gerente", "Adicionar quarto normal",
             			"Adicionar quarto prime", "Voltar"};
             	
-            	int option1 = this.printOption(options, options.length);
-            	int result;
+            	int option1 = this.printOption(options, options.length, scan);
             	
         		switch(option1) {
         		case 1:
-        			this.UI_adicionarPessoa(pousada, 1);
+        			this.UI_adicionarPessoa(pousada, 1, scan);
         			break;
         		case 2:
-        			this.UI_adicionarPessoa(pousada, 2);
+        			this.UI_adicionarPessoa(pousada, 2, scan);
         			break;
         		case 3:
-        			this.UI_adicionarQuarto(pousada, 1);
+        			this.UI_adicionarQuarto(pousada, 1, scan);
         			break;
         		case 4:
-        			this.UI_adicionarQuarto(pousada, 2);
+        			this.UI_adicionarQuarto(pousada, 2, scan);
         			break;
         		default:
         			break;
@@ -259,17 +252,17 @@ public class MenuGerente extends Menu{
             			"Consultar um quarto normal", 
             			"Consultar um quarto prime", "Voltar"};
             	
-            	int option2 = this.printOption(options2, options2.length);
+            	int option2 = this.printOption(options2, options2.length, scan);
             	
         		switch(option2) {
         		case 1:
-        			this.UI_ConsultarPessoa(pousada);
+        			this.UI_ConsultarPessoa(pousada, scan);
         			break;
         		case 2:
-        			this.UI_ConsultarQuarto(pousada, 1);
+        			this.UI_ConsultarQuarto(pousada, 1, scan);
         			break;
         		case 3:
-        			this.UI_ConsultarQuarto(pousada, 2);
+        			this.UI_ConsultarQuarto(pousada, 2, scan);
         			break;
         		default:
         			break;
@@ -282,17 +275,17 @@ public class MenuGerente extends Menu{
             		"Modificar dados de um quarto prime",
             		"Voltar"};
             	
-            	int option3 = this.printOption(options3, options3.length);
+            	int option3 = this.printOption(options3, options3.length, scan);
         	
         		switch(option3) {
         		case 1:
-        			this.UI_ModificarPessoa(pousada);
+        			this.UI_ModificarPessoa(pousada, scan);
         			break;
         		case 2:
-        			this.UI_ModificarQuarto(pousada, 1);
+        			this.UI_ModificarQuarto(pousada, 1, scan);
         			break;
         		case 3:
-        			this.UI_ModificarQuarto(pousada, 2);
+        			this.UI_ModificarQuarto(pousada, 2, scan);
         			break;
         		default:
         			break;
@@ -304,16 +297,16 @@ public class MenuGerente extends Menu{
             		"Remover um quarto normal", "Remover um quarto prime",
             		"Voltar"};
             	
-            	int option4 = this.printOption(options4, options4.length);
+            	int option4 = this.printOption(options4, options4.length, scan);
             	
             	if (option4==1) {
-            		this.UI_DeletarPessoa(pousada);
+            		this.UI_DeletarPessoa(pousada, scan);
             	}
             	else if (option4==2) {
-            		this.UI_DeletarQuarto(pousada, 1);
+            		this.UI_DeletarQuarto(pousada, 1, scan);
             	}
             	else if (option4==3) {
-            		this.UI_DeletarQuarto(pousada, 2);
+            		this.UI_DeletarQuarto(pousada, 2, scan);
             	}
             
                 return -1;

@@ -1,7 +1,6 @@
 package iu_console;
 
 import java.util.Scanner;
-import negocios.FachadaPousada;
 
 public class Menu {
 	
@@ -35,9 +34,8 @@ public class Menu {
         this.linha(40);
     }
     
-    public int printOption(String[] option, int numberOption) {
+    public int printOption(String[] option, int numberOption, Scanner scan) {
     	this.cabecarioPousada();
-    	Scanner scan = new Scanner(System.in);
     	int escolha = -1;
     	for(int i = 0; i < numberOption; i++) {
     		System.out.println((i+1) + " - " + option[i]);

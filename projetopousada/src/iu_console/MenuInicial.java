@@ -1,7 +1,6 @@
 package iu_console;
 
 import java.util.Scanner;
-import iu_console.*;
 import negocios.FachadaPousada;
 
 public class MenuInicial extends Menu {
@@ -13,15 +12,15 @@ public class MenuInicial extends Menu {
 		this.login = new Login();
 	}
 	
-	public int menuInicial(FachadaPousada pousada){
+	public int menuInicial(FachadaPousada pousada, Scanner scan){
     	String option[] = {"Fazer login", "Cadastrar usuario", 
     			"Finalizar programa"};
     	
-    	int escolha = printOption(option, option.length);
+    	int escolha = printOption(option, option.length, scan);
         switch(escolha) {
         	case 1:
         		
-        		int indexPessoa = login.entrar(pousada);
+        		int indexPessoa = login.entrar(pousada, scan);
 
                 if (indexPessoa != -1) {
                 	int tipoPessoa = pousada.verificarTipoPessoa(indexPessoa);
@@ -30,7 +29,7 @@ public class MenuInicial extends Menu {
                     	MenuCliente tela = new MenuCliente(indexPessoa);
                     	int result;
                     	do {
-                    		result = tela.menuCliente(pousada);
+                    		result = tela.menuCliente(pousada, scan);
                     	}while(result == -1);
                     	return -1;
                     }
@@ -39,7 +38,7 @@ public class MenuInicial extends Menu {
                     	MenuGerente tela = new MenuGerente(indexPessoa);
                     	int result;
                     	do {
-                    		result = tela.menuGerente(pousada);
+                    		result = tela.menuGerente(pousada, scan);
                     	}while(result == -1);
                     	return -1;
                     }
@@ -49,7 +48,7 @@ public class MenuInicial extends Menu {
                 	return -1;
                 }
         	case 2:
-        		int opition = login.cadastrar(pousada);
+        		int opition = login.cadastrar(pousada, scan);
             	if (opition == 1) {
             		System.out.println("Cadastro do cliente feito");
             	}

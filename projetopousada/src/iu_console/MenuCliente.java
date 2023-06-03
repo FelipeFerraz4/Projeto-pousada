@@ -3,10 +3,7 @@ package iu_console;
 import java.util.Scanner;
 
 import negocios.FachadaPousada;
-import negocios.Pessoa.Cliente;
-import negocios.Pessoa.Pessoa;
-import negocios.Quarto.Quarto;
-import negocios.FachadaPousada;
+
 
 public class MenuCliente extends Menu{
 	
@@ -18,15 +15,15 @@ public class MenuCliente extends Menu{
 		super();
 		this.cliente = indexCliente;
 	}
-	public int menuCliente(FachadaPousada pousada){
+	public int menuCliente(FachadaPousada pousada, Scanner scan){
 		String option[] = {"Chenck-in", "Sevirco de quarto", "Ver consumo", 
 				"Ver historico de agendamento", "Dados do Cliente","Pagar consumo", "Checkout","voltar"};		
-		int escolha = printOption(option, option.length);
+		int escolha = printOption(option, option.length, scan);
         
         switch(escolha){
             case 1:
 				if ( pousada.isCheckin(cliente) == -1) {
-                    this.menuCheckin(pousada);
+                    this.menuCheckin(pousada, scan);
                     return -1;
             	}
 				else{
@@ -36,7 +33,7 @@ public class MenuCliente extends Menu{
                 return -1;
             case 2:
             	if (pousada.isCheckin(cliente)== 1) {
-            		this.menuServisoDeQuarto(pousada);
+            		this.menuServisoDeQuarto(pousada, scan);
             		return -1;
             	}
                 System.out.println("Por favor, fazer check-in");
@@ -59,7 +56,7 @@ public class MenuCliente extends Menu{
                 return -1;
             case 6:
 				if (pousada.isCheckin(cliente)== 1) {
-					this.pagarConsumo(pousada, this.indexQuarto);
+					this.pagarConsumo(pousada, this.indexQuarto, scan);
 					return -1;
 				}
 				System.out.println("Por favor, fazer check-in");
@@ -75,25 +72,25 @@ public class MenuCliente extends Menu{
         }
     }
 
-	public int menuCheckin(FachadaPousada pousada){
+	public int menuCheckin(FachadaPousada pousada, Scanner scan){
 		
 		String option[] = {"Quarto Normal ate 3 pessoas - 250,00",
 				"Quarto Prime ate 7 pessoas - 400,00", "Voltar"};
     	// tratar a exception de nenhum quarto desse tipo vazio;
 		
-		int escolha = printOption(option, option.length);
+		int escolha = printOption(option, option.length, scan);
         
         switch(escolha){
 			case 1: 
 				int indexQuartoN = pousada.quartoVazio(1);
 				if(indexQuartoN == -1){
 					System.out.println("Nenhum Quarto normal disponivel, por favor falar com o gerente ");
-					this.menuCheckin(pousada);
+					this.menuCheckin(pousada, scan);
 					return -1;
 				}
 				else{
 					this.tipoDeQuarto = 1;
-					this.diarias(pousada, indexQuartoN); 
+					this.diarias(pousada, indexQuartoN, scan); 
 				}
 				
 			return -1;
@@ -102,12 +99,12 @@ public class MenuCliente extends Menu{
 				int indexQuartoP = pousada.quartoVazio(2);
 				if(indexQuartoP == -1){
 					System.out.println("Nenhum Quarto Prime disponivel, por favor falar com o gerente ");
-					this.menuCheckin(pousada);
+					this.menuCheckin(pousada, scan);
 					return 1;
 				}
 				else{
 					this.tipoDeQuarto = 2;
-					this.diarias(pousada, indexQuartoP); }
+					this.diarias(pousada, indexQuartoP, scan); }
 				
 			return -1;
 			
@@ -117,12 +114,11 @@ public class MenuCliente extends Menu{
 
 		}
 	}
-	public void diarias(FachadaPousada pousada,int indexQuarto){
+	public void diarias(FachadaPousada pousada,int indexQuarto, Scanner scan){
 		
 		System.out.println("quantas diarias deseja reservar?");
 		int d;
 		do {
-			Scanner scan = new Scanner(System.in);
 			d = scan.nextInt();
 			if (d < 1 || d >15) {
 					System.out.println("o maximo de diarias possivel sao 15 por pessoa!");
@@ -137,17 +133,15 @@ public class MenuCliente extends Menu{
 
 	}
 
-	public int menuServisoDeQuarto(FachadaPousada pousada){
+	public int menuServisoDeQuarto(FachadaPousada pousada, Scanner scan){
 		if (this.tipoDeQuarto == 1){
-			int opcao,quantidade;
+			int quantidade;
 			System.out.println("Qual opcao de quarto gostaria ?");
 			String option[] = {"Agua - 2,00",
 				"Refrigarante - 4,00", "Voltar"};
 		
-			int escolha = printOption(option, option.length);
+			int escolha = printOption(option, option.length, scan);
 			
-			
-			Scanner scan = new Scanner(System.in);
 			switch(escolha){
 				case 1:
 					System.out.println("Qual a quantidade?");
@@ -186,9 +180,8 @@ public class MenuCliente extends Menu{
 			String option[] = {" Vinho - 70,00",
 				"champagne - 120,00", "Voltar"};
 		
-			int escolha = printOption(option, option.length);
-			
-			Scanner scan = new Scanner(System.in);
+			int escolha = printOption(option, option.length, scan);
+
 			switch(escolha){
 				case 1:
 					
@@ -231,14 +224,13 @@ public class MenuCliente extends Menu{
 		System.out.println("você fez "+ pousada.getHistorico(cliente) + " agendamentos nessa pousada");
 	}
 
-	public int pagarConsumo(FachadaPousada pousada, int indexQuarto) {
+	public int pagarConsumo(FachadaPousada pousada, int indexQuarto, Scanner scan) {
 		System.out.println("valor da conta e "+ pousada.consumo(this.indexQuarto));
 		System.out.println("Qual forma de pagamento?");
 		String option[] = {" Dinheiro","Cartao", "pix","Voltar"};
 
-		int escolha = printOption(option, option.length);
+		int escolha = printOption(option, option.length, scan);
 			
-		Scanner scan = new Scanner(System.in);
 		switch(escolha){
 			case 1:
 				System.out.println("pagamento efetuado. Obrigado, volte sempre!");
