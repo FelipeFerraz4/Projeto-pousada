@@ -21,7 +21,7 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 	}
 	
 	public int quartoVazio(int tipoQuarto) {
-		
+		//1 normal; 2 prime;
 		for(int i = 0; i < quartos.size(); i++) {
 			if (quartos.get(i).getTipoQuarto()==tipoQuarto) {
 				if (quartos.get(i).isOcupado()==false) {

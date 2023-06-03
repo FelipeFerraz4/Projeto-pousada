@@ -4,106 +4,288 @@ import java.util.Scanner;
 
 import negocios.FachadaPousada;
 import negocios.Pessoa.Cliente;
+import negocios.Pessoa.Pessoa;
 import negocios.Quarto.Quarto;
+import negocios.FachadaPousada;
 
 public class MenuCliente extends Menu{
 	
 	private int cliente;
-	
+	private int indexQuarto;
+	private int tipoDeQuarto;
+
 	public MenuCliente(int indexCliente) {
 		super();
 		this.cliente = indexCliente;
 	}
-	
 	public int menuCliente(FachadaPousada pousada){
 		String option[] = {"Chenck-in", "Sevirco de quarto", "Ver consumo", 
-				"Ver historico de agendamento", "Pagar consumo", 
-				"Perfil", "Checkout", "Fechar guia cliente" };
-    	
+				"Ver historico de agendamento", "Dados do Cliente","Pagar consumo", "Checkout","voltar"};		
 		int escolha = printOption(option, option.length);
         
         switch(escolha){
             case 1:
-            	/*
-            	if (cliente.isCheckin()==false) {
-            		int option;
-                    do {
-                    	option = cliente.checkin(quartos);
-                    }while(option == -1);
+				if ( pousada.isCheckin(cliente) == -1) {
+                    this.menuCheckin(pousada);
                     return -1;
             	}
+				else{
                 System.out.println("Check-in feito anteriormente");
-                */
+				}
+                
                 return -1;
             case 2:
-            	/*
-            	if (cliente.isCheckin()==true) {
-            		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
-            		int indexQuarto = quartos.buscarQuarto(quarto);
-            		cliente.sevircoDeQuarto(quartos, indexQuarto);
+            	if (pousada.isCheckin(cliente)== 1) {
+            		this.menuServisoDeQuarto(pousada);
             		return -1;
             	}
                 System.out.println("Por favor, fazer check-in");
-                */
+                
                 return -1;
             case 3:
-            	/*
-            	if (cliente.isCheckin()==true) {
-            		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
-            		int indexQuarto = quartos.buscarQuarto(quarto);
-            		cliente.verConsumo(quartos, indexQuarto);
+				if (pousada.isCheckin(cliente)== 1) {
+            		verConsumo(pousada);
             		return -1;
             	}
                 System.out.println("Por favor, fazer check-in");
-                */
                 return -1;
             case 4:
-            	/*
-            	cliente.historicoAgendamento();
-            	*/
+        
+            	historicoAgendamento(pousada);
+            	
                 return -1;
             case 5:
-            	/*
-            	if (cliente.isCheckin()==true) {
-            		Quarto quarto = pessoas.getPessoas().get(indexCliente).getQuarto();
-            		int indexQuarto = quartos.buscarQuarto(quarto);
-            		cliente.pagarConsumo(quartos, indexQuarto);
-            		return -1;
-            	}
-                System.out.println("Por favor, fazer check-in");
-                */
+				System.out.println(dadosDoCliente(pousada));	
                 return -1;
             case 6:
-            	/*
-            	System.out.println(pessoas.getPessoas().get(indexCliente).toString());
-            	if (pessoas.getPessoas().get(indexCliente).getQuarto()!=null) {
-            		System.out.println(pessoas.getPessoas().get(indexCliente).getQuarto().toString());
-            	}
-            	*/
-            	return -1;
-            case 7:
-            	/*
-            	if(cliente.getQuarto()!=null) {
-            		if (cliente.getQuarto().getConta() == 0) {
-                		cliente.getQuarto().setOcupado();
-                		cliente.setQuarto(null);
-                		cliente.setDiarias(0);
-                		cliente.setCheckin(false);
-                		System.out.println("Obrigado pela preferencia e volte sempre");
-                		return 0;
-                	}
-            		System.out.println("Por favor, finalize sua conta antes de sair");
-            		return -1;
-            	}
-            	//possivel de ser retirado, basta testa sem
-            	cliente.setDiarias(0);
-        		cliente.setCheckin(false);
-        		System.out.println("Obrigado e volte sempre");
-        		*/
-                return -1;
-            default:
-            	System.out.println("Guia cliente fechada");
-            	return 0;
+				if (pousada.isCheckin(cliente)== 1) {
+					this.pagarConsumo(pousada, this.indexQuarto);
+					return -1;
+				}
+				System.out.println("Por favor, fazer check-in");
+					return -1;
+			case 7:
+				while(this.Checkout(pousada)== -1){
+					return -1;
+				}
+				return 0;
+			default:
+            	
+				return 0;
         }
     }
+
+	public int menuCheckin(FachadaPousada pousada){
+		
+		String option[] = {"Quarto Normal ate 3 pessoas - 250,00",
+				"Quarto Prime ate 7 pessoas - 400,00", "Voltar"};
+    	// tratar a exception de nenhum quarto desse tipo vazio;
+		
+		int escolha = printOption(option, option.length);
+        
+        switch(escolha){
+			case 1: 
+				int indexQuartoN = pousada.quartoVazio(1);
+				if(indexQuartoN == -1){
+					System.out.println("Nenhum Quarto normal disponivel, por favor falar com o gerente ");
+					this.menuCheckin(pousada);
+					return -1;
+				}
+				else{
+					this.tipoDeQuarto = 1;
+					this.diarias(pousada, indexQuartoN); 
+				}
+				
+			return -1;
+
+			case 2: 
+				int indexQuartoP = pousada.quartoVazio(2);
+				if(indexQuartoP == -1){
+					System.out.println("Nenhum Quarto Prime disponivel, por favor falar com o gerente ");
+					this.menuCheckin(pousada);
+					return 1;
+				}
+				else{
+					this.tipoDeQuarto = 2;
+					this.diarias(pousada, indexQuartoP); }
+				
+			return -1;
+			
+			default:
+				
+			return 0;
+
+		}
+	}
+	public void diarias(FachadaPousada pousada,int indexQuarto){
+		
+		System.out.println("quantas diarias deseja reservar?");
+		int d;
+		do {
+			Scanner scan = new Scanner(System.in);
+			d = scan.nextInt();
+			if (d < 1 || d >15) {
+					System.out.println("o maximo de diarias possivel sao 15 por pessoa!");
+					System.out.println("Por favor, digite a quantidadede de diarias desejadas: ");
+				}
+			} while( d < 1 || d >15);
+			this.indexQuarto = indexQuarto;
+			pousada.reservarQuarto(indexQuarto, d,this.tipoDeQuarto);
+			pousada.setCheckin(this.cliente, true);
+			pousada.setHistorico(cliente);
+			System.out.println("Reserva Realizada");
+
+	}
+
+	public int menuServisoDeQuarto(FachadaPousada pousada){
+		if (this.tipoDeQuarto == 1){
+			int opcao,quantidade;
+			System.out.println("Qual opcao de quarto gostaria ?");
+			String option[] = {"Agua - 2,00",
+				"Refrigarante - 4,00", "Voltar"};
+		
+			int escolha = printOption(option, option.length);
+			
+			
+			Scanner scan = new Scanner(System.in);
+			switch(escolha){
+				case 1:
+					System.out.println("Qual a quantidade?");
+					quantidade = scan.nextInt();
+					if(quantidade>=0) {
+						pousada.sevircoDeQuarto(1,this.indexQuarto , quantidade);
+					}
+					else {
+						System.out.println("Quantida invalida");
+					}
+					return -1;
+
+				case 2:
+					System.out.println("Qual a quantidade?");
+					quantidade = scan.nextInt();
+					if(quantidade>=0) {
+						pousada.sevircoDeQuarto(2,this.indexQuarto , quantidade);
+					}
+					else {
+						System.out.println("Quantida invalida");
+					}
+
+					return -1;
+			
+				default:
+				
+
+					return 0;
+			
+			}
+		}
+			
+		else{
+			int quantidade;
+			System.out.println("Qual opcao de quarto gostaria ?");
+			String option[] = {" Vinho - 70,00",
+				"champagne - 120,00", "Voltar"};
+		
+			int escolha = printOption(option, option.length);
+			
+			Scanner scan = new Scanner(System.in);
+			switch(escolha){
+				case 1:
+					
+					System.out.println("Qual a quantidade?");
+					quantidade = scan.nextInt();
+					if(quantidade>=0) {
+						pousada.sevircoDeQuarto(3, this.indexQuarto, quantidade);
+					}
+					else {
+						System.out.println("Quantida invalida");
+					}
+				return -1;
+
+				case 2:
+					System.out.println("Qual a quantidade?");
+					quantidade = scan.nextInt();
+					if(quantidade>=0) {
+						pousada.sevircoDeQuarto(4, this.indexQuarto , quantidade);
+					}
+					else {
+						System.out.println("Quantida invalida");
+					}
+
+				return -1;
+			
+				default:
+
+
+				return 0;
+			
+			}
+		}
+	}
+
+	public void verConsumo(FachadaPousada pousada) {
+		System.out.println("seu consumo atual: R$" + pousada.consumo(this.indexQuarto));
+	}
+
+	public void historicoAgendamento(FachadaPousada pousada){
+		System.out.println("você fez "+ pousada.getHistorico(cliente) + " agendamentos nessa pousada");
+	}
+
+	public int pagarConsumo(FachadaPousada pousada, int indexQuarto) {
+		System.out.println("valor da conta e "+ pousada.consumo(this.indexQuarto));
+		System.out.println("Qual forma de pagamento?");
+		String option[] = {" Dinheiro","Cartao", "pix","Voltar"};
+
+		int escolha = printOption(option, option.length);
+			
+		Scanner scan = new Scanner(System.in);
+		switch(escolha){
+			case 1:
+				System.out.println("pagamento efetuado. Obrigado, volte sempre!");
+				pousada.pagarConta(this.indexQuarto);
+			return -1;
+				
+			case 2:
+				System.out.println("insira seu cartao");
+				System.out.println("coloque sua senha");
+				System.out.println("pagamento efetuado. Obrigado, volte sempre!");
+				pousada.pagarConta(this.indexQuarto);
+			return -1;
+
+			case 3:
+				System.out.println("A chave pix: 55555");
+				System.out.println("pagamento efetuado. Obrigado, volte sempre!");
+				pousada.pagarConta(this.indexQuarto);
+			return -1;
+			default:
+
+			return 0;
+		}
+
+	}
+	public String dadosDoCliente (FachadaPousada pousada){
+		
+		return pousada.dadosDoCliente(this.cliente);
+	}
+
+	public int Checkout(FachadaPousada pousada){
+		if (pousada.consumo(indexQuarto) == 0){
+			pousada.setCheckin(this.cliente, false);
+			return 0;
+		}
+		else {
+			System.out.println("você ainda tem conta aberta na pousada, por favor voltar a 'pagar conta'");
+			return -1;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
 }

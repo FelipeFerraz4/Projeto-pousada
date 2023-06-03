@@ -40,7 +40,6 @@ public class NegocioGerente {
 		quartos.adicionarQuarto(quartoPrime1);
 		quartos.adicionarQuarto(quartoPrime2);
 	}
-	
 	public void cadastrarNovoCliente(String nome, String cpf, String senha) {
 		Cliente cliente = new Cliente(nome, cpf, senha);
 		//tratar a exception de addPessoa
@@ -114,7 +113,6 @@ public class NegocioGerente {
 			return 2;
 		}
 	}
-	
 	public String toStringPessoa(int indexPessoa) {
 		String toStringPessoa = gerente.getPessoa(pessoas, indexPessoa).toString();
 		if (gerente.getPessoa(pessoas, indexPessoa).getQuarto()!=null) {
@@ -126,5 +124,4 @@ public class NegocioGerente {
 	public String toStringQuarto(int indexQuarto) {
 		return gerente.getQuarto(quartos, indexQuarto).toString();
 	}
-
 }

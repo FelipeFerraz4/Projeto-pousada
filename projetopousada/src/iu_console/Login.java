@@ -45,5 +45,12 @@ public class Login {
 		pousada.cadastrarNovoCliente(nome, cpf, senha);
 		return 1;
 	}
+
+	public int reservarQuarto(FachadaPousada pousada){
+		
+		
+		return 0;
+
+	}
 	
 }
