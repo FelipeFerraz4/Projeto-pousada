@@ -1,9 +1,9 @@
 package dados.repositoriosquartos;
 
-import negocios.*;
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;
 import negocios.Quarto.Quarto;
+import exceptionpousada.*;
 
 public class RepositorioQuartoVetor implements IRepositorioQuarto {
 	
@@ -26,7 +26,7 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 	}
 	
 	
-	public int adicionarQuarto(int numeroQuarto, int tipoQuarto) {
+	public void adicionarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoExisteException {
 		Quarto quarto;
 		if (tipoQuarto==1) {
 			quarto = new Normal(numeroQuarto);
@@ -37,10 +37,9 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 		if (size <= 50) {
 			quartos[size] = quarto;
 			size++;
-			return 1;
 		}
 		else {
-			return -1;
+			throw new QuartoNaoExisteException();
 		}
 		
 	}

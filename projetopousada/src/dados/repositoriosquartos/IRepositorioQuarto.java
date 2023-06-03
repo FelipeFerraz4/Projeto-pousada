@@ -1,6 +1,5 @@
 package dados.repositoriosquartos;
 
-import negocios.*;
 import negocios.Quarto.Quarto;
 
 public interface IRepositorioQuarto {
@@ -10,7 +9,7 @@ public interface IRepositorioQuarto {
 	int deletarQuarto(Quarto quartos);
 	int atualizarQuarto(Quarto quarto);
 	
-	int adicionarQuarto(int numeroQuarto, int tipoQuarto);
+	void adicionarQuarto(int numeroQuarto, int tipoQuarto) throws Exception;
 	int buscarQuarto(int numeroQuarto, int tipoQuarto);
 	int deletarQuarto(int numeroQuarto, int tipoQuarto);
 	int atualizarQuarto(int numeroQuarto, int tipoQuarto, 

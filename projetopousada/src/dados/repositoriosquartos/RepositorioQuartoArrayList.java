@@ -33,7 +33,7 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 		return -1;
 	}
 	
-	public int adicionarQuarto(int numeroQuarto, int tipoQuarto) {
+	public void adicionarQuarto(int numeroQuarto, int tipoQuarto) {
 		Quarto quarto;
 		if (tipoQuarto==1) {
 			quarto = new Normal(numeroQuarto);
@@ -42,7 +42,6 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 			quarto = new Prime(numeroQuarto);
 		}
 		quartos.add(quarto);
-		return 1;
 		
 	}
 	public int adicionarQuarto(Quarto quarto) {
