@@ -1,4 +1,4 @@
-package dados;
+package negocios.Quarto;
 
 public abstract class Quarto {
 	
@@ -7,6 +7,7 @@ public abstract class Quarto {
 	private int capacidade;
 	private boolean ocupado;
 	private float conta;
+	private float precoQuarto;
 
 	public Quarto(int numero){
 		this.numeroQuato = numero;
@@ -35,14 +36,8 @@ public abstract class Quarto {
 	public boolean isOcupado() {
 		return this.ocupado;
 	}
-	public void setOcupado() {
-		if (this.ocupado == false) {
-			this.ocupado = true;
-		}
-		else {
-			this.ocupado = false;
-			this.conta = 0;
-		}
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
 	}
 	public float getConta() {
 		return conta;
@@ -51,6 +46,14 @@ public abstract class Quarto {
 		this.conta = valor;
 	}
 	
+	public float getPrecoQuarto() {
+		return precoQuarto;
+	}
+
+	public void setPrecoQuarto(float precoQuarto) {
+		this.precoQuarto = precoQuarto;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Quarto) {
@@ -77,7 +80,8 @@ public abstract class Quarto {
 		return "Numero do quarto: " + tipo + this.numeroQuato + "\n"
 		+ "Ocupado: " + this.ocupado + "\n"
 		+ "Conta: " + this.conta + "\n"
-		+ "Capacidade: " + this.capacidade;
+		+ "Capacidade: " + this.capacidade + "\n"
+		+ "Preco da diaria do quarto: " + this.precoQuarto + "\n";
 	}
 	
 }

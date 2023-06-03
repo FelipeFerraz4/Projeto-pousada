@@ -1,4 +1,6 @@
-package dados;
+package negocios.Pessoa;
+
+import negocios.Quarto.Quarto;
 
 public abstract class Pessoa {
 	

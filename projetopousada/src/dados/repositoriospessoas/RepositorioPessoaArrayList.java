@@ -1,16 +1,22 @@
-package repositorio;
+package dados.repositoriospessoas;
 
 import java.util.ArrayList;
 
-import dados.*;
+import negocios.*;
+import negocios.Pessoa.Cliente;
+import negocios.Pessoa.Gerente;
+import negocios.Pessoa.Pessoa;
 
-public class RepositorioPessoa {
+public class RepositorioPessoaArrayList implements IRepositorioPessoa {
 
 	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
 	//melhora fazendo getPessoa receber um index e returna a pessoa 
 	public ArrayList<Pessoa> getPessoas() {
 		return this.pessoas;
+	}
+	public Pessoa getPessoa(int indexPessoa) {
+		return this.pessoas.get(indexPessoa);
 	}
 	
 	public void criarPessoa(String nome, String cpf, String senha, int tipoPessoa) {
@@ -59,16 +65,24 @@ public class RepositorioPessoa {
 		return -1;
 	}
 
-	public void atualizarPessoa(Pessoa pessoa) {
+	public int atualizarPessoa(Pessoa pessoa) {
 		int indicePessoa = this.buscarPessoa(pessoa);
-		pessoas.get(indicePessoa).setNome(pessoa.getNome());
-		pessoas.get(indicePessoa).setSenha(pessoa.getSenha());
+		if (indicePessoa != -1) {
+			pessoas.get(indicePessoa).setNome(pessoa.getNome());
+			pessoas.get(indicePessoa).setSenha(pessoa.getSenha());
+			return 1;
+		}
+		return -1;
 		
 	}
-	public void atualizarPessoa(Pessoa pessoa,String Nome, String Senha){
-		int indicePessoa = this.buscarPessoa(pessoa);
-		pessoas.get(indicePessoa).setNome(Nome);
-		pessoas.get(indicePessoa).setSenha(Senha);
+	public int atualizarPessoa(String cpf,String nome, String senha){
+		int indicePessoa = this.buscarPessoa(cpf);
+		if (indicePessoa != 1) {
+			pessoas.get(indicePessoa).setNome(nome);
+			pessoas.get(indicePessoa).setSenha(senha);
+			return 1;
+		}
+		return -1;
 
 	}
 
