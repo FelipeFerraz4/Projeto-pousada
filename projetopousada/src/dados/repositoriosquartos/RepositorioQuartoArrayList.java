@@ -2,8 +2,7 @@ package dados.repositoriosquartos;
 
 import java.util.ArrayList;
 
-import dados.repositoriosquartos.IRepositorioQuarto;
-import negocios.*;
+import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;
 import negocios.Quarto.Quarto;
@@ -20,7 +19,7 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 		return this.quartos.get(indexQuarto);
 	}
 	
-	public int quartoVazio(int tipoQuarto) {
+	public int quartoVazio(int tipoQuarto) throws QuartoNaoEncontradoException{
 		//1 normal; 2 prime;
 		for(int i = 0; i < quartos.size(); i++) {
 			if (quartos.get(i).getTipoQuarto()==tipoQuarto) {
@@ -29,8 +28,7 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 				}
 			}
 		}
-		
-		return -1;
+		throw new QuartoNaoEncontradoException();
 	}
 	
 	public void adicionarQuarto(int numeroQuarto, int tipoQuarto) {
@@ -44,20 +42,19 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 		quartos.add(quarto);
 		
 	}
-	public int adicionarQuarto(Quarto quarto) {
+	public void adicionarQuarto(Quarto quarto) {
 		quartos.add(quarto);
-		return 1;
 	}
 	
-	public int buscarQuarto(Quarto quarto) {
+	public int buscarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
 		for (int i = 0; i < quartos.size(); i++) {
 			if (quartos.get(i).equals(quarto)) {
 				return i;
 			}
 		}
-		return -1;
+		throw new QuartoNaoEncontradoException();
 	}
-	public int buscarQuarto(int numeroQuarto, int tipoQuarto) {
+	public int buscarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException {
 		for (int i = 0; i < quartos.size(); i++) {
 			if (quartos.get(i).getTipoQuarto()==tipoQuarto) {
 				if (quartos.get(i).getNumeroQuato()==numeroQuarto) {
@@ -65,10 +62,10 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 				}
 			}
 		}
-		return -1;
+		throw new QuartoNaoEncontradoException();
 	}
 	
-	public int deletarQuarto(Quarto quarto) {
+	public int deletarQuarto(Quarto quarto) throws QuartoNaoEncontradoException {
 		int indexQuarto = this.buscarQuarto(quarto);
 		if (indexQuarto != -1) {
 			quartos.remove(indexQuarto);
@@ -76,7 +73,7 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 		}
 		return -1;
 	}
-	public int deletarQuarto(int numeroQuarto, int tipoQuarto) {
+	public int deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException {
 		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
 		if (indexQuarto > -1) {
 			quartos.remove(indexQuarto);
@@ -85,7 +82,7 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 		return -1;
 	}
 	
-	public int atualizarQuarto(Quarto quarto) {
+	public int atualizarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(quarto);
 		if (indexQuarto!=-1) {
 			quartos.get(indexQuarto).setOcupado(quarto.isOcupado());
@@ -97,7 +94,8 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 		return -1;
 	}
 	public int atualizarQuarto(int numeroQuarto, int tipoQuarto, float consumo,
-			boolean ocupado, int capacidade, float precoQuarto) {
+			boolean ocupado, int capacidade, float precoQuarto) 
+					throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
 		if (indexQuarto!=-1) {
 			quartos.get(indexQuarto).setOcupado(ocupado);

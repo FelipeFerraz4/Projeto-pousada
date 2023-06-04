@@ -1,11 +1,9 @@
 package negocios.Pessoa;
 
-import java.util.Scanner;
-
-import dados.*;
 import dados.repositoriospessoas.IRepositorioPessoa;
-import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
+import exceptionpousada.QuartoJaExisteException;
+import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Quarto.Quarto;
 
 public class Gerente extends Pessoa  {
@@ -110,39 +108,32 @@ public class Gerente extends Pessoa  {
 		return quartos.getQuarto(indexQuarto);
 	}
 	
-	public int addQuarto(IRepositorioQuarto quartos, Quarto quarto){
-		int indexQuarto = quartos.buscarQuarto(quarto);
-		if (indexQuarto != -1) {
-			//adicionar exception Quarto já existe
-			return -1;
+	public void addQuarto(IRepositorioQuarto quartos, Quarto quarto) 
+			throws ArrayIndexOutOfBoundsException,
+			QuartoJaExisteException{
+		try {
+			quartos.buscarQuarto(quarto);
+			throw new QuartoJaExisteException();
 		}
-		else {
-			int result = quartos.adicionarQuarto(quarto);
-			if (result == -1) {
-				//adicionar exception RepositorioQuartoLotado
-				return -1;
-			}
-			return 1;
+		catch(QuartoNaoEncontradoException e) {
+			quartos.adicionarQuarto(quarto);
 		}
+		
 	}
-	public int addQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) {
-		int indexQuarto = quartos.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto != -1) {
-			//adicionar exception Quarto já existe
-			return -1;
+	public void addQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) 
+			throws ArrayIndexOutOfBoundsException,
+				QuartoJaExisteException{
+		try {
+			quartos.buscarQuarto(numeroQuarto, tipoQuarto);
+			throw new QuartoJaExisteException();
 		}
-		else {
-			int result = quartos.adicionarQuarto(numeroQuarto, tipoQuarto);
-			if (result == -1) {
-				//adicionar exception RepositorioQuartoLotado
-				return -1;
-			}
-			return 1;
+		catch (QuartoNaoEncontradoException e) {
+			quartos.adicionarQuarto(numeroQuarto, tipoQuarto);
 		}
 	}
 
 
-	public int deletarQuarto(IRepositorioQuarto quartos, Quarto quarto){
+	public int deletarQuarto(IRepositorioQuarto quartos, Quarto quarto) throws QuartoNaoEncontradoException{
 		int result = quartos.deletarQuarto(quarto);
 		if (result == -1) {
 			//adicionar exception Quarto não existe
@@ -152,7 +143,7 @@ public class Gerente extends Pessoa  {
 			return 1;
 		}
 	}
-	public int deletarQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) {
+	public int deletarQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
 		int result = quartos.deletarQuarto(numeroQuarto, tipoQuarto);
 		if (result == -1) {
 			//adicionar exception Quarto não existe
@@ -162,7 +153,7 @@ public class Gerente extends Pessoa  {
 			return 1;
 		}
 	}
-	public int consultarQuarto(IRepositorioQuarto quartos, Quarto quarto) {
+	public int consultarQuarto(IRepositorioQuarto quartos, Quarto quarto) throws QuartoNaoEncontradoException{
 		int indexPessoa = quartos.buscarQuarto(quarto);
 		if (indexPessoa == -1) {
 			//adicionar exception Quarto não existe
@@ -173,7 +164,7 @@ public class Gerente extends Pessoa  {
 		}
 	}
 	public int consultarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
-			int tipoQuarto) {
+			int tipoQuarto) throws QuartoNaoEncontradoException{
 		int indexPessoa = quartos.buscarQuarto(numeroQuarto, tipoQuarto);
 		if (indexPessoa == -1) {
 			//adicionar exception Quarto não existe
@@ -183,7 +174,7 @@ public class Gerente extends Pessoa  {
 			return indexPessoa;
 		}
 	}
-	public int atualizarQuarto(IRepositorioQuarto quartos, Quarto quarto) {
+	public int atualizarQuarto(IRepositorioQuarto quartos, Quarto quarto) throws QuartoNaoEncontradoException{
 		int result = quartos.atualizarQuarto(quarto);
 		if (result == -1 ) {
 			//adicionar exception Quarto não existe
@@ -195,7 +186,7 @@ public class Gerente extends Pessoa  {
 	}
 	public int atualizarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
 			int tipoQuarto, float consumo, boolean ocupado, int capacidade,
-			float precoQuarto) {
+			float precoQuarto) throws QuartoNaoEncontradoException{
 		
 		int result = quartos.atualizarQuarto(numeroQuarto, tipoQuarto, 
 				consumo, ocupado, capacidade, precoQuarto);

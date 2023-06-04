@@ -1,9 +1,9 @@
 package negocios;
 
 import dados.repositoriospessoas.IRepositorioPessoa;
-import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
-import dados.repositoriosquartos.RepositorioQuartoArrayList;
+import exceptionpousada.QuartoJaExisteException;
+import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Pessoa.Cliente;
 import negocios.Pessoa.Gerente;
 import negocios.Quarto.Normal;
@@ -50,12 +50,14 @@ public class NegocioGerente {
 		//tratar a exception de addPessoa
 		gerente.addPessoa(pessoas, gerente);
 	}
-	public void cadastrarQuartoNormal(int numeroQuarto) {
+	public void cadastrarQuartoNormal(int numeroQuarto) throws ArrayIndexOutOfBoundsException,
+	QuartoJaExisteException{
 		Normal quarto = new Normal(numeroQuarto);
 		//tratar a exception de addQuarto
 		gerente.addQuarto(quartos, quarto);
 	}
-	public void cadastrarQuartoPrime(int numeroQuarto) {
+	public void cadastrarQuartoPrime(int numeroQuarto) throws ArrayIndexOutOfBoundsException, 
+	QuartoJaExisteException{
 		Prime quarto = new Prime(numeroQuarto);
 		//tratar a exception de addQuarto
 		gerente.addQuarto(quartos, quarto);
@@ -64,13 +66,13 @@ public class NegocioGerente {
 	public int buscarPessoa(String cpf) {
 		return gerente.consultarPessoa(pessoas, cpf);
 	}
-	public int buscarQuarto(int numeroQuarto, int tipoQuarto) {
+	public int buscarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
 		return gerente.consultarQuarto(quartos, numeroQuarto, tipoQuarto);
 	}
 	public int deletarPessoa(String cpf) {
 		return gerente.removerPessoa(pessoas, cpf);
 	}
-	public int deletarQuarto(int numeroQuarto, int tipoQuarto) {
+	public int deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
 		return gerente.deletarQuarto(quartos, numeroQuarto, tipoQuarto);
 	}
 	

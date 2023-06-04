@@ -4,6 +4,7 @@ import dados.repositoriospessoas.IRepositorioPessoa;
 import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
 import dados.repositoriosquartos.RepositorioQuartoArrayList;
+import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Pessoa.*;
 import negocios.Quarto.*;
 
@@ -16,7 +17,7 @@ public class NegocioCliente {
 		this.pessoas = repositorioPessoa;
 		this.quartos = repositorioQuarto;
 	}
-	public int quartovazio(int tipoQuarto){
+	public int quartovazio(int tipoQuarto) throws QuartoNaoEncontradoException{
 		return quartos.quartoVazio(tipoQuarto);
 
 	}
