@@ -2,6 +2,8 @@ package iu_console;
 
 import java.util.Scanner;
 
+import exceptionpousada.PessoaJaExisteException;
+import exceptionpousada.PessoaNaoEncontradoException;
 import exceptionpousada.QuartoJaExisteException;
 import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.FachadaPousada;
@@ -26,19 +28,25 @@ public class MenuGerente extends Menu{
 		String nome = scan.nextLine();
 		System.out.println("Digite a senha da pessoa: ");
 		String senha = scan.nextLine();
-		// Tratar exception cadastro já existe
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa != -1) {
-			System.out.println("CPF cadastrado anteriomente");
+
+		try {
+			if (tipoPessoa == 1) {
+				pousada.cadastrarNovoCliente(nome, cpf, senha);
+			}
+			else {
+				pousada.cadastrarNovoGerente(nome, cpf, senha);
+			}
+			System.out.println("Adicao concluida");
 		}
-		if (tipoPessoa == 1) {
-			
-			pousada.cadastrarNovoCliente(nome, cpf, senha);
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Espaco para cadastro lotado");
 		}
-		else {
-			pousada.cadastrarNovoGerente(nome, cpf, senha);
+		catch(PessoaJaExisteException e) {
+			System.out.println(e.getMessage());
 		}
-		System.out.println("Adicao concluida");
+		catch(Exception e ) {
+			System.out.println(e.getMessage() + " " + e.getClass());
+		}
 	}
 	public void UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
 		System.out.println("Digite o numero do quarto: ");
@@ -73,13 +81,17 @@ public class MenuGerente extends Menu{
 		}
 		System.out.println("Digite o cpf: ");
 		String cpf = scan.nextLine();
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa!=-1) {
+		int indexPessoa;
+		try {
+			indexPessoa = pousada.buscarPessoa(cpf);
 			System.out.println(pousada.toStringPessoa(indexPessoa));
 			System.out.println("Consulta concluida");
 		}
-		else {
-			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+		catch(PessoaNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_ConsultarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
@@ -107,8 +119,9 @@ public class MenuGerente extends Menu{
 		}
 		System.out.println("Digite o CPF da pessoa: ");
 		String cpf = scan.nextLine();
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if(indexPessoa != -1) {
+		int indexPessoa;
+		try {
+			indexPessoa = pousada.buscarPessoa(cpf);
 			System.out.println(pousada.toStringPessoa(indexPessoa));
 			String[] options = {"Modificar senha", "Modificar nome", "Voltar"};
 			int option = this.printOption(options, options.length, scan);
@@ -129,8 +142,11 @@ public class MenuGerente extends Menu{
 				System.out.println("Modificacao concluida");
 			}
 		}
-		else {
-			System.out.println("Pessoa nao encontrada");
+		catch(PessoaNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_ModificarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
@@ -185,8 +201,9 @@ public class MenuGerente extends Menu{
 		}
 		System.out.println("Digite o cpf: ");
 		String cpf = scan.nextLine();
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa!=-1) {
+		int indexPessoa;
+		try {
+			indexPessoa = pousada.buscarPessoa(cpf);
 			System.out.println(pousada.toStringPessoa(indexPessoa));
 			System.out.println("Confirmar remocao [S/N]");
 			String confirmation = scan.nextLine();
@@ -198,8 +215,11 @@ public class MenuGerente extends Menu{
 				System.out.println("Remocao cancelada");
 			}
 		}
-		else {
-			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+		catch(PessoaNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_DeletarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {

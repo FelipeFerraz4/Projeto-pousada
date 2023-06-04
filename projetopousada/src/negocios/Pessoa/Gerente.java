@@ -2,6 +2,8 @@ package negocios.Pessoa;
 
 import dados.repositoriospessoas.IRepositorioPessoa;
 import dados.repositoriosquartos.IRepositorioQuarto;
+import exceptionpousada.PessoaJaExisteException;
+import exceptionpousada.PessoaNaoEncontradoException;
 import exceptionpousada.QuartoJaExisteException;
 import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Quarto.Quarto;
@@ -17,91 +19,56 @@ public class Gerente extends Pessoa  {
 		return pessoas.getPessoa(indexPessoa);
 	}
 	//Lembrar adicionar a excetion do Repositorio Lotado 
-	public int addPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
-		int indexPessoa = pessoas.buscarPessoa(pessoa); 
-		if (indexPessoa != -1) {
-			//adicionar exception Pessoa já existe
-			return -1;
+	public void addPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) 
+		throws PessoaJaExisteException, ArrayIndexOutOfBoundsException{
+		
+		try {
+			pessoas.buscarPessoa(pessoa);
+			throw new PessoaJaExisteException();
 		}
-		else {
+		catch(PessoaNaoEncontradoException e) {
 			pessoas.addPessoa(pessoa);
-			return 1;
 		}
+		
 	}
 	//Lembrar adicionar a excetion do Repositorio Lotado
-	public int addPessoa(IRepositorioPessoa pessoas, int tipoPessoa, String nome, 
-			String cpf, String senha) {
-		int indexPessoa = pessoas.buscarPessoa(cpf); 
-		if (indexPessoa != -1) {
-			//adicionar exception Pessoa já existe
-			return -1;
+	public void addPessoa(IRepositorioPessoa pessoas, int tipoPessoa, String nome, 
+			String cpf, String senha) throws PessoaJaExisteException, ArrayIndexOutOfBoundsException{
+		try {
+			pessoas.buscarPessoa(cpf);
+			throw new PessoaJaExisteException();
 		}
-		else {
-			pessoas.criarPessoa(nome, cpf, senha, tipoPessoa);
-			return 1;
+		catch(PessoaNaoEncontradoException e) {
+			pessoas.criarPessoa(nome, cpf, senha, tipoPessoa);;
 		}
 	}
 	
-	public int removerPessoa(IRepositorioPessoa pessoas, Pessoa pessoa){
-		int result = pessoas.deletarPessoa(pessoa);
-		if (result == -1) {
-			//adicionar exception Pessoa não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
+	public void removerPessoa(IRepositorioPessoa pessoas, Pessoa pessoa)
+			throws PessoaNaoEncontradoException{
+		pessoas.deletarPessoa(pessoa);
+		
 	}
-	public int removerPessoa(IRepositorioPessoa pessoas, String cpf) {
-		int result = pessoas.deletarPessoa(cpf);
-		if (result == -1) {
-			//adicionar exception Pessoa não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
+	public void removerPessoa(IRepositorioPessoa pessoas, String cpf) 
+			throws PessoaNaoEncontradoException{
+		pessoas.deletarPessoa(cpf);
 	}
-	public int consultarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
+	public int consultarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) 
+			throws PessoaNaoEncontradoException{
 		int indexPessoa = pessoas.buscarPessoa(pessoa);
-		if (indexPessoa == -1) {
-			//adicionar exception Pessoa não existe
-			return -1;
-		}
-		else {
-			return indexPessoa;
-		}
+		return indexPessoa;
 	}
-	public int consultarPessoa(IRepositorioPessoa pessoas, String cpf) {
+	public int consultarPessoa(IRepositorioPessoa pessoas, String cpf) 
+			throws PessoaNaoEncontradoException{
 		int indexPessoa = pessoas.buscarPessoa(cpf);
-		if (indexPessoa == -1) {
-			//adicionar exception Pessoa não existe
-			return -1;
-		}
-		else {
-			return indexPessoa;
-		}
+		return indexPessoa;
 	}
-	public int atualizarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) {
-		int result = pessoas.atualizarPessoa(pessoa);
-		if (result == -1 ) {
-			//adicionar exception Pessoa não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
+	public void atualizarPessoa(IRepositorioPessoa pessoas, Pessoa pessoa) 
+			throws PessoaNaoEncontradoException{
+		pessoas.atualizarPessoa(pessoa);
 	}
-	public int atualizarPessoa(IRepositorioPessoa pessoas, String cpf, String nome,
-			String senha) {
-		int result = pessoas.atualizarPessoa(cpf, nome, senha);
-		if (result == -1 ) {
-			//adicionar exception Pessoa não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
+	public void atualizarPessoa(IRepositorioPessoa pessoas, String cpf, String nome,
+			String senha) throws PessoaNaoEncontradoException{
+		pessoas.atualizarPessoa(cpf, nome, senha);
 	}
 	
 	public Quarto getQuarto(IRepositorioQuarto quartos, int indexQuarto) {
@@ -131,73 +98,33 @@ public class Gerente extends Pessoa  {
 			quartos.adicionarQuarto(numeroQuarto, tipoQuarto);
 		}
 	}
-
-
-	public int deletarQuarto(IRepositorioQuarto quartos, Quarto quarto) throws QuartoNaoEncontradoException{
-		int result = quartos.deletarQuarto(quarto);
-		if (result == -1) {
-			//adicionar exception Quarto não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
+	public void deletarQuarto(IRepositorioQuarto quartos, Quarto quarto) 
+			throws QuartoNaoEncontradoException{
+		quartos.deletarQuarto(quarto);
 	}
-	public int deletarQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
-		int result = quartos.deletarQuarto(numeroQuarto, tipoQuarto);
-		if (result == -1) {
-			//adicionar exception Quarto não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
+	public void deletarQuarto(IRepositorioQuarto quartos, int numeroQuarto, int tipoQuarto) 
+			throws QuartoNaoEncontradoException{
+		quartos.deletarQuarto(numeroQuarto, tipoQuarto);
 	}
-	public int consultarQuarto(IRepositorioQuarto quartos, Quarto quarto) throws QuartoNaoEncontradoException{
+	public int consultarQuarto(IRepositorioQuarto quartos, Quarto quarto) 
+			throws QuartoNaoEncontradoException{
 		int indexPessoa = quartos.buscarQuarto(quarto);
-		if (indexPessoa == -1) {
-			//adicionar exception Quarto não existe
-			return -1;
-		}
-		else {
-			return indexPessoa;
-		}
+		return indexPessoa;
 	}
 	public int consultarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
 			int tipoQuarto) throws QuartoNaoEncontradoException{
 		int indexPessoa = quartos.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexPessoa == -1) {
-			//adicionar exception Quarto não existe
-			return -1;
-		}
-		else {
-			return indexPessoa;
-		}
+		return indexPessoa;
 	}
-	public int atualizarQuarto(IRepositorioQuarto quartos, Quarto quarto) throws QuartoNaoEncontradoException{
-		int result = quartos.atualizarQuarto(quarto);
-		if (result == -1 ) {
-			//adicionar exception Quarto não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
+	public void atualizarQuarto(IRepositorioQuarto quartos, Quarto quarto) throws QuartoNaoEncontradoException{
+		quartos.atualizarQuarto(quarto);
 	}
-	public int atualizarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
+	public void atualizarQuarto(IRepositorioQuarto quartos, int numeroQuarto, 
 			int tipoQuarto, float consumo, boolean ocupado, int capacidade,
 			float precoQuarto) throws QuartoNaoEncontradoException{
 		
-		int result = quartos.atualizarQuarto(numeroQuarto, tipoQuarto, 
-				consumo, ocupado, capacidade, precoQuarto);
-		
-		if (result == -1 ) {
-			//adicionar exception Quarto não existe
-			return -1;
-		}
-		else {
-			return 1;
-		}
-		
+		quartos.atualizarQuarto(numeroQuarto, tipoQuarto, consumo, ocupado, 
+				capacidade, precoQuarto);
+
 	}	
 }

@@ -36,7 +36,7 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 		else{
 			quarto = new Prime(numeroQuarto);
 		}
-		if (size <= 50) {
+		if (size <= sizeVetor-1) {
 			quartos[size] = quarto;
 			size++;
 		}
@@ -74,61 +74,45 @@ public class RepositorioQuartoVetor implements IRepositorioQuarto {
 		throw new QuartoNaoEncontradoException();
 	}
 	
-	public int deletarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
+	public void deletarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(quarto);
-		if (indexQuarto != -1) {
-			if (indexQuarto != size-1) {
-				for(int i = indexQuarto; i < size-1; i++) {
-					quartos[i] = quartos[i+1];
-				}
+		if (indexQuarto != sizeVetor-1) {
+			for(int i = indexQuarto; i < size-1; i++) {
+				quartos[i] = quartos[i+1];
 			}
-			else {
-				quartos[size-1] = null;
-			}
-			size--;
-			return 1;
 		}
-		return -1;
+		else {
+			quartos[sizeVetor-1] = null;
+		}
+		size--;
 	}
-	public int deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
+	public void deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto != -1) {
-			if (indexQuarto != size-1) {
-				for(int i = indexQuarto; i < size-1; i++) {
-					quartos[i] = quartos[i+1];
-				}
+		if (indexQuarto != sizeVetor-1) {
+			for(int i = indexQuarto; i < size-1; i++) {
+				quartos[i] = quartos[i+1];
 			}
-			else {
-				quartos[size-1] = null;
-			}
-			size--;
-			return 1;
 		}
-		return -1;
+		else {
+			quartos[sizeVetor-1] = null;
+		}
+		size--;
 	}
 	
-	public int atualizarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
+	public void atualizarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(quarto);
-		if (indexQuarto!=-1) {
-			this.getQuarto(indexQuarto).setOcupado(quarto.isOcupado());
-			this.getQuarto(indexQuarto).setConta(quarto.getConta());
-			this.getQuarto(indexQuarto).setCapacidade(quarto.getCapacidade());
-			this.getQuarto(indexQuarto).setPrecoQuarto(quarto.getPrecoQuarto());
-			return 1;
-		}
-		return -1;
+		this.getQuarto(indexQuarto).setOcupado(quarto.isOcupado());
+		this.getQuarto(indexQuarto).setConta(quarto.getConta());
+		this.getQuarto(indexQuarto).setCapacidade(quarto.getCapacidade());
+		this.getQuarto(indexQuarto).setPrecoQuarto(quarto.getPrecoQuarto());
 	}
-	public int atualizarQuarto(int numeroQuarto, int tipoQuarto, float consumo,
+	public void atualizarQuarto(int numeroQuarto, int tipoQuarto, float consumo,
 			boolean ocupado, int capacidade, float precoQuarto) 
 					throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto!=-1) {
-			this.getQuarto(indexQuarto).setOcupado(ocupado);
-			this.getQuarto(indexQuarto).setConta(consumo);
-			this.getQuarto(indexQuarto).setCapacidade(capacidade);
-			this.getQuarto(indexQuarto).setPrecoQuarto(precoQuarto);
-			return 1;
-		}
-		return -1;
+		this.getQuarto(indexQuarto).setOcupado(ocupado);
+		this.getQuarto(indexQuarto).setConta(consumo);
+		this.getQuarto(indexQuarto).setCapacidade(capacidade);
+		this.getQuarto(indexQuarto).setPrecoQuarto(precoQuarto);
 	}
 }

@@ -65,45 +65,29 @@ public class RepositorioQuartoArrayList implements IRepositorioQuarto {
 		throw new QuartoNaoEncontradoException();
 	}
 	
-	public int deletarQuarto(Quarto quarto) throws QuartoNaoEncontradoException {
+	public void deletarQuarto(Quarto quarto) throws QuartoNaoEncontradoException {
 		int indexQuarto = this.buscarQuarto(quarto);
-		if (indexQuarto != -1) {
-			quartos.remove(indexQuarto);
-			return 1;
-		}
-		return -1;
+		quartos.remove(indexQuarto);
 	}
-	public int deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException {
+	public void deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException {
 		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto > -1) {
-			quartos.remove(indexQuarto);
-			return 1;
-		}
-		return -1;
+		quartos.remove(indexQuarto);
 	}
 	
-	public int atualizarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
+	public void atualizarQuarto(Quarto quarto) throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(quarto);
-		if (indexQuarto!=-1) {
-			quartos.get(indexQuarto).setOcupado(quarto.isOcupado());
-			quartos.get(indexQuarto).setConta(quarto.getConta());
-			quartos.get(indexQuarto).setCapacidade(quarto.getCapacidade());
-			quartos.get(indexQuarto).setPrecoQuarto(quarto.getPrecoQuarto());
-			return 1;
-		}
-		return -1;
+		quartos.get(indexQuarto).setOcupado(quarto.isOcupado());
+		quartos.get(indexQuarto).setConta(quarto.getConta());
+		quartos.get(indexQuarto).setCapacidade(quarto.getCapacidade());
+		quartos.get(indexQuarto).setPrecoQuarto(quarto.getPrecoQuarto());
 	}
-	public int atualizarQuarto(int numeroQuarto, int tipoQuarto, float consumo,
+	public void atualizarQuarto(int numeroQuarto, int tipoQuarto, float consumo,
 			boolean ocupado, int capacidade, float precoQuarto) 
 					throws QuartoNaoEncontradoException{
 		int indexQuarto = this.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto!=-1) {
-			quartos.get(indexQuarto).setOcupado(ocupado);
-			quartos.get(indexQuarto).setConta(consumo);
-			quartos.get(indexQuarto).setCapacidade(capacidade);
-			quartos.get(indexQuarto).setPrecoQuarto(precoQuarto);
-			return 1;
-		}
-		return -1;
+		quartos.get(indexQuarto).setOcupado(ocupado);
+		quartos.get(indexQuarto).setConta(consumo);
+		quartos.get(indexQuarto).setCapacidade(capacidade);
+		quartos.get(indexQuarto).setPrecoQuarto(precoQuarto);
 	}
 }
