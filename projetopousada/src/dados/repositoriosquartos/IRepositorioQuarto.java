@@ -1,23 +1,23 @@
 package dados.repositoriosquartos;
 
-import negocios.*;
+import exceptionpousada.*;
 import negocios.Quarto.Quarto;
 
 public interface IRepositorioQuarto {
 	
-	int adicionarQuarto(Quarto quarto);
-	int buscarQuarto(Quarto quarto);
-	int deletarQuarto(Quarto quartos);
-	int atualizarQuarto(Quarto quarto);
+	void adicionarQuarto(Quarto quarto) throws ArrayIndexOutOfBoundsException;
+	int buscarQuarto(Quarto quarto) throws QuartoNaoEncontradoException;
+	void deletarQuarto(Quarto quartos) throws QuartoNaoEncontradoException;
+	void atualizarQuarto(Quarto quarto) throws QuartoNaoEncontradoException;
 	
-	int adicionarQuarto(int numeroQuarto, int tipoQuarto);
-	int buscarQuarto(int numeroQuarto, int tipoQuarto);
-	int deletarQuarto(int numeroQuarto, int tipoQuarto);
-	int atualizarQuarto(int numeroQuarto, int tipoQuarto, 
+	void adicionarQuarto(int numeroQuarto, int tipoQuarto) throws ArrayIndexOutOfBoundsException;
+	int buscarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException;
+	void deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException;
+	void atualizarQuarto(int numeroQuarto, int tipoQuarto, 
 			float consumo, boolean ocupado, int capacidade,
-			float precoQuarto);
+			float precoQuarto) throws QuartoNaoEncontradoException;
 	
-	int quartoVazio(int tipoQuarto);
+	int quartoVazio(int tipoQuarto) throws QuartoNaoEncontradoException;
 	Quarto getQuarto(int indexQuarto);
 	
 }

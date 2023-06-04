@@ -16,7 +16,7 @@ public class TesteRepositorioQuartoVetor {
 		Prime quartoPrime1 = new Prime(1);
 		
 		try {
-			for(int i = 0; i <= 3; i++) {
+			for(int i = 0; i <= 53; i++) {
 				quartos.adicionarQuarto(100, 1);
 				System.out.println(quartos.getQuarto(0));
 			}
@@ -28,13 +28,9 @@ public class TesteRepositorioQuartoVetor {
 			System.out.println(e.getMessage());
 		}
 		
-		quartos.adicionarQuarto(quartoPrime1);
-		System.out.println(quartos.getQuarto(1));
-		
-		quartos.adicionarQuarto(quartoNormal1);
-		int indexQuarto = quartos.buscarQuarto(quartoNormal1);
-		if(indexQuarto != -1 ) {
-			System.out.println(quartos.getQuarto(indexQuarto).toString());
+		try {
+			quartos.adicionarQuarto(quartoPrime1);
+			System.out.println(quartos.getQuarto(1));
 		}
 		catch(java.lang.ArrayIndexOutOfBoundsException e) {
 			System.out.println(e.getMessage() +" "+ e.getClass());

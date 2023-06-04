@@ -2,6 +2,7 @@ package iu_console;
 
 import java.util.Scanner;
 
+import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.FachadaPousada;
 
 
@@ -82,35 +83,39 @@ public class MenuCliente extends Menu{
         
         switch(escolha){
 			case 1: 
-				int indexQuartoN = pousada.quartoVazio(1);
-				if(indexQuartoN == -1){
-					System.out.println("Nenhum Quarto normal disponivel, por favor falar com o gerente ");
-					this.menuCheckin(pousada, scan);
-					return -1;
-				}
-				else{
+				int indexQuartoN;
+				try {
+					indexQuartoN = pousada.quartoVazio(1);
 					this.tipoDeQuarto = 1;
 					this.diarias(pousada, indexQuartoN, scan); 
 				}
-				
-			return -1;
+				catch(QuartoNaoEncontradoException e) {
+					System.out.println("Nenhum Quarto normal disponivel, por favor falar com o gerente ");
+					this.menuCheckin(pousada, scan);
+				}
+				catch(Exception e) {
+					System.out.println(e.getMessage() + " " + e.getClass());
+				}
+				return -1;
 
 			case 2: 
-				int indexQuartoP = pousada.quartoVazio(2);
-				if(indexQuartoP == -1){
+				int indexQuartoP;
+				try {
+					indexQuartoP = pousada.quartoVazio(2);
+					this.tipoDeQuarto = 2;
+					this.diarias(pousada, indexQuartoP, scan);
+				}
+				catch(QuartoNaoEncontradoException e) {
 					System.out.println("Nenhum Quarto Prime disponivel, por favor falar com o gerente ");
 					this.menuCheckin(pousada, scan);
-					return 1;
 				}
-				else{
-					this.tipoDeQuarto = 2;
-					this.diarias(pousada, indexQuartoP, scan); }
+				catch(Exception e) {
+					System.out.println(e.getMessage() + " " + e.getClass());
+				}
+				return -1;
 				
-			return -1;
-			
-			default:
-				
-			return 0;
+			default:	
+				return 0;
 
 		}
 	}

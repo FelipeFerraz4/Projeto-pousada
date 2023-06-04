@@ -2,6 +2,10 @@ package iu_console;
 
 import java.util.Scanner;
 
+import exceptionpousada.PessoaJaExisteException;
+import exceptionpousada.PessoaNaoEncontradoException;
+import exceptionpousada.QuartoJaExisteException;
+import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.FachadaPousada;
 
 
@@ -14,7 +18,7 @@ public class MenuGerente extends Menu{
 		this.indexGerente = indexGerente;
 	}
 	
-	public int UI_adicionarPessoa(FachadaPousada pousada, int tipoPessoa, Scanner scan) {
+	public void UI_adicionarPessoa(FachadaPousada pousada, int tipoPessoa, Scanner scan) {
 		if(scan.hasNextLine()) {
 			scan.nextLine();
 		}
@@ -24,41 +28,57 @@ public class MenuGerente extends Menu{
 		String nome = scan.nextLine();
 		System.out.println("Digite a senha da pessoa: ");
 		String senha = scan.nextLine();
-		// Tratar exception cadastro já existe
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa != -1) {
-			System.out.println("CPF cadastrado anteriomente");
-			return -1;
+
+		try {
+			if (tipoPessoa == 1) {
+				pousada.cadastrarNovoCliente(nome, cpf, senha);
+			}
+			else {
+				pousada.cadastrarNovoGerente(nome, cpf, senha);
+			}
+			System.out.println("Adicao concluida");
 		}
-		if (tipoPessoa == 1) {
-			
-			pousada.cadastrarNovoCliente(nome, cpf, senha);
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Espaco para cadastro lotado");
 		}
-		else {
-			pousada.cadastrarNovoGerente(nome, cpf, senha);
+		catch(PessoaJaExisteException e) {
+			System.out.println(e.getMessage());
 		}
-		System.out.println("Adicao concluida");
-		return 1;
+		catch(Exception e ) {
+			System.out.println(e.getMessage() + " " + e.getClass());
+		}
 	}
-	public int UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero do quarto: ");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
+	public void UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
+		try {
+			System.out.println("Digite o numero do quarto: ");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+			if (tipoQuarto == 1) {
+				pousada.cadastrarQuartoNormal(numeroQuarto);
+				System.out.println("Adicao concluida");
+			}
+			else {
+				pousada.cadastrarQuartoPrime(numeroQuarto);
+				System.out.println("Adicao concluida");
+			}
 		}
-		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto != -1) {
-			System.out.println("Numero do quarto cadastrado anteriomente");
-			return -1;
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("A pousada ja esta cheia, construa novos quartos");
 		}
-		if (tipoQuarto == 1) {
-			pousada.cadastrarQuartoNormal(numeroQuarto);
+		catch(QuartoJaExisteException e) {
+			System.out.println(e.getMessage());
 		}
-		else {
-			pousada.cadastrarQUartoPrime(numeroQuarto);
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
 		}
-		System.out.println("Adicao concluida");
-		return 1;
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
+		}
 	}
 	
 	public void UI_ConsultarPessoa(FachadaPousada pousada, Scanner scan) {
@@ -67,28 +87,42 @@ public class MenuGerente extends Menu{
 		}
 		System.out.println("Digite o cpf: ");
 		String cpf = scan.nextLine();
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa!=-1) {
+		int indexPessoa;
+		try {
+			indexPessoa = pousada.buscarPessoa(cpf);
 			System.out.println(pousada.toStringPessoa(indexPessoa));
 			System.out.println("Consulta concluida");
 		}
-		else {
-			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+		catch(PessoaNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_ConsultarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero do quarto: ");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
-		}
-		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto!=-1) {
+		try {
+			System.out.println("Digite o numero do quarto: ");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+			int indexQuarto;
+			indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
 			System.out.println(pousada.toStringQuarto(indexQuarto));
 			System.out.println("Consulta concluida");
 		}
-		else {
-			System.out.println("Operacao invalida, quarto ainda nao cadastrado");
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+		}
+		catch (QuartoNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_ModificarPessoa(FachadaPousada pousada, Scanner scan) {
@@ -97,8 +131,9 @@ public class MenuGerente extends Menu{
 		}
 		System.out.println("Digite o CPF da pessoa: ");
 		String cpf = scan.nextLine();
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if(indexPessoa != -1) {
+		int indexPessoa;
+		try {
+			indexPessoa = pousada.buscarPessoa(cpf);
 			System.out.println(pousada.toStringPessoa(indexPessoa));
 			String[] options = {"Modificar senha", "Modificar nome", "Voltar"};
 			int option = this.printOption(options, options.length, scan);
@@ -119,22 +154,31 @@ public class MenuGerente extends Menu{
 				System.out.println("Modificacao concluida");
 			}
 		}
-		else {
-			System.out.println("Pessoa nao encontrada");
+		catch(PessoaNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_ModificarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero de quarto Normal");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
-		}
-		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto!=-1) {
+		try {
+			System.out.println("Digite o numero de quarto Normal");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+			
+			int indexQuarto;
+			indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
+			
 			System.out.println(pousada.toStringQuarto(indexQuarto));
-			String[] options = {"Modificar consumo", "Modificar capacidade",
+			
+			String[] options = {"Modificar conta", "Modificar capacidade",
 					"Modificar preco do quarto","Modificar ocupacao", "Voltar"};
+			
 			int option = this.printOption(options, options.length, scan);
+			
 			if (option==1) {
 				System.out.println("Digite o novo valor do consumo: ");
 				float consumo = scan.nextFloat();
@@ -157,8 +201,17 @@ public class MenuGerente extends Menu{
 				System.out.println("Modificacao concluida");
 			}
 		}
-		else {
-			System.out.println("Quarto nao encontrado");
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+		}
+		catch(QuartoNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_DeletarPessoa(FachadaPousada pousada, Scanner scan) {
@@ -167,8 +220,9 @@ public class MenuGerente extends Menu{
 		}
 		System.out.println("Digite o cpf: ");
 		String cpf = scan.nextLine();
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa!=-1) {
+		int indexPessoa;
+		try {
+			indexPessoa = pousada.buscarPessoa(cpf);
 			System.out.println(pousada.toStringPessoa(indexPessoa));
 			System.out.println("Confirmar remocao [S/N]");
 			String confirmation = scan.nextLine();
@@ -180,18 +234,23 @@ public class MenuGerente extends Menu{
 				System.out.println("Remocao cancelada");
 			}
 		}
-		else {
-			System.out.println("Operacao invalida, CPF ainda nao cadastrado");
+		catch(PessoaNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	public void UI_DeletarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero do quarto: ");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
-		}
-		int indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
-		if (indexQuarto!=-1) {
+		try {
+			System.out.println("Digite o numero do quarto: ");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+			
+			int indexQuarto;
+			indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
 			System.out.println(pousada.toStringQuarto(indexQuarto));
 			System.out.println("Confirmar remocao [S/N]");
 			String confirmation = scan.nextLine();
@@ -203,8 +262,17 @@ public class MenuGerente extends Menu{
 				System.out.println("Remocao cancelada");
 			}
 		}
-		else {
-			System.out.println("Operacao invalida, quarto ainda nao cadastrado");
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+		}
+		catch(QuartoNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
 	}
 	

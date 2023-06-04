@@ -1,11 +1,7 @@
 package testeClass;
 
-import dados.*;
 import dados.repositoriosquartos.*;
-
-
 import exceptionpousada.QuartoNaoEncontradoException;
-
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;
 
@@ -18,8 +14,17 @@ public class TesteRepositorioQuartoArrayList {
 		Normal quartoNormal1 = new Normal(1);
 		Prime quartoPrime1 = new Prime(1);
 		
-		quartos.adicionarQuarto(100, 1);
-		System.out.println(quartos.getQuarto(0));
+		try {
+			quartos.adicionarQuarto(100, 1);
+			System.out.println(quartos.getQuarto(0));
+			quartos.adicionarQuarto(100, 1);
+			System.out.println(quartos.getQuarto(0));
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.println(e.getMessage());
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		quartos.adicionarQuarto(quartoPrime1);
 		System.out.println(quartos.getQuarto(1));
@@ -78,7 +83,7 @@ public class TesteRepositorioQuartoArrayList {
 		}
 		
 		System.out.println(quartos.getQuarto(0));
-		Prime quarto = (Prime) quartos.getQuarto(0);
+		Normal quarto = (Normal) quartos.getQuarto(0);
 		quarto.setConta(1000);
 		try {
 			quartos.atualizarQuarto(quarto);

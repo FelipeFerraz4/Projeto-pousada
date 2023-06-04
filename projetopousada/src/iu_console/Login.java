@@ -1,6 +1,9 @@
 package iu_console;
 
 import java.util.Scanner;
+
+import exceptionpousada.PessoaJaExisteException;
+import exceptionpousada.PessoaNaoEncontradoException;
 import negocios.FachadaPousada;
 
 public class Login {
@@ -14,18 +17,26 @@ public class Login {
 		System.out.println("Digite a sua senha: ");
 		String senha = scan.nextLine();
 		//Tratar a exception de senha não existe e de senha errada
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa == -1) {
+		int indexPessoa;
+		try {
+			indexPessoa = pousada.buscarPessoa(cpf);
+			int verifyPassword = pousada.verificarSenha(indexPessoa, senha);
+			if (verifyPassword == -1) {
+				return -1;
+			}
+			return indexPessoa;
+		}
+		catch(PessoaNaoEncontradoException e) {
 			return -1;
 		}
-		int verifyPassword = pousada.verificarSenha(indexPessoa, senha);
-		if (verifyPassword == -1) {
-			return -1;
+		catch(Exception e) {
+			System.out.println(e.getMessage() + " " + e.getClass());
 		}
-		return indexPessoa;
+		return -1;
+
 	}
 	
-	public int cadastrar(FachadaPousada pousada, Scanner scan) {
+	public void cadastrar(FachadaPousada pousada, Scanner scan) {
 		if(scan.hasNextLine()) {
 			scan.nextLine();
 		}
@@ -36,12 +47,19 @@ public class Login {
 		System.out.println("Digite uma senha: ");
 		String senha = scan.nextLine();
 		// Tratar exception cadastro já existe
-		int indexPessoa = pousada.buscarPessoa(cpf);
-		if (indexPessoa != -1) {
-			return -1;
+		try {
+			pousada.cadastrarNovoCliente(nome, cpf, senha);
+			System.out.println("Cadastro do cliente feito");
 		}
-		pousada.cadastrarNovoCliente(nome, cpf, senha);
-		return 1;
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Espaco para cadastro lotado");
+		}
+		catch(PessoaJaExisteException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e ) {
+			System.out.println(e.getMessage() + " " + e.getClass());
+		}
 	}
 
 	public int reservarQuarto(FachadaPousada pousada){
