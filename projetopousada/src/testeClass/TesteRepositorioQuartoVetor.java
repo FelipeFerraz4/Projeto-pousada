@@ -1,6 +1,5 @@
 package testeClass;
 
-import dados.repositoriospessoas.*;
 import dados.repositoriosquartos.*;
 import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Quarto.Normal;
@@ -16,7 +15,7 @@ public class TesteRepositorioQuartoVetor {
 		Prime quartoPrime1 = new Prime(1);
 		
 		try {
-			for(int i = 0; i <= 53; i++) {
+			for(int i = 0; i <= 3; i++) {
 				quartos.adicionarQuarto(100, 1);
 				System.out.println(quartos.getQuarto(0));
 			}
@@ -33,7 +32,7 @@ public class TesteRepositorioQuartoVetor {
 			System.out.println(quartos.getQuarto(1));
 		}
 		catch(java.lang.ArrayIndexOutOfBoundsException e) {
-			System.out.println(e.getMessage() +" "+ e.getClass());
+			System.out.println("vetor lodado");
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -50,7 +49,7 @@ public class TesteRepositorioQuartoVetor {
 			}
 		}
 		catch(java.lang.ArrayIndexOutOfBoundsException e){
-			System.out.println(e.getMessage() +" "+ e.getClass());
+			System.out.println("vetor lodado");
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -60,7 +59,7 @@ public class TesteRepositorioQuartoVetor {
 			quartos.deletarQuarto(quartoNormal1);
 		} catch (QuartoNaoEncontradoException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Erro na delecao");
 		}
 			
 		try {
