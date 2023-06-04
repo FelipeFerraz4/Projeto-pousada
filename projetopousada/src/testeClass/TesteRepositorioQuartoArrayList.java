@@ -2,7 +2,10 @@ package testeClass;
 
 import dados.*;
 import dados.repositoriosquartos.*;
-import negocios.*;
+
+
+import exceptionpousada.QuartoNaoEncontradoException;
+
 import negocios.Quarto.Normal;
 import negocios.Quarto.Prime;
 
@@ -22,61 +25,75 @@ public class TesteRepositorioQuartoArrayList {
 		System.out.println(quartos.getQuarto(1));
 		
 		quartos.adicionarQuarto(quartoNormal1);
-		int indexQuarto = quartos.buscarQuarto(quartoNormal1);
-		if(indexQuarto != -1 ) {
+		int indexQuarto = -1;
+		try {
+			indexQuarto = quartos.buscarQuarto(quartoNormal1);
 			System.out.println(quartos.getQuarto(indexQuarto).toString());
-		}
-		else {
-			System.out.println("Quarto informadao nao existe");
+		} catch (QuartoNaoEncontradoException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("Quarto informadao nao existe\n");
 		}
 		
-		int result = quartos.deletarQuarto(quartoNormal1);
-		if (result==1) {
-			System.out.println("Quarto deletado");
-		}
-		else {
-			System.out.println("Problema na delecao do Quarto");
+		try {
+			quartos.deletarQuarto(quartoNormal1);
+		} catch (QuartoNaoEncontradoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 			
-		indexQuarto = quartos.buscarQuarto(quartoNormal1);
-		if(indexQuarto != -1 ) {
-			System.out.println(quartos.getQuarto(indexQuarto));
-		}
-		else {
-			System.out.println("Quarto informadao nao existe");
-		}
-		
-		indexQuarto = quartos.buscarQuarto(100, 1);
-		if(indexQuarto > -1 ) {
-			System.out.println(quartos.getQuarto(indexQuarto));
-		}
-		else {
-			System.out.println("Quarto informadao nao existe");
+		try {
+			indexQuarto = quartos.buscarQuarto(quartoNormal1);
+			if(indexQuarto != -1 ) {
+				System.out.println(quartos.getQuarto(indexQuarto));
+			}
+			else {
+				System.out.println("Quarto informadao nao existe\n");
+			}
+		} catch (QuartoNaoEncontradoException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("Quarto nao encontrado\n");
 		}
 		
-		result = quartos.deletarQuarto(100, 1);
-		if (result==1) {
-			System.out.println("Quarto deletado");
+		try {
+			indexQuarto = quartos.buscarQuarto(100, 1);
+			System.out.println(quartos.getQuarto(indexQuarto));
+		} catch (QuartoNaoEncontradoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		else {
-			System.out.println("Problema na delecao do Quarto");
+		
+		try {
+			quartos.deletarQuarto(100, 1);
+		} catch (QuartoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Quarto informadao nao existe\n");
 		}
 			
-		indexQuarto = quartos.buscarQuarto(100, 1);
-		if(indexQuarto > -1 ) {
+		try {
+			indexQuarto = quartos.buscarQuarto(100, 1);
 			System.out.println(quartos.getQuarto(indexQuarto));
-		}
-		else {
-			System.out.println("Quarto informadao nao existe");
+		} catch (QuartoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Quarto informadao nao existe\n");
 		}
 		
 		System.out.println(quartos.getQuarto(0));
 		Prime quarto = (Prime) quartos.getQuarto(0);
 		quarto.setConta(1000);
-		quartos.atualizarQuarto(quarto);
+		try {
+			quartos.atualizarQuarto(quarto);
+		} catch (QuartoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Quarto informadao nao existe\n");
+		}
 		System.out.println(quartos.getQuarto(0));
 		
-		indexQuarto = quartos.quartoVazio(2);
+		try {
+			indexQuarto = quartos.quartoVazio(2);
+		} catch (QuartoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Quarto informadao nao existe\n");
+		}
 		System.out.println(quartos.getQuarto(indexQuarto));
 		
 	}
