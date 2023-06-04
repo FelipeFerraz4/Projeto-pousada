@@ -49,12 +49,12 @@ public class MenuGerente extends Menu{
 		}
 	}
 	public void UI_adicionarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero do quarto: ");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
-		}
 		try {
+			System.out.println("Digite o numero do quarto: ");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
 			if (tipoQuarto == 1) {
 				pousada.cadastrarQuartoNormal(numeroQuarto);
 				System.out.println("Adicao concluida");
@@ -69,6 +69,12 @@ public class MenuGerente extends Menu{
 		}
 		catch(QuartoJaExisteException e) {
 			System.out.println(e.getMessage());
+		}
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage() + " " + e.getClass());
@@ -95,16 +101,22 @@ public class MenuGerente extends Menu{
 		}
 	}
 	public void UI_ConsultarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero do quarto: ");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
-		}
-		int indexQuarto;
 		try {
+			System.out.println("Digite o numero do quarto: ");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+			int indexQuarto;
 			indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
 			System.out.println(pousada.toStringQuarto(indexQuarto));
 			System.out.println("Consulta concluida");
+		}
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
 		}
 		catch (QuartoNaoEncontradoException e) {
 			System.out.println(e.getMessage());
@@ -150,18 +162,19 @@ public class MenuGerente extends Menu{
 		}
 	}
 	public void UI_ModificarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero de quarto Normal");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
-		}
-		int indexQuarto;
 		try {
+			System.out.println("Digite o numero de quarto Normal");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+			
+			int indexQuarto;
 			indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
 			
 			System.out.println(pousada.toStringQuarto(indexQuarto));
 			
-			String[] options = {"Modificar consumo", "Modificar capacidade",
+			String[] options = {"Modificar conta", "Modificar capacidade",
 					"Modificar preco do quarto","Modificar ocupacao", "Voltar"};
 			
 			int option = this.printOption(options, options.length, scan);
@@ -186,6 +199,12 @@ public class MenuGerente extends Menu{
 			}
 			if (option != 5) {
 				System.out.println("Modificacao concluida");
+			}
+		}
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
 			}
 		}
 		catch(QuartoNaoEncontradoException e) {
@@ -223,13 +242,14 @@ public class MenuGerente extends Menu{
 		}
 	}
 	public void UI_DeletarQuarto(FachadaPousada pousada, int tipoQuarto, Scanner scan) {
-		System.out.println("Digite o numero do quarto: ");
-		int numeroQuarto = scan.nextInt();
-		if(scan.hasNextLine()) {
-			scan.nextLine();
-		}
-		int indexQuarto;
 		try {
+			System.out.println("Digite o numero do quarto: ");
+			int numeroQuarto = scan.nextInt();
+			if(scan.hasNextLine()) {
+				scan.nextLine();
+			}
+			
+			int indexQuarto;
 			indexQuarto = pousada.buscarQuarto(numeroQuarto, tipoQuarto);
 			System.out.println(pousada.toStringQuarto(indexQuarto));
 			System.out.println("Confirmar remocao [S/N]");
@@ -240,6 +260,12 @@ public class MenuGerente extends Menu{
 			}
 			else {
 				System.out.println("Remocao cancelada");
+			}
+		}
+		catch(java.util.InputMismatchException e ) {
+			System.out.println("operacao invalida, numero digitado invalida");
+			if(scan.hasNextLine()) {
+				scan.nextLine();
 			}
 		}
 		catch(QuartoNaoEncontradoException e) {

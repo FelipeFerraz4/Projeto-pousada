@@ -67,6 +67,11 @@ public class NegocioCliente {
 	public String dadosDoCliente(int indexPessoa){
 		//String cliente = pessoas.getPessoa(indexPessoa).toString();
 		//return cliente;
+		if (pessoas.getPessoa(indexPessoa).getQuarto() != null) {
+			System.out.println("ola");
+			String dadosQuarto = pessoas.getPessoa(indexPessoa).getQuarto().toString();
+			return pessoas.getPessoa(indexPessoa).toString() + dadosQuarto;
+		}
 		return pessoas.getPessoa(indexPessoa).toString();
 	}
 	public int isCheckin (int indexCliente){
