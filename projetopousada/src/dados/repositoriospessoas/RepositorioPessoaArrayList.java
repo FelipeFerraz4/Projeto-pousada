@@ -2,7 +2,7 @@ package dados.repositoriospessoas;
 
 import java.util.ArrayList;
 
-import negocios.*;
+import exceptionpousada.PessoaNaoEncontradoException;
 import negocios.Pessoa.Cliente;
 import negocios.Pessoa.Gerente;
 import negocios.Pessoa.Pessoa;
@@ -33,57 +33,43 @@ public class RepositorioPessoaArrayList implements IRepositorioPessoa {
 		pessoas.add(pessoa);
 	}
 	
-	public int buscarPessoa(String cpf) {
+	public int buscarPessoa(String cpf) throws PessoaNaoEncontradoException{
 		for (int i = 0; i < pessoas.size(); i++) {
 			if (pessoas.get(i).getCPF().equals(cpf)) {
 				return i;
 			}
 		}
-		return -1;
+		throw new PessoaNaoEncontradoException();
 	}
-	public int buscarPessoa(Pessoa pessoa) {
+	public int buscarPessoa(Pessoa pessoa) throws PessoaNaoEncontradoException{
 		for (int i = 0; i < pessoas.size(); i++) {
 			if (pessoas.get(i).equals(pessoa)) {
 				return i;
 			}
 		}
-		return -1;
+		throw new PessoaNaoEncontradoException();
 	}
 
-	public int deletarPessoa(String cpf) {
+	public void deletarPessoa(String cpf) throws PessoaNaoEncontradoException{
 		int indeceQuarto = this.buscarPessoa(cpf);
-		if (indeceQuarto > -1) {
-			pessoas.remove(indeceQuarto);
-			return 1;
-		}
-		return -1;
+		pessoas.remove(indeceQuarto);
 	}
-	public int deletarPessoa(Pessoa pessoa) {
-		if (pessoas.remove(pessoa)) {
-			return 1;
-		}
-		return -1;
+	public void deletarPessoa(Pessoa pessoa) throws PessoaNaoEncontradoException{
+		int indeceQuarto = this.buscarPessoa(pessoa);
+		pessoas.remove(indeceQuarto);
 	}
 
-	public int atualizarPessoa(Pessoa pessoa) {
+	public void atualizarPessoa(Pessoa pessoa) throws PessoaNaoEncontradoException{
 		int indicePessoa = this.buscarPessoa(pessoa);
-		if (indicePessoa != -1) {
-			pessoas.get(indicePessoa).setNome(pessoa.getNome());
-			pessoas.get(indicePessoa).setSenha(pessoa.getSenha());
-			return 1;
-		}
-		return -1;
+		pessoas.get(indicePessoa).setNome(pessoa.getNome());
+		pessoas.get(indicePessoa).setSenha(pessoa.getSenha());
 		
 	}
-	public int atualizarPessoa(String cpf,String nome, String senha){
+	public void atualizarPessoa(String cpf,String nome, String senha)
+			throws PessoaNaoEncontradoException{
 		int indicePessoa = this.buscarPessoa(cpf);
-		if (indicePessoa != 1) {
-			pessoas.get(indicePessoa).setNome(nome);
-			pessoas.get(indicePessoa).setSenha(senha);
-			return 1;
-		}
-		return -1;
-
+		pessoas.get(indicePessoa).setNome(nome);
+		pessoas.get(indicePessoa).setSenha(senha);
 	}
 
 }

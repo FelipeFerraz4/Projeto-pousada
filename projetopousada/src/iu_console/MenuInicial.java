@@ -44,17 +44,11 @@ public class MenuInicial extends Menu {
                     }
                 }
                 else {
-                	System.out.println("Conta nao encontrada");
+                	System.out.println("Conta nao encontrada ou dados incorreta");
                 	return -1;
                 }
         	case 2:
-        		int opition = login.cadastrar(pousada, scan);
-            	if (opition == 1) {
-            		System.out.println("Cadastro do cliente feito");
-            	}
-            	else {
-            		System.out.println("operacao invalida, cliente cadastrado anteriomente");
-            	}
+        		login.cadastrar(pousada, scan);
                 return -1;
         	default:
         		System.out.println("Programa finalizado");

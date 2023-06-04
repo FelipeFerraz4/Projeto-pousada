@@ -41,10 +41,21 @@ public class Menu {
     		System.out.println((i+1) + " - " + option[i]);
     	}
     	do{
-        	System.out.println("Digite a sua alternativa: ");
-        	escolha = scan.nextInt();
-        	if(escolha>numberOption || escolha<1) {
-        		System.out.println("Alternativa invalida");
+        	try {
+        		System.out.println("Digite a sua alternativa: ");
+            	escolha = scan.nextInt();
+            	if(escolha>numberOption || escolha<1) {
+            		System.out.println("Alternativa invalida");
+            	}
+        	}
+        	catch(java.util.InputMismatchException e) {
+        		System.out.println("opticao invalida");
+        		if(scan.hasNextLine()) {
+        			scan.nextLine();
+        		}
+        	}
+        	catch(Exception e) {
+        		System.out.println(e.getMessage());
         	}
         }while(escolha>numberOption || escolha<1);
     	return escolha;

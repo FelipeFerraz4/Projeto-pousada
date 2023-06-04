@@ -4,8 +4,11 @@ import dados.repositoriospessoas.IRepositorioPessoa;
 import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
 import dados.repositoriosquartos.RepositorioQuartoArrayList;
-import negocios.Pessoa.Cliente;
-import negocios.Pessoa.Gerente;
+import exceptionpousada.PessoaJaExisteException;
+import exceptionpousada.PessoaNaoEncontradoException;
+import exceptionpousada.QuartoJaExisteException;
+import exceptionpousada.QuartoNaoEncontradoException;
+
 
 public class FachadaPousada {
 	
@@ -17,30 +20,33 @@ public class FachadaPousada {
 		IRepositorioQuarto repositorioQuarto = new RepositorioQuartoArrayList();
 		this.adm = new NegocioGerente(repositorioPessoa, repositorioQuarto);
 		this.user = new NegocioCliente(repositorioPessoa, repositorioQuarto);
-		this.adm.cadastrarNovoGerente("admPousada", "00000","12345");
 	}	
-	public void cadastrarNovoCliente(String nome, String cpf, String senha) {
+	public void cadastrarNovoCliente(String nome, String cpf, String senha) 
+			throws PessoaJaExisteException, ArrayIndexOutOfBoundsException{
 		adm.cadastrarNovoCliente(nome, cpf, senha);
 	}
-	public void cadastrarNovoGerente(String nome, String cpf, String senha) {
+	public void cadastrarNovoGerente(String nome, String cpf, String senha) 
+			throws PessoaJaExisteException, ArrayIndexOutOfBoundsException{
 		adm.cadastrarNovoGerente(nome, cpf, senha);
 	}
-	public void cadastrarQuartoNormal(int numeroQuarto) {
+	public void cadastrarQuartoNormal(int numeroQuarto) throws ArrayIndexOutOfBoundsException,
+	QuartoJaExisteException{
 		adm.cadastrarQuartoNormal(numeroQuarto);
 	}
-	public void cadastrarQUartoPrime(int numeroQuarto) {
+	public void cadastrarQuartoPrime(int numeroQuarto) throws ArrayIndexOutOfBoundsException,
+	QuartoJaExisteException{
 		adm.cadastrarQuartoPrime(numeroQuarto);
 	}
-	public int deletarPessoa(String cpf) {
-		return adm.deletarPessoa(cpf);
+	public void deletarPessoa(String cpf) throws PessoaNaoEncontradoException{
+		adm.deletarPessoa(cpf);
 	}
-	public int deletarQuarto(int numeroQuarto, int tipoQuarto) {
-		return adm.deletarQuarto(numeroQuarto, tipoQuarto);
+	public void deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
+		adm.deletarQuarto(numeroQuarto, tipoQuarto);
 	}
-	public int buscarPessoa(String cpf) {
+	public int buscarPessoa(String cpf) throws PessoaNaoEncontradoException{
 		return adm.buscarPessoa(cpf);
 	}
-	public int buscarQuarto(int numeroQuarto, int tipoQuarto) {
+	public int buscarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
 		return adm.buscarQuarto(numeroQuarto, tipoQuarto);
 	}
 	public void modificarPessoaNome(int indexPessoa, String nome) {
@@ -73,7 +79,7 @@ public class FachadaPousada {
 	public String toStringQuarto(int indexQuarto) {
 		return adm.toStringQuarto(indexQuarto);
 	}
-	public int quartoVazio(int tipoQuarto){
+	public int quartoVazio(int tipoQuarto) throws QuartoNaoEncontradoException{
 		return user.quartovazio(tipoQuarto);
 	}
 	public int buscarQuarto(int indexQuarto){

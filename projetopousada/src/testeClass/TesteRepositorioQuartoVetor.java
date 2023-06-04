@@ -14,19 +14,45 @@ public class TesteRepositorioQuartoVetor {
 		Normal quartoNormal1 = new Normal(1);
 		Prime quartoPrime1 = new Prime(1);
 		
-		quartos.adicionarQuarto(100, 1);
-		System.out.println(quartos.getQuarto(0));
-		
-		quartos.adicionarQuarto(quartoPrime1);
-		System.out.println(quartos.getQuarto(1));
-		
-		quartos.adicionarQuarto(quartoNormal1);
-		int indexQuarto = quartos.buscarQuarto(quartoNormal1);
-		if(indexQuarto != -1 ) {
-			System.out.println(quartos.getQuarto(indexQuarto).toString());
+		try {
+			for(int i = 0; i <= 53; i++) {
+				quartos.adicionarQuarto(100, 1);
+				System.out.println(quartos.getQuarto(0));
+			}
 		}
-		else {
-			System.out.println("Quarto informadao nao existe");
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		try {
+			quartos.adicionarQuarto(quartoPrime1);
+			System.out.println(quartos.getQuarto(1));
+		}
+		catch(java.lang.ArrayIndexOutOfBoundsException e) {
+			System.out.println(e.getMessage() +" "+ e.getClass());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		int indexQuarto;
+		try {
+			quartos.adicionarQuarto(quartoNormal1);
+			indexQuarto = quartos.buscarQuarto(quartoNormal1);
+			if(indexQuarto != -1 ) {
+				System.out.println(quartos.getQuarto(indexQuarto).toString());
+			}
+			else {
+				System.out.println("Quarto informadao nao existe");
+			}
+		}
+		catch(java.lang.ArrayIndexOutOfBoundsException e){
+			System.out.println(e.getMessage() +" "+ e.getClass());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 		
 		int result = quartos.deletarQuarto(quartoNormal1);
@@ -70,12 +96,12 @@ public class TesteRepositorioQuartoVetor {
 		}
 		
 		System.out.println(quartos.getQuarto(0));
-		Prime quarto = (Prime) quartos.getQuarto(0);
+		Normal quarto = (Normal) quartos.getQuarto(0);
 		quarto.setConta(1000);
 		quartos.atualizarQuarto(quarto);
 		System.out.println(quartos.getQuarto(0));
 		
-		indexQuarto = quartos.quartoVazio(2);
+		indexQuarto = quartos.quartoVazio(1);
 		System.out.println(quartos.getQuarto(indexQuarto));
 		
 	}

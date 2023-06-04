@@ -1,9 +1,11 @@
 package negocios;
 
 import dados.repositoriospessoas.IRepositorioPessoa;
-import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
-import dados.repositoriosquartos.RepositorioQuartoArrayList;
+import exceptionpousada.PessoaJaExisteException;
+import exceptionpousada.PessoaNaoEncontradoException;
+import exceptionpousada.QuartoJaExisteException;
+import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Pessoa.Cliente;
 import negocios.Pessoa.Gerente;
 import negocios.Quarto.Normal;
@@ -40,38 +42,42 @@ public class NegocioGerente {
 		quartos.adicionarQuarto(quartoPrime1);
 		quartos.adicionarQuarto(quartoPrime2);
 	}
-	public void cadastrarNovoCliente(String nome, String cpf, String senha) {
+	public void cadastrarNovoCliente(String nome, String cpf, String senha) 
+			throws PessoaJaExisteException, ArrayIndexOutOfBoundsException{
 		Cliente cliente = new Cliente(nome, cpf, senha);
 		//tratar a exception de addPessoa
 		gerente.addPessoa(pessoas, cliente);
 	}
-	public void cadastrarNovoGerente(String nome, String cpf, String senha) {
+	public void cadastrarNovoGerente(String nome, String cpf, String senha) 
+			throws PessoaJaExisteException, ArrayIndexOutOfBoundsException{
 		Gerente gerente = new Gerente(nome, cpf, senha);
 		//tratar a exception de addPessoa
 		gerente.addPessoa(pessoas, gerente);
 	}
-	public void cadastrarQuartoNormal(int numeroQuarto) {
+	public void cadastrarQuartoNormal(int numeroQuarto) throws ArrayIndexOutOfBoundsException,
+	QuartoJaExisteException{
 		Normal quarto = new Normal(numeroQuarto);
 		//tratar a exception de addQuarto
 		gerente.addQuarto(quartos, quarto);
 	}
-	public void cadastrarQuartoPrime(int numeroQuarto) {
+	public void cadastrarQuartoPrime(int numeroQuarto) throws ArrayIndexOutOfBoundsException, 
+	QuartoJaExisteException{
 		Prime quarto = new Prime(numeroQuarto);
 		//tratar a exception de addQuarto
 		gerente.addQuarto(quartos, quarto);
 	}
 	
-	public int buscarPessoa(String cpf) {
+	public int buscarPessoa(String cpf) throws PessoaNaoEncontradoException{
 		return gerente.consultarPessoa(pessoas, cpf);
 	}
-	public int buscarQuarto(int numeroQuarto, int tipoQuarto) {
+	public int buscarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
 		return gerente.consultarQuarto(quartos, numeroQuarto, tipoQuarto);
 	}
-	public int deletarPessoa(String cpf) {
-		return gerente.removerPessoa(pessoas, cpf);
+	public void deletarPessoa(String cpf) throws PessoaNaoEncontradoException{
+		gerente.removerPessoa(pessoas, cpf);
 	}
-	public int deletarQuarto(int numeroQuarto, int tipoQuarto) {
-		return gerente.deletarQuarto(quartos, numeroQuarto, tipoQuarto);
+	public void deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
+		gerente.deletarQuarto(quartos, numeroQuarto, tipoQuarto);
 	}
 	
 	public void modificarPessoaNome(int indexPessoa, String nome) {
