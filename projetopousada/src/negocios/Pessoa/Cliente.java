@@ -1,6 +1,5 @@
 package negocios.Pessoa;
 
-import java.util.Scanner;
 import dados.repositoriospessoas.IRepositorioPessoa;
 import dados.repositoriosquartos.IRepositorioQuarto;
 import negocios.*;

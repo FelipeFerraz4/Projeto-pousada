@@ -123,18 +123,32 @@ public class MenuCliente extends Menu{
 		
 		System.out.println("quantas diarias deseja reservar?");
 		int d;
-		do {
-			d = scan.nextInt();
-			if (d < 1 || d >15) {
+		try{
+			do {
+				d = scan.nextInt();
+				if (d < 1 || d >15) {
 					System.out.println("o maximo de diarias possivel sao 15 por pessoa!");
 					System.out.println("Por favor, digite a quantidadede de diarias desejadas: ");
 				}
-			} while( d < 1 || d >15);
+			
+			
+			 }while( d < 1 || d >15);
 			this.indexQuarto = indexQuarto;
 			pousada.reservarQuarto(indexQuarto, d,this.tipoDeQuarto);
 			pousada.setCheckin(this.cliente, true);
 			pousada.setHistorico(cliente);
-			System.out.println("Reserva Realizada");
+			System.out.println("Reserva Realizada");}
+			
+			catch(java.util.InputMismatchException e) {
+        		System.out.println("opticao invalida");
+        		if(scan.hasNextLine()) {
+        			scan.nextLine();
+        		}
+        	}
+
+			catch(Exception e) {
+				System.out.println(e.getMessage() + "  " + e.getClass());
+			}
 
 	}
 
@@ -149,35 +163,47 @@ public class MenuCliente extends Menu{
 			
 			switch(escolha){
 				case 1:
+					try {
 					System.out.println("Qual a quantidade?");
 					quantidade = scan.nextInt();
 					if(quantidade>=0) {
 						pousada.sevircoDeQuarto(1,this.indexQuarto , quantidade);
+					}}
+					catch(java.util.InputMismatchException e) {
+						System.out.println("opticao invalida");
+						if(scan.hasNextLine()) {
+							scan.nextLine();
+						}
 					}
-					else {
-						System.out.println("Quantida invalida");
+					catch(Exception e) {
+						System.out.println(e.getMessage() + " " + e.getClass());
 					}
 					return -1;
 
 				case 2:
-					System.out.println("Qual a quantidade?");
-					quantidade = scan.nextInt();
-					if(quantidade>=0) {
+					try{
+						System.out.println("Qual a quantidade?");
+						quantidade = scan.nextInt();
+						if(quantidade>=0) {
 						pousada.sevircoDeQuarto(2,this.indexQuarto , quantidade);
+						}
 					}
-					else {
-						System.out.println("Quantida invalida");
+					catch(java.util.InputMismatchException e) {
+						System.out.println("opticao invalida");
+						if(scan.hasNextLine()) {
+							scan.nextLine();
+						}
 					}
-
+					catch(Exception e) {
+						System.out.println(e.getMessage() + " " + e.getClass());
+					}
 					return -1;
-			
 				default:
 				
-
 					return 0;
-			
 			}
 		}
+		
 			
 		else{
 			int quantidade;
@@ -189,27 +215,43 @@ public class MenuCliente extends Menu{
 
 			switch(escolha){
 				case 1:
-					
+					try{
 					System.out.println("Qual a quantidade?");
 					quantidade = scan.nextInt();
 					if(quantidade>=0) {
 						pousada.sevircoDeQuarto(3, this.indexQuarto, quantidade);
 					}
-					else {
-						System.out.println("Quantida invalida");
 					}
+					catch(java.util.InputMismatchException e) {
+						System.out.println("opticao invalida");
+						if(scan.hasNextLine()) {
+							scan.nextLine();
+						}
+					}
+					catch(Exception e) {
+						System.out.println(e.getMessage() + " " + e.getClass());
+					}
+					
 				return -1;
 
 				case 2:
+					try{
 					System.out.println("Qual a quantidade?");
 					quantidade = scan.nextInt();
 					if(quantidade>=0) {
 						pousada.sevircoDeQuarto(4, this.indexQuarto , quantidade);
 					}
-					else {
-						System.out.println("Quantida invalida");
+				}
+					catch(java.util.InputMismatchException e) {
+					System.out.println("opticao invalida");
+					if(scan.hasNextLine()) {
+						scan.nextLine();
 					}
-
+				}	
+					catch(Exception e) {
+						System.out.println(e.getMessage() + " " + e.getClass());
+					}
+					
 				return -1;
 			
 				default:
@@ -275,6 +317,12 @@ public class MenuCliente extends Menu{
 			return -1;
 		}
 	}
+
+
+
+
+
+
 
 
 

@@ -82,7 +82,8 @@ public class FachadaPousada {
 	public int quartoVazio(int tipoQuarto) throws QuartoNaoEncontradoException{
 		return user.quartovazio(tipoQuarto);
 	}
-	public int buscarQuarto(int indexQuarto){
+	public int buscarQuarto(int indexQuarto) throws ArrayIndexOutOfBoundsException,
+	QuartoJaExisteException{
 		return user.buscarQuarto(indexQuarto);
 	}
 	public void sevircoDeQuarto(int tipoDeServico , int indexQuarto, int quantidade){
@@ -111,7 +112,11 @@ public class FachadaPousada {
 	public String dadosDoCliente(int indexPessoa){
 		return user.dadosDoCliente(indexPessoa);
 	}
-	public int isCheckin (int indexCliente){
+	/*public int verCheckin (int indexCliente)throws CheckinNaoFeito {
+		return user.isCheckin(indexCliente);
+	}*/
+	
+	public int isCheckin (int indexCliente)/*throws Checkinfeito */{
 		return user.isCheckin(indexCliente);
 
 	}

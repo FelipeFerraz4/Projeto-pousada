@@ -24,7 +24,6 @@ public class NegocioCliente {
 	public void buscarCliente(int indexCliente){
 		pessoas.getPessoa(indexCliente);
 	}
-	// usa quarto 
 	public void reservarQuarto(int indexQuarto, int diarias, int tipoDeQuarto){
 		if(tipoDeQuarto == 1){
 			Normal quarto = (Normal)quartos.getQuarto(indexQuarto);
@@ -74,7 +73,16 @@ public class NegocioCliente {
 		}
 		return pessoas.getPessoa(indexPessoa).toString();
 	}
-	public int isCheckin (int indexCliente){
+	/*public int verCheckin (int indexCliente){
+		Cliente cliente = (Cliente) pessoas.getPessoa(indexCliente);
+		if (cliente.isCheckin() == false ){
+			return -1;
+		}
+		else{ 
+			return 1;
+		}
+	}*/
+	public int isCheckin (int indexCliente)/* throws Checkinfeito*/{
 		Cliente cliente = (Cliente) pessoas.getPessoa(indexCliente);
 		if (cliente.isCheckin() == false ){
 			return -1;
