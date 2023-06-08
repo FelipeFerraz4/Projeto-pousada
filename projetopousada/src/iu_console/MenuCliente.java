@@ -17,7 +17,7 @@ public class MenuCliente extends Menu{
 		this.cliente = indexCliente;
 	}
 	public int menuCliente(FachadaPousada pousada, Scanner scan){
-		String option[] = {"Chenck-in", "Sevirco de quarto", "Ver consumo", 
+		String option[] = {"Check-in", "Sevirco de quarto", "Ver consumo", 
 				"Ver historico de agendamento", "Dados do Cliente","Pagar consumo", "Checkout","voltar"};		
 		int escolha = printOption(option, option.length, scan);
         
@@ -122,22 +122,25 @@ public class MenuCliente extends Menu{
 	public void diarias(FachadaPousada pousada,int indexQuarto, Scanner scan){
 		
 		System.out.println("quantas diarias deseja reservar?");
-		int d;
-		try{
-			do {
-				d = scan.nextInt();
-				if (d < 1 || d >15) {
-					System.out.println("o maximo de diarias possivel sao 15 por pessoa!");
-					System.out.println("Por favor, digite a quantidadede de diarias desejadas: ");
-				}
-			
-			
-			 }while( d < 1 || d >15);
-			this.indexQuarto = indexQuarto;
-			pousada.reservarQuarto(indexQuarto, d,this.tipoDeQuarto);
-			pousada.setCheckin(this.cliente, true);
-			pousada.setHistorico(cliente);
-			System.out.println("Reserva Realizada");}
+		int d,r=0;
+		while(r != 1 ){
+			try{
+				do {
+					d = scan.nextInt();
+					if (d < 1 || d >15) {
+						System.out.println("o maximo de diarias possivel sao 15 por pessoa!");
+						System.out.println("Por favor, digite a quantidadede de diarias desejadas: ");
+					}
+				
+				
+				}while( d < 1 || d >15);
+				this.indexQuarto = indexQuarto;
+				pousada.reservarQuarto(indexQuarto, d,this.tipoDeQuarto);
+				pousada.setCheckin(this.cliente, true);
+				pousada.setHistorico(cliente);
+				System.out.println("Reserva Realizada");
+				r = 1;
+			}
 			
 			catch(java.util.InputMismatchException e) {
         		System.out.println("opticao invalida");
@@ -149,10 +152,12 @@ public class MenuCliente extends Menu{
 			catch(Exception e) {
 				System.out.println(e.getMessage() + "  " + e.getClass());
 			}
+		}
 
 	}
 
 	public int menuServisoDeQuarto(FachadaPousada pousada, Scanner scan){
+		int r=0;
 		if (this.tipoDeQuarto == 1){
 			int quantidade;
 			System.out.println("Qual opcao de quarto gostaria ?");
@@ -163,39 +168,47 @@ public class MenuCliente extends Menu{
 			
 			switch(escolha){
 				case 1:
-					try {
-					System.out.println("Qual a quantidade?");
-					quantidade = scan.nextInt();
-					if(quantidade>=0) {
-						pousada.sevircoDeQuarto(1,this.indexQuarto , quantidade);
-					}}
-					catch(java.util.InputMismatchException e) {
-						System.out.println("opticao invalida");
-						if(scan.hasNextLine()) {
-							scan.nextLine();
+					while(r !=1){
+						try {
+							System.out.println("Qual a quantidade?");
+							quantidade = scan.nextInt();
+							if(quantidade>=0) {
+								pousada.sevircoDeQuarto(1,this.indexQuarto , quantidade);
+							}
+							r=1;
 						}
-					}
-					catch(Exception e) {
-						System.out.println(e.getMessage() + " " + e.getClass());
+						catch(java.util.InputMismatchException e) {
+							System.out.println("opticao invalida");
+							if(scan.hasNextLine()) {
+								scan.nextLine();
+							}
+						}
+						catch(Exception e) {
+							System.out.println(e.getMessage() + " " + e.getClass());
+						}
 					}
 					return -1;
 
 				case 2:
-					try{
-						System.out.println("Qual a quantidade?");
-						quantidade = scan.nextInt();
-						if(quantidade>=0) {
-						pousada.sevircoDeQuarto(2,this.indexQuarto , quantidade);
+					
+					while(r != 1){
+						try{
+							System.out.println("Qual a quantidade?");
+							quantidade = scan.nextInt();
+							if(quantidade>=0) {
+							pousada.sevircoDeQuarto(2,this.indexQuarto , quantidade);
+							}
+							r = 1;
 						}
-					}
-					catch(java.util.InputMismatchException e) {
-						System.out.println("opticao invalida");
-						if(scan.hasNextLine()) {
-							scan.nextLine();
+						catch(java.util.InputMismatchException e) {
+							System.out.println("opticao invalida");
+							if(scan.hasNextLine()) {
+								scan.nextLine();
+							}
 						}
-					}
-					catch(Exception e) {
-						System.out.println(e.getMessage() + " " + e.getClass());
+						catch(Exception e) {
+							System.out.println(e.getMessage() + " " + e.getClass());
+						}
 					}
 					return -1;
 				default:
@@ -215,41 +228,46 @@ public class MenuCliente extends Menu{
 
 			switch(escolha){
 				case 1:
-					try{
-					System.out.println("Qual a quantidade?");
-					quantidade = scan.nextInt();
-					if(quantidade>=0) {
-						pousada.sevircoDeQuarto(3, this.indexQuarto, quantidade);
-					}
-					}
-					catch(java.util.InputMismatchException e) {
-						System.out.println("opticao invalida");
-						if(scan.hasNextLine()) {
-							scan.nextLine();
+					while(r != 1){	
+						try{
+							System.out.println("Qual a quantidade?");
+							quantidade = scan.nextInt();
+							if(quantidade>=0) {
+								pousada.sevircoDeQuarto(3, this.indexQuarto, quantidade);
+							}
+							r=1;
+						}
+						catch(java.util.InputMismatchException e) {
+							System.out.println("opticao invalida");
+							if(scan.hasNextLine()) {
+								scan.nextLine();
+							}
+						}
+						catch(Exception e) {
+							System.out.println(e.getMessage() + " " + e.getClass());
 						}
 					}
-					catch(Exception e) {
-						System.out.println(e.getMessage() + " " + e.getClass());
-					}
-					
 				return -1;
 
 				case 2:
-					try{
-					System.out.println("Qual a quantidade?");
-					quantidade = scan.nextInt();
-					if(quantidade>=0) {
-						pousada.sevircoDeQuarto(4, this.indexQuarto , quantidade);
-					}
-				}
-					catch(java.util.InputMismatchException e) {
-					System.out.println("opticao invalida");
-					if(scan.hasNextLine()) {
-						scan.nextLine();
-					}
-				}	
-					catch(Exception e) {
-						System.out.println(e.getMessage() + " " + e.getClass());
+					while(r != 1){	
+						try{
+							System.out.println("Qual a quantidade?");
+							quantidade = scan.nextInt();
+							if(quantidade>=0) {
+								pousada.sevircoDeQuarto(4, this.indexQuarto , quantidade);
+							}
+							r=1;
+						}
+						catch(java.util.InputMismatchException e) {
+							System.out.println("opticao invalida");
+							if(scan.hasNextLine()) {
+								scan.nextLine();
+							}
+						}	
+						catch(Exception e) {
+							System.out.println(e.getMessage() + " " + e.getClass());
+						}
 					}
 					
 				return -1;
