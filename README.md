@@ -1,5 +1,5 @@
 # Projeto-pousada
-[Documento de Especificação- Projeto Pousada .pdf](https://github.com/FelipeFerraz4/Projeto-pousada/files/11472817/Documento.de.Especificacao-.Projeto.Pousada.pdf)
+[Documento de Especificacao Projeto Pousada.pdf](https://github.com/FelipeFerraz4/Projeto-pousada/files/11701847/Documento.de.Especificacao.Projeto.Pousada.pdf)
 
 [Diagrama UML Parte 1 Pousada.pdf](https://github.com/FelipeFerraz4/Projeto-pousada/files/11700193/Diagrama.UML.Parte.1.Pousada.pdf)
 
