@@ -63,7 +63,7 @@ public class MenuCliente extends Menu{
 				System.out.println("Por favor, fazer check-in");
 					return -1;
 			case 7:
-				while(this.Checkout(pousada)== -1){
+				while(this.checkout(pousada)== -1){
 					return -1;
 				}
 				return 0;
@@ -325,7 +325,7 @@ public class MenuCliente extends Menu{
 		return pousada.dadosDoCliente(this.cliente);
 	}
 
-	public int Checkout(FachadaPousada pousada){
+	public int checkout(FachadaPousada pousada){
 		if (pousada.consumo(indexQuarto) == 0){
 			pousada.setCheckin(this.cliente, false);
 			return 0;
