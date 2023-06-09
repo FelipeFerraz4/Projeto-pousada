@@ -2,6 +2,7 @@ package negocios;
 
 import dados.repositoriospessoas.IRepositorioPessoa;
 import dados.repositoriosquartos.IRepositorioQuarto;
+import exceptionpousada.DeletarGerentePrincipalException;
 import exceptionpousada.PessoaJaExisteException;
 import exceptionpousada.PessoaNaoEncontradoException;
 import exceptionpousada.QuartoJaExisteException;
@@ -73,7 +74,11 @@ public class NegocioGerente {
 	public int buscarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{
 		return gerente.consultarQuarto(quartos, numeroQuarto, tipoQuarto);
 	}
-	public void deletarPessoa(String cpf) throws PessoaNaoEncontradoException{
+	public void deletarPessoa(String cpf) throws PessoaNaoEncontradoException,
+	DeletarGerentePrincipalException{
+		if (cpf.equals("0000")) {
+			throw new DeletarGerentePrincipalException(); 
+		}
 		gerente.removerPessoa(pessoas, cpf);
 	}
 	public void deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{

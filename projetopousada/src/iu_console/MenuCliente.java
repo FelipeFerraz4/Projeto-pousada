@@ -286,13 +286,13 @@ public class MenuCliente extends Menu{
 	}
 
 	public void historicoAgendamento(FachadaPousada pousada){
-		System.out.println("você fez "+ pousada.getHistorico(cliente) + " agendamentos nessa pousada");
+		System.out.println("voce fez "+ pousada.getHistorico(cliente) + " agendamentos nessa pousada");
 	}
 
 	public int pagarConsumo(FachadaPousada pousada, int indexQuarto, Scanner scan) {
 		System.out.println("valor da conta e "+ pousada.consumo(this.indexQuarto));
 		System.out.println("Qual forma de pagamento?");
-		String option[] = {" Dinheiro","Cartao", "pix","Voltar"};
+		String option[] = {"Dinheiro","Cartao", "pix","Voltar"};
 
 		int escolha = printOption(option, option.length, scan);
 			

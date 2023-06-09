@@ -4,6 +4,7 @@ import dados.repositoriospessoas.IRepositorioPessoa;
 import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
 import dados.repositoriosquartos.RepositorioQuartoArrayList;
+import exceptionpousada.DeletarGerentePrincipalException;
 import exceptionpousada.PessoaJaExisteException;
 import exceptionpousada.PessoaNaoEncontradoException;
 import exceptionpousada.QuartoJaExisteException;
@@ -37,7 +38,8 @@ public class FachadaPousada {
 	QuartoJaExisteException{
 		adm.cadastrarQuartoPrime(numeroQuarto);
 	}
-	public void deletarPessoa(String cpf) throws PessoaNaoEncontradoException{
+	public void deletarPessoa(String cpf) throws PessoaNaoEncontradoException,
+	DeletarGerentePrincipalException{
 		adm.deletarPessoa(cpf);
 	}
 	public void deletarQuarto(int numeroQuarto, int tipoQuarto) throws QuartoNaoEncontradoException{

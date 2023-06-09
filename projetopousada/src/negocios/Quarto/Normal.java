@@ -5,7 +5,7 @@ public class Normal extends Quarto {
 	
 	public Normal(int numero) {
 		super(numero);
-		super.setCapacidade(4);
+		super.setCapacidade(3);
 		super.setTipoQuarto(1);
 		super.setPrecoQuarto(250);
 	}

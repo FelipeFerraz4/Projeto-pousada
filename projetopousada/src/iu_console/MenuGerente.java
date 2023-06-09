@@ -2,6 +2,7 @@ package iu_console;
 
 import java.util.Scanner;
 
+import exceptionpousada.DeletarGerentePrincipalException;
 import exceptionpousada.PessoaJaExisteException;
 import exceptionpousada.PessoaNaoEncontradoException;
 import exceptionpousada.QuartoJaExisteException;
@@ -233,6 +234,9 @@ public class MenuGerente extends Menu{
 			else {
 				System.out.println("Remocao cancelada");
 			}
+		}
+		catch(DeletarGerentePrincipalException e) {
+			System.out.println(e.getMessage());
 		}
 		catch(PessoaNaoEncontradoException e) {
 			System.out.println(e.getMessage());
