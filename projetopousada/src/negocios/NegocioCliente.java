@@ -1,9 +1,7 @@
 package negocios;
 
 import dados.repositoriospessoas.IRepositorioPessoa;
-import dados.repositoriospessoas.RepositorioPessoaArrayList;
 import dados.repositoriosquartos.IRepositorioQuarto;
-import dados.repositoriosquartos.RepositorioQuartoArrayList;
 import exceptionpousada.QuartoNaoEncontradoException;
 import negocios.Pessoa.*;
 import negocios.Quarto.*;
